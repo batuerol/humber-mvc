@@ -1,0 +1,73 @@
+﻿.col-centered {
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* Base */
+@media only screen and (min-width:1px) {
+}
+
+@media only screen and (min-width: 320px) {
+}
+
+/* Tablet Portrait */
+@media only screen and (min-width: 480px) {
+    .main {
+        display: flex;
+    }
+
+        .main section:nth-child(1) {
+            width: 45%;
+            margin: 2.5%;
+        }
+
+        .main section:nth-child(2) {
+            width: 45%;
+            margin: 2.5%;
+        }
+
+    article img {
+        width: 100%;
+        min-width: 220px;
+    }
+}
+
+/*Tablet Landscape*/
+@media only screen and (min-width: 768px) {
+    .main {
+        display: flex;
+    }
+
+        .main section:nth-child(1) {
+            width: 45%;
+            margin: 2.5%;
+        }
+
+        .main section:nth-child(2) {
+            width: 45%;
+            margin: 2.5%;
+        }
+
+    article img {
+        width: 90%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .main {
+        display: inline-block;
+    }
+
+        .main section:nth-child(1) {
+            width: 100%;
+        }
+
+        .main section:nth-child(2) {
+            width: 100%;
+        }
+
+    article img {
+        width: 75%;
+        max-width: 350px;
+    }
+}
