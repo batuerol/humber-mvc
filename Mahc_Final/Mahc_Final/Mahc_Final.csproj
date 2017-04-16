@@ -262,6 +262,7 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Users.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Shared\_AdminPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
