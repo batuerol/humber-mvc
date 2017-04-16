@@ -7,8 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel.DataAnnotations;
-
 namespace Mahc_Final.DBContext
 {
     using System;
@@ -19,14 +17,13 @@ namespace Mahc_Final.DBContext
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Role()
         {
-            this.Users = new HashSet<User>();
+            this.HosMembers = new HashSet<HosMember>();
         }
     
-        public int Id { get; set; }
-        [Display(Name = "Role Name")]
-        public string Name { get; set; }
+        public int id { get; set; }
+        public string rolename { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<HosMember> HosMembers { get; set; }
     }
 }

@@ -12,10 +12,11 @@ namespace Mahc_Final.DBContext
     using System;
     using System.Collections.Generic;
     
-    public partial class ErWaitTime
+    public partial class ERWaitTime
     {
         public string Lock { get; set; }
-        public int WaitTime { get; set; }
+        public int CurrentWaitTime { get; set; }
         public System.DateTime UpdatedAt { get; set; }
+        public int WaitingPatients { get; set; }
     }
 }

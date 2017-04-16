@@ -6,13 +6,12 @@ using System.Web.Mvc;
 
 namespace Mahc_Final.Controllers
 {
-    [Authorize]
-    public class AdminController: Controller
+    public class AdminController : Controller
     {
-        // GET: Admin        
+        // GET: Admin
         public ActionResult Index()
         {
             return View();
-        }        
+        }
     }
 }

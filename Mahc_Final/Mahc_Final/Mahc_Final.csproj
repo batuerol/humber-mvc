@@ -153,67 +153,100 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\BlogController.cs" />
-    <Compile Include="Controllers\ERController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\PagesController.cs" />
-    <Compile Include="DBContext\ErWaitArchive.cs">
-      <DependentUpon>MahcContext.tt</DependentUpon>
+    <Compile Include="Controllers\JobsController.cs" />
+    <Compile Include="DBContext\BlogPost.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBContext\ErWaitTime.cs">
-      <DependentUpon>MahcContext.tt</DependentUpon>
+    <Compile Include="DBContext\contactu.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBContext\MahcContext.Context.cs">
+    <Compile Include="DBContext\Department.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\ERArchive.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\ERParam.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\ERWaitTime.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\faq.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\feedback.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\Gift.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\GiftCat.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\HosMember.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\HospitalModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MahcContext.Context.tt</DependentUpon>
+      <DependentUpon>HospitalModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBContext\MahcContext.cs">
+    <Compile Include="DBContext\HospitalModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MahcContext.tt</DependentUpon>
+      <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBContext\MahcContext.Designer.cs">
+    <Compile Include="DBContext\HospitalModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MahcContext.edmx</DependentUpon>
+      <DependentUpon>HospitalModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DBContext\Menu.cs">
-      <DependentUpon>MahcContext.tt</DependentUpon>
+    <Compile Include="DBContext\Job.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBContext\Post.cs">
-      <DependentUpon>MahcContext.tt</DependentUpon>
+    <Compile Include="DBContext\Job_applications.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\Job_types.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\Order.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\Role.cs">
-      <DependentUpon>MahcContext.tt</DependentUpon>
+      <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBContext\User.cs">
-      <DependentUpon>MahcContext.tt</DependentUpon>
+    <Compile Include="DBContext\Staff1.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\Task.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\Volunteer.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Metadata\MetadataBohdan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\UserCreateModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\mahcdb.mdf" />
-    <Content Include="App_Data\mahcdb_log.ldf">
-      <DependentUpon>mahcdb.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\HomeIndex.css" />
-    <Content Include="DBContext\MahcContext.Context.tt">
+    <Content Include="DBContext\HospitalModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MahcContext.Context.cs</LastGenOutput>
-      <DependentUpon>MahcContext.edmx</DependentUpon>
+      <DependentUpon>HospitalModel.edmx</DependentUpon>
+      <LastGenOutput>HospitalModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DBContext\MahcContext.tt">
+    <Content Include="DBContext\HospitalModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MahcContext.edmx</DependentUpon>
-      <LastGenOutput>MahcContext.cs</LastGenOutput>
+      <DependentUpon>HospitalModel.edmx</DependentUpon>
+      <LastGenOutput>HospitalModel.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -226,12 +259,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="DBContext\MahcContext.edmx">
+    <EntityDeploy Include="DBContext\HospitalModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MahcContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>HospitalModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="DBContext\MahcContext.edmx.diagram">
-      <DependentUpon>MahcContext.edmx</DependentUpon>
+    <Content Include="DBContext\HospitalModel.edmx.diagram">
+      <DependentUpon>HospitalModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -244,7 +277,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -255,20 +290,19 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\User\Register.cshtml" />
-    <Content Include="Views\User\Users.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Shared\_AdminPanel.cshtml" />
+    <Content Include="Views\Jobs\Create.cshtml" />
+    <Content Include="Views\Jobs\Delete.cshtml" />
+    <Content Include="Views\Jobs\Details.cshtml" />
+    <Content Include="Views\Jobs\Edit.cshtml" />
+    <Content Include="Views\Jobs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="App_Data\" />
+    <Folder Include="CVs\" />
     <Folder Include="Repository\" />
-    <Folder Include="Views\Blog\" />
-    <Folder Include="Views\ER\" />
-    <Folder Include="Views\Pages\" />
+    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
