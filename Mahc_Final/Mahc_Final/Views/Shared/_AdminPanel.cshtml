@@ -4,9 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
     <link href="~/Content/AdminPanel.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("head", required: false)
 </head>
 <body>
     <header>
@@ -42,8 +43,8 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>@Html.ActionLink("ER wait time", "Index", "Home")</li>
-                                    <li>@Html.ActionLink("Careers", "Index", "Careers")</li>
-                                    <li>@Html.ActionLink("Volunteers", "Index", "Volun")</li>
+                                    <li>@Html.ActionLink("Careers", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Volunteers", "Index", "Home")</li>
                                     <li>@Html.ActionLink("Donations", "Index", "Home")</li>
                                     <li>@Html.ActionLink("Gift shop", "Index", "Home")</li>
                                     <li>@Html.ActionLink("Feedback", "Index", "Home")</li>
@@ -75,7 +76,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
     </header>
     <div class="container body-content">
@@ -88,9 +89,10 @@
                 <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
             </div>
         </div>
-       
+
     </footer>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

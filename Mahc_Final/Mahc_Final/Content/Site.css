@@ -1,12 +1,14 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding-top: 0;
+    overflow-x: hidden !important;
+    /* padding-bottom: 20px;*/
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    min-height: 300px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -20,5 +22,146 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 380px;*/
+}
+
+ul {
+    list-style-type: none;
+    list-style: none;
+    padding: 0;
+}
+
+#bootstrap-overrides nav {
+    background-color: white;
+    border-bottom-color: darkseagreen;
+    border-bottom-style: solid;
+    border-bottom-width: .2em;
+}
+
+#bootstrap-overrides .input-group {
+    margin-bottom: 1em;
+}
+
+#bootstrap-overrides input[type=text] {
+    border: 2px solid darkseagreen;
+    border-radius: 4px;
+}
+
+#bootstrap-overrides button[type=button] {
+    background-color: darkseagreen;
+}
+
+    #bootstrap-overrides button[type=button]:hover {
+        background-color: #d9f2e5;
+    }
+
+#bootstrap-overrides a:hover {
+    text-decoration: none;
+}
+
+#bootstrap-overrides li.dropdown a:hover {
+    background-color: #d9f2e5;
+    border-radius: .5em .5em 0em 0em;
+}
+
+#bootstrap-overrides li.dropdown a:link {
+    background-color: darkseagreen;
+}
+
+#bootstrap-overrides li.dropdown:first-child a:link {
+    background-color: darkseagreen;
+    border-radius: .5em 0em 0em 0em;
+}
+
+#bootstrap-overrides li.dropdown:last-child a:link {
+    background-color: darkseagreen;
+    border-radius: 0em .5em 0em 0em;
+}
+
+#bootstrap-overrides a.dropdown-toggle a:link {
+    color: black;
+}
+
+#bootstrap-overrides ul.dropdown-menu a:link {
+    background-color: white;
+    border-radius: 0em;
+}
+
+#bootstrap-overrides ul.dropdown-menu a:hover {
+    background-color: darkseagreen;
+    border-radius: 0;
+}
+
+#bootstrap-overrides ul.dropdown-menu:first-child a:link {
+    background-color: white;
+    border-radius: 0;
+}
+
+#bootstrap-overrides ul.dropdown-menu:last-child a:link {
+    background-color: white;
+    border-radius: 0;
+}
+
+#bootstrap-overrides ul.dropdown-menu:first-child a:hover {
+    background-color: darkseagreen;
+    border-radius: 0;
+}
+
+#bootstrap-overrides ul.dropdown-menu:last-child a:hover {
+    background-color: darkseagreen;
+    border-radius: 0;
+}
+
+#bootstrap-overrides hr {
+    border-color: darkseagreen;
+}
+
+.header-bar {
+    float: right;
+}
+
+.textcolour {
+    /*background-color: cadetblue;*/
+}
+
+footer {
+    background-color: gainsboro;
+    color: black;
+    /*    position: absolute;
+    bottom: 0;
+    width: 100%;*/
+}
+
+    footer h3 {
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+
+    footer a:hover {
+        color: darkseagreen;
+    }
+
+
+.ftr {
+    display: inline;
+}
+
+p.footer {
+    display: block;
+}
+
+.changeBtn {
+    margin-bottom: 0.5em;
+    display: inline;
+    padding: 0.2em;
+}
+
+a:link {
+    color: dimgrey;
+}
+
+.col-centered {
+    text-align: center;
+    float: none !important;
+    margin: 0 auto;
 }
