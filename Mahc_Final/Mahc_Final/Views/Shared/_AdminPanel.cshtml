@@ -3,11 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    <link href="~/Content/AdminPanel.css" rel="stylesheet" type="text/css" />
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("head", required: false)
+    <link href="~/Content/AdminPanel.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="~/Content/jquery-ui-timepicker-addon.css">
+    
 </head>
 <body>
     <header>
@@ -91,8 +94,10 @@
         </div>
 
     </footer>
-    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery-ui-timepicker-addon.js"></script>
 </body>
 </html>

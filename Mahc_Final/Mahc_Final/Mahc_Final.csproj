@@ -245,6 +245,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\HomeIndex.css" />
+    <Content Include="Content\jquery-ui-timepicker-addon.css" />
     <Content Include="DBContext\HospitalModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>HospitalModel.edmx</DependentUpon>
@@ -281,6 +282,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -328,6 +330,7 @@
     <Content Include="Views\Volunteers\Edit.cshtml" />
     <Content Include="Views\Volunteers\Index.cshtml" />
     <Content Include="Views\Volunteer\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
