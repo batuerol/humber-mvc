@@ -1,0 +1,123 @@
+﻿@model Mahc_Final.DBContext.Task
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Task</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Regularity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Regularity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact_person)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact_person)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created_by)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created_by)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modified_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modified_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modified_by)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modified_by)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+

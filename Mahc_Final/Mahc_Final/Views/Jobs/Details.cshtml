@@ -1,88 +1,83 @@
 ﻿@model Mahc_Final.DBContext.Job
 
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
 
+<h2>Details</h2>
 
-<!DOCTYPE html>
+<div>
+    <h4>Job</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    <div>
-        <h4>Job</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Title)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Title)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Desc)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Desc)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Status)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Status)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Date_created)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Date_created)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Created_by)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Created_by)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Date_last_modified)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Date_last_modified)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Modified_by)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Modified_by)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Job_types.Title)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Job_types.Title)
-            </dd>
-    
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created_by)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created_by)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_last_modified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_last_modified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modified_by)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modified_by)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Job_types.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Job_types.Title)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

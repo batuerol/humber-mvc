@@ -153,8 +153,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CareersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
+    <Compile Include="Controllers\Job_applicationsController.cs" />
+    <Compile Include="Controllers\TasksController.cs" />
+    <Compile Include="Controllers\VolunteerController.cs" />
+    <Compile Include="Controllers\VolunteersController.cs" />
     <Compile Include="DBContext\BlogPost.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
@@ -232,9 +237,11 @@
     </Compile>
     <Compile Include="Metadata\MetadataBohdan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\JobApply.cs" />
     <Compile Include="ViewModels\UserCreateModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AdminPanel.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\HomeIndex.css" />
@@ -252,8 +259,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\fbk.png" />
+    <Content Include="Images\google.png" />
+    <Content Include="Images\linkedin-icon.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\Placeholder.png" />
+    <Content Include="Images\t.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -298,6 +309,25 @@
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Jobs\PublicDetails.cshtml" />
+    <Content Include="Views\Jobs\PublicIndex.cshtml" />
+    <Content Include="Views\Job_applications\Create.cshtml" />
+    <Content Include="Views\Job_applications\Delete.cshtml" />
+    <Content Include="Views\Job_applications\Details.cshtml" />
+    <Content Include="Views\Job_applications\Edit.cshtml" />
+    <Content Include="Views\Job_applications\Index.cshtml" />
+    <Content Include="Views\Careers\Index.cshtml" />
+    <Content Include="Views\Tasks\Create.cshtml" />
+    <Content Include="Views\Tasks\Delete.cshtml" />
+    <Content Include="Views\Tasks\Details.cshtml" />
+    <Content Include="Views\Tasks\Edit.cshtml" />
+    <Content Include="Views\Tasks\Index.cshtml" />
+    <Content Include="Views\Volunteers\Create.cshtml" />
+    <Content Include="Views\Volunteers\Delete.cshtml" />
+    <Content Include="Views\Volunteers\Details.cshtml" />
+    <Content Include="Views\Volunteers\Edit.cshtml" />
+    <Content Include="Views\Volunteers\Index.cshtml" />
+    <Content Include="Views\Volunteer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

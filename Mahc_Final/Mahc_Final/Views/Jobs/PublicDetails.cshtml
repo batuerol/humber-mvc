@@ -1,0 +1,125 @@
+﻿@model Mahc_Final.ViewModels.JobApply
+@{
+    ViewBag.Title = "PublicDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ 
+<h2>PublicDetails</h2>
+<div>
+    <h4>Job</h4>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.job.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job.Job_types.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job.Job_types.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job.Date_last_modified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job.Date_last_modified)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.job.Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job.Desc)
+        </dd>
+    </dl>
+</div>
+
+
+@using (Html.BeginForm("PublicDetails","Jobs",FormMethod.Post, new {enctype="multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h3>Apply for this job</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.application.Job_id, "Job title", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Job_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.application.Job_id, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+        @Html.HiddenFor(model => model.application.Job_id)
+        <div class="form-group">
+            @Html.LabelFor(model => model.application.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.application.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.application.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.application.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.application.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.application.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.application.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.application.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.application.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Upload CV", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="file" id="file"/> <br /><br />
+            </div>
+        </div>
+        @*<div class="form-group">
+        @Html.LabelFor(model => model.application.CV, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.application.CV, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.application.CV, "", new { @class = "text-danger" })
+        </div>
+         </div>
+        *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.application.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.application.Text, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.application.Text, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<div>
+    <h4>Jobapplication</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

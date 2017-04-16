@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+<h2>Volunteers feature admin</h2>
+
+<h4>@Html.ActionLink("Tasks", "Index", "Tasks")</h4>
+<h4>@Html.ActionLink("Applications", "Index", "Volunteers")</h4>
+
+
+<p>@Html.ActionLink("Back", "Index", "Admin")</p>
