@@ -12,19 +12,18 @@ namespace Mahc_Final.DBContext
     using System;
     using System.Collections.Generic;
     
-    public partial class Job_types
+    public partial class book_an_appointment
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Job_types()
-        {
-            this.Jobs = new HashSet<Job>();
-        }
-    
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Desc { get; set; }
+        public Nullable<int> dr_id { get; set; }
+        public string First_Name { get; set; }
+        public string Last_Name { get; set; }
+        public string Email_id { get; set; }
+        public Nullable<decimal> contact_no { get; set; }
+        public Nullable<int> avail_id { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Job> Jobs { get; set; }
+        public virtual doctor doctor { get; set; }
+        public virtual DoctorAvailability DoctorAvailability { get; set; }
     }
 }

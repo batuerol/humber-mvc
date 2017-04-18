@@ -25,12 +25,18 @@ namespace Mahc_Final.DBContext
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Alert> Alerts { get; set; }
         public virtual DbSet<BlogPost> BlogPosts { get; set; }
+        public virtual DbSet<book_an_appointment> book_an_appointment { get; set; }
         public virtual DbSet<contactu> contactus { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<DoctorAvailability> DoctorAvailabilities { get; set; }
+        public virtual DbSet<doctor> doctors { get; set; }
+        public virtual DbSet<donation> donations { get; set; }
         public virtual DbSet<ERArchive> ERArchives { get; set; }
         public virtual DbSet<ERParam> ERParams { get; set; }
         public virtual DbSet<ERWaitTime> ERWaitTimes { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<faq> faqs { get; set; }
         public virtual DbSet<feedback> feedbacks { get; set; }
         public virtual DbSet<GiftCat> GiftCats { get; set; }
@@ -39,6 +45,7 @@ namespace Mahc_Final.DBContext
         public virtual DbSet<Job_applications> Job_applications { get; set; }
         public virtual DbSet<Job_types> Job_types { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
+        public virtual DbSet<News> News { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Staff1> Staff1 { get; set; }

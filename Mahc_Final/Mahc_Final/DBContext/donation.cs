@@ -12,19 +12,12 @@ namespace Mahc_Final.DBContext
     using System;
     using System.Collections.Generic;
     
-    public partial class Job_types
+    public partial class donation
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Job_types()
-        {
-            this.Jobs = new HashSet<Job>();
-        }
-    
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Desc { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Job> Jobs { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Amount { get; set; }
+        public string status { get; set; }
     }
 }

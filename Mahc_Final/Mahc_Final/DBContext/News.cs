@@ -12,19 +12,19 @@ namespace Mahc_Final.DBContext
     using System;
     using System.Collections.Generic;
     
-    public partial class Job_types
+    public partial class News
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Job_types()
-        {
-            this.Jobs = new HashSet<Job>();
-        }
-    
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Desc { get; set; }
+        public string Content { get; set; }
+        public bool Published { get; set; }
+        public bool Featured { get; set; }
+        public Nullable<System.DateTime> Date_created { get; set; }
+        public Nullable<int> Created_by { get; set; }
+        public Nullable<System.DateTime> Date_last_modified { get; set; }
+        public Nullable<int> Modified_by { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Job> Jobs { get; set; }
+        public virtual HosMember HosMember { get; set; }
+        public virtual HosMember HosMember1 { get; set; }
     }
 }
