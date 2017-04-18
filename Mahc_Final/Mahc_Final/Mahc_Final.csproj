@@ -154,6 +154,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CareersController.cs" />
+    <Compile Include="Controllers\faqsVisitorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\Job_applicationsController.cs" />
@@ -352,6 +353,11 @@
     <Content Include="Views\Volunteers\Index.cshtml" />
     <Content Include="Views\Volunteer\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\faqsVisitor\Create.cshtml" />
+    <Content Include="Views\faqsVisitor\Delete.cshtml" />
+    <Content Include="Views\faqsVisitor\Details.cshtml" />
+    <Content Include="Views\faqsVisitor\Edit.cshtml" />
+    <Content Include="Views\faqsVisitor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
