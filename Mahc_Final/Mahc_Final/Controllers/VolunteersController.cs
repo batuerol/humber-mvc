@@ -48,13 +48,21 @@ namespace Mahc_Final.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Task_id,Name,Email,Phone,Pref_time,Pref_work,Date")] Volunteer volunteer)
+        public ActionResult Create([Bind(Include = "Id,Task_id,Name,Email,Phone,Pref_time,Pref_work")] Volunteer volunteer)
         {
-            if (ModelState.IsValid)
+            try
+            { 
+                if (ModelState.IsValid)
+                {
+                    volunteer.Date = DateTime.Now;
+                    db.Volunteers.Add(volunteer);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException dex) //you can create an Exception/DataException object here and set it to a variable. I've called it dex here. 
             {
-                db.Volunteers.Add(volunteer);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.Message = "Whoops! Something went wrong. Here's what went wrong: " + dex.Message; //One of the properties of these objects is Message which is a string of what went wrong. 
             }
 
             ViewBag.Task_id = new SelectList(db.Tasks, "Id", "Title", volunteer.Task_id);
@@ -82,10 +90,11 @@ namespace Mahc_Final.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Task_id,Name,Email,Phone,Pref_time,Pref_work,Date")] Volunteer volunteer)
+        public ActionResult Edit([Bind(Include = "Id,Task_id,Name,Email,Phone,Pref_time,Pref_work")] Volunteer volunteer)
         {
             if (ModelState.IsValid)
             {
+                volunteer.Date = DateTime.Now;
                 db.Entry(volunteer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

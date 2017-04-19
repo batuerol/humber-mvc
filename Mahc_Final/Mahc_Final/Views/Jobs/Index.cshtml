@@ -54,13 +54,13 @@
             @Html.DisplayFor(modelItem => item.Date_created)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Created_by)
+            @Html.DisplayFor(modelItem => item.HosMember.username)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date_last_modified)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Modified_by)
+            @Html.DisplayFor(modelItem => item.HosMember1.username)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Job_types.Title)
