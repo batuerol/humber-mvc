@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Mahc_Final.DBContext.BlogPost>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Blog Posts</h2>
+
+@Html.Action("GetLatestPosts", "Blog", new { count = 5 })

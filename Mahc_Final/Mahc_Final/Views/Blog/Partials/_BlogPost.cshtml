@@ -1,0 +1,9 @@
+﻿@model Mahc_Final.ViewModels.BlogPostViewModel
+
+<article class="col-md-6 col-sm-12 col-centered">
+    <div>
+        <img src="@Model.Image" alt="Placeholder" />
+        <h3>@Html.ActionLink(Model.Title, "PublicPost", "Blog", new { id = Model.Id.ToString() }, null)</h3>
+        <p>@Model.Preview</p>
+    </div>
+</article>

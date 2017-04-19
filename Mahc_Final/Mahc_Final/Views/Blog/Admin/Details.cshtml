@@ -1,0 +1,16 @@
+﻿@model Mahc_Final.DBContext.BlogPost
+
+@{
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+<main>
+    <h1>@Model.Title</h1>
+    <div>
+        @Model.Content
+    </div>
+</main>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

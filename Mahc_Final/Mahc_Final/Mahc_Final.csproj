@@ -153,6 +153,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CareersController.cs" />
     <Compile Include="Controllers\faqsVisitorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -258,7 +259,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Metadata\MetadataBohdan.cs" />
+    <Compile Include="Metadata\MetadataM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BlogPostsViewModel.cs" />
     <Compile Include="ViewModels\JobApply.cs" />
     <Compile Include="ViewModels\UserCreateModel.cs" />
   </ItemGroup>
@@ -358,11 +361,20 @@
     <Content Include="Views\faqsVisitor\Details.cshtml" />
     <Content Include="Views\faqsVisitor\Edit.cshtml" />
     <Content Include="Views\faqsVisitor\Index.cshtml" />
+    <Content Include="Views\Blog\Admin\Create.cshtml" />
+    <Content Include="Views\Blog\Admin\Delete.cshtml" />
+    <Content Include="Views\Blog\Admin\Details.cshtml" />
+    <Content Include="Views\Blog\Admin\Edit.cshtml" />
+    <Content Include="Views\Blog\Admin\Index.cshtml" />
+    <Content Include="Views\Blog\Public\Blog.cshtml" />
+    <Content Include="Views\Blog\Public\Post.cshtml" />
+    <Content Include="Views\Blog\Partials\_BlogPost.cshtml" />
+    <Content Include="Views\Blog\Partials\_BlogPosts.cshtml" />
+    <Content Include="Views\Blog\Partials\_ErWaitTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="CVs\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

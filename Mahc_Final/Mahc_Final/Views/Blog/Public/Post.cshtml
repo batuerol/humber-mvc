@@ -1,0 +1,12 @@
+﻿@model Mahc_Final.DBContext.BlogPost
+
+<main>
+    <h1>@Model.Title</h1>
+    <div>
+        <img src=@Model.Slug alt="Placeholder" /><br/>
+        @Model.Content
+    </div>
+</main>
+<p>
+    @Html.ActionLink("Back to List", "PublicBlog", "Blog")
+</p>
