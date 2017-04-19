@@ -1,11 +1,11 @@
-﻿@model IEnumerable<Mahc_Final.DBContext.Job>
+﻿@model IEnumerable<Mahc_Final.DBContext.News>
 
 @{
-    ViewBag.Title = "Jobs";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminPanel.cshtml";
 }
 
-<h2>Opportunities</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -16,10 +16,13 @@
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Desc)
+            @Html.DisplayNameFor(model => model.Content)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            @Html.DisplayNameFor(model => model.Published)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Featured)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Date_created)
@@ -33,22 +36,22 @@
         <th>
             @Html.DisplayNameFor(model => model.Modified_by)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Job_types.Title)
-        </th>
         <th></th>
     </tr>
-    
+
 @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Desc)
+            @Html.DisplayFor(modelItem => item.Content)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Status)
+            @Html.DisplayFor(modelItem => item.Published)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Featured)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date_created)
@@ -63,15 +66,11 @@
             @Html.DisplayFor(modelItem => item.HosMember1.username)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Job_types.Title)
-        </td>
-        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
-</table>
 
-@Html.ActionLink("Back", "Index", "Careers")
+</table>

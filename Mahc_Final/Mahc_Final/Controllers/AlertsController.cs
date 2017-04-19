@@ -10,52 +10,54 @@ using Mahc_Final.DBContext;
 
 namespace Mahc_Final.Controllers
 {
-    public class VolunteersController : Controller
+    public class AlertsController : Controller
     {
         private HospitalContext db = new HospitalContext();
 
-        // GET: Volunteers
+        // GET: Alerts
         public ActionResult Index()
         {
-            var volunteers = db.Volunteers.Include(v => v.Task);
-            return View(volunteers.ToList());
+            var alerts = db.Alerts;
+            return View(alerts.ToList());
         }
 
-        // GET: Volunteers/Details/5
+        // GET: Alerts/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Volunteer volunteer = db.Volunteers.Find(id);
-            if (volunteer == null)
+            Alert alert = db.Alerts.Find(id);
+            if (alert == null)
             {
                 return HttpNotFound();
             }
-            return View(volunteer);
+            return View(alert);
         }
 
-        // GET: Volunteers/Create
+        // GET: Alerts/Create
         public ActionResult Create()
         {
-            ViewBag.Task_id = new SelectList(db.Tasks, "Id", "Title");
             return View();
         }
 
-        // POST: Volunteers/Create
+        // POST: Alerts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Task_id,Name,Email,Phone,Pref_time,Pref_work")] Volunteer volunteer)
+        public ActionResult Create([Bind(Include = "Id,Title,Due_time,Desc,Status")] Alert alert)
         {
-            try
-            { 
+            try //if you auto build the controllers, visual studio will NOT include a try/catch
+            { //a try/catch will try what you want to do, then "catch" what goes wrong. Try/catch can even catch server errors such as if the database server is down
                 if (ModelState.IsValid)
                 {
-                    volunteer.Date = DateTime.Now;
-                    db.Volunteers.Add(volunteer);
+                    alert.Created_by = 1;
+                    alert.Modified_by = 1;
+                    alert.Date_created = DateTime.Now;
+                    alert.Date_last_modified = DateTime.Now;
+                    db.Alerts.Add(alert);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -64,67 +66,76 @@ namespace Mahc_Final.Controllers
             {
                 ViewBag.Message = "Whoops! Something went wrong. Here's what went wrong: " + dex.Message; //One of the properties of these objects is Message which is a string of what went wrong. 
             }
-
-            ViewBag.Task_id = new SelectList(db.Tasks, "Id", "Title", volunteer.Task_id);
-            return View(volunteer);
+            return View(alert);
         }
 
-        // GET: Volunteers/Edit/5
+        // GET: Alerts/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Volunteer volunteer = db.Volunteers.Find(id);
-            if (volunteer == null)
+            Alert alert = db.Alerts.Find(id);
+            if (alert == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Task_id = new SelectList(db.Tasks, "Id", "Title", volunteer.Task_id);
-            return View(volunteer);
+            return View(alert);
         }
 
-        // POST: Volunteers/Edit/5
+        // POST: Alerts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Task_id,Name,Email,Phone,Pref_time,Pref_work")] Volunteer volunteer)
+        public ActionResult Edit([Bind(Include = "Id,Title,Due_time,Desc,Status")] Alert alert)
         {
-            if (ModelState.IsValid)
+            try
             {
-                volunteer.Date = DateTime.Now;
-                db.Entry(volunteer).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                Alert currentAlert = db.Alerts.FirstOrDefault(j => j.Id == alert.Id);
+                if (ModelState.IsValid)
+                {
+                    //db.Entry(alert).State = EntityState.Modified;
+                    currentAlert.Title = alert.Title;
+                    currentAlert.Due_time = alert.Due_time;
+                    currentAlert.Desc = alert.Desc;
+                    currentAlert.Status = alert.Status;
+                    currentAlert.Modified_by = 2;
+                    currentAlert.Date_last_modified = DateTime.Now;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-            ViewBag.Task_id = new SelectList(db.Tasks, "Id", "Title", volunteer.Task_id);
-            return View(volunteer);
+            catch (DataException dex) //you can create an Exception/DataException object here and set it to a variable. I've called it dex here. 
+            {
+                ViewBag.Message = "Whoops! Something went wrong. Here's what went wrong: " + dex.Message; //One of the properties of these objects is Message which is a string of what went wrong. 
+            }
+            return View(alert);
         }
 
-        // GET: Volunteers/Delete/5
+        // GET: Alerts/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Volunteer volunteer = db.Volunteers.Find(id);
-            if (volunteer == null)
+            Alert alert = db.Alerts.Find(id);
+            if (alert == null)
             {
                 return HttpNotFound();
             }
-            return View(volunteer);
+            return View(alert);
         }
 
-        // POST: Volunteers/Delete/5
+        // POST: Alerts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Volunteer volunteer = db.Volunteers.Find(id);
-            db.Volunteers.Remove(volunteer);
+            Alert alert = db.Alerts.Find(id);
+            db.Alerts.Remove(alert);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
