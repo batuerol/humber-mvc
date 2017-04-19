@@ -124,4 +124,17 @@ namespace Mahc_Final.Models
         [Display(Name = "Application date")]
         public System.DateTime Date;
     }
+    public class AlertsMetadata
+    {
+       
+    }
+
+    public class NewsMetadata
+    {
+
+    }
+    public class EventsMetadata
+    {
+
+    }
 }
