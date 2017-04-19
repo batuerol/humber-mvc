@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlTypes;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -55,16 +56,22 @@ namespace Mahc_Final.Controllers
         [HttpPost]
         [Route("Admin/NewPost")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Content,Excerpt,Slug,PostDate,UpdatedAt,PostStatus,AuthorId")] BlogPost blogPost)
+        public ActionResult Create(HttpPostedFileBase file,
+            [Bind(Include = "Id,Title,Content,Excerpt,Slug,PostDate,UpdatedAt,PostStatus,AuthorId")] BlogPost blogPost)
         {
             if (ModelState.IsValid)
             {
                 blogPost.Excerpt = blogPost.Content.Length > 50 ? blogPost.Content.Substring(0, 50) : blogPost.Content;
                 blogPost.UpdatedAt = DateTime.Now;
                 blogPost.PostDate = DateTime.Now;
+                blogPost.Slug = file.FileName;
 
                 _dbEntities.BlogPosts.Add(blogPost);
                 _dbEntities.SaveChanges();
+
+                var path = Path.Combine(Server.MapPath("~/BlogImages/"), file.FileName);
+                file.SaveAs(path);
+
                 return RedirectToAction("Index");
             }
 
