@@ -126,15 +126,86 @@ namespace Mahc_Final.Models
     }
     public class AlertsMetadata
     {
-       
+        [Required]
+        [StringLength(255, ErrorMessage = "Title must be at least 2 characters", MinimumLength = 2)]
+        [Display(Name = "Alert title")]
+        public string Title;
+        [Required]
+        [Display(Name = "Alert due time")]
+        public System.DateTime Due_time;
+        [Required]
+        [DataType(DataType.MultilineText)]
+        [Display(Name = "Description")]
+        public string Desc;
+        [Display(Name = "Published")]
+        public bool Status;
+        [Display(Name = "Created")]
+        public System.DateTime Date_created;
+        [Display(Name = "Created by")]
+        public int Created_by;
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Modified")]
+        public System.DateTime Date_last_modified;
+        [Display(Name = "Modified by")]
+        public int Modified_by;
     }
 
     public class NewsMetadata
     {
-
+        [Required]
+        [StringLength(255, ErrorMessage = "Title must be at least 2 characters", MinimumLength = 2)]
+        [Display(Name = "Article title")]
+        public string Title;
+        [Required]
+        [DataType(DataType.MultilineText)]
+        [Display(Name = "Content")]
+        public string Content;
+        [Display(Name = "Published")]
+        public bool Published;
+        [Display(Name = "Featured")]
+        public bool Featured;
+        [Display(Name = "Created")]
+        public System.DateTime Date_created;
+        [Display(Name = "Created by")]
+        public int Created_by;
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Modified")]
+        public System.DateTime Date_last_modified;
+        [Display(Name = "Modified by")]
+        public int Modified_by;
     }
     public class EventsMetadata
     {
-
+        [Required]
+        [StringLength(255, ErrorMessage = "Title must be at least 2 characters", MinimumLength = 2)]
+        [Display(Name = "Event title")]
+        public string Title;
+        [Required]
+        [StringLength(255, ErrorMessage = "Type must be at least 2 characters", MinimumLength = 2)]
+        [Display(Name = "Event type")]
+        public string Type;
+        [Display(Name = "Location")]
+        public string Location;
+        [Required]
+        [Display(Name = "Event start")]
+        public System.DateTime Time_start;
+        [Required]
+        [Display(Name = "Event end")]
+        public Nullable<System.DateTime> Time_end;
+        [Display(Name = "Published")]
+        public bool Status;
+        [Display(Name = "Featured")]
+        public bool Featured;
+        public string Volunteers;
+        public string Desc;
+        [Display(Name = "Created")]
+        public System.DateTime Date_created;
+        [Display(Name = "Created by")]
+        public int Created_by;
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Modified")]
+        public System.DateTime Date_last_modified;
+        [Display(Name = "Modified by")]
+        public int Modified_by;
     }
 }

@@ -28,13 +28,13 @@
             @Html.DisplayNameFor(model => model.Date_created)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Created_by)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Date_last_modified)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HosMember.first_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HosMember1.first_name)
+            @Html.DisplayNameFor(model => model.Modified_by)
         </th>
         <th></th>
     </tr>
@@ -57,13 +57,13 @@
             @Html.DisplayFor(modelItem => item.Date_created)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.HosMember.username)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Date_last_modified)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HosMember.first_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HosMember1.first_name)
+            @Html.DisplayFor(modelItem => item.HosMember1.username)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

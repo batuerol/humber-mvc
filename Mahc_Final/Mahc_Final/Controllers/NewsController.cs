@@ -17,7 +17,7 @@ namespace Mahc_Final.Controllers
         // GET: News
         public ActionResult Index()
         {
-            var news = db.News.Include(n => n.HosMember).Include(n => n.HosMember1);
+            var news = db.News;
             return View(news.ToList());
         }
 
@@ -39,8 +39,6 @@ namespace Mahc_Final.Controllers
         // GET: News/Create
         public ActionResult Create()
         {
-            ViewBag.Created_by = new SelectList(db.HosMembers, "Id", "first_name");
-            ViewBag.Modified_by = new SelectList(db.HosMembers, "Id", "first_name");
             return View();
         }
 
@@ -49,17 +47,25 @@ namespace Mahc_Final.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Content,Published,Featured,Date_created,Created_by,Date_last_modified,Modified_by")] News news)
-        {
-            if (ModelState.IsValid)
-            {
-                db.News.Add(news);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+        public ActionResult Create([Bind(Include = "Id,Title,Content,Published,Featured")] News news)
+        {            
+            try //if you auto build the controllers, visual studio will NOT include a try/catch
+            { //a try/catch will try what you want to do, then "catch" what goes wrong. Try/catch can even catch server errors such as if the database server is down
+                if (ModelState.IsValid)
+                {
+                    news.Created_by = 1;
+                    news.Modified_by = 1;
+                    news.Date_created = DateTime.Now;
+                    news.Date_last_modified = DateTime.Now;
+                    db.News.Add(news);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-
-            ViewBag.Created_by = new SelectList(db.HosMembers, "Id", "first_name", news.Created_by);
-            ViewBag.Modified_by = new SelectList(db.HosMembers, "Id", "first_name", news.Modified_by);
+            catch (DataException dex) //you can create an Exception/DataException object here and set it to a variable. I've called it dex here. 
+            {
+                ViewBag.Message = "Whoops! Something went wrong. Here's what went wrong: " + dex.Message; //One of the properties of these objects is Message which is a string of what went wrong. 
+            }
             return View(news);
         }
 
@@ -85,16 +91,28 @@ namespace Mahc_Final.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Content,Published,Featured,Date_created,Created_by,Date_last_modified,Modified_by")] News news)
+        public ActionResult Edit([Bind(Include = "Id,Title,Content,Published,Featured")] News news)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(news).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                News currentNews = db.News.FirstOrDefault(j => j.Id == news.Id);
+                if (ModelState.IsValid)
+                {
+                    //db.Entry(alert).State = EntityState.Modified;
+                    currentNews.Title = news.Title;
+                    currentNews.Content = news.Content;
+                    currentNews.Published = news.Published;
+                    currentNews.Featured = news.Featured;
+                    currentNews.Modified_by = 2;
+                    currentNews.Date_last_modified = DateTime.Now;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-            ViewBag.Created_by = new SelectList(db.HosMembers, "Id", "first_name", news.Created_by);
-            ViewBag.Modified_by = new SelectList(db.HosMembers, "Id", "first_name", news.Modified_by);
+            catch (DataException dex) //you can create an Exception/DataException object here and set it to a variable. I've called it dex here. 
+            {
+                ViewBag.Message = "Whoops! Something went wrong. Here's what went wrong: " + dex.Message; //One of the properties of these objects is Message which is a string of what went wrong. 
+            }
             return View(news);
         }
 
