@@ -3,7 +3,8 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<link rel="stylesheet" href="~/Content/HomeIndex.css"/>
 <h2>Blog Posts</h2>
-
-@Html.Action("GetLatestPosts", "Blog", new { count = 5 })
+<div class="blog__container">
+    @Html.Action("GetLatestPosts", "Blog", new { count = 5 })
+</div>

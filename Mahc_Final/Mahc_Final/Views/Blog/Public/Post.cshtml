@@ -1,9 +1,11 @@
 ﻿@model Mahc_Final.DBContext.BlogPost
 
+<link rel="stylesheet" href="@Url.Content("~/Content/Post.css")"/>
+
 <main>
     <h1>@Model.Title</h1>
     <div>
-        <img src=@Model.Slug alt="Placeholder" /><br/>
+        <img src="@Url.Content("~/BlogImages/" + Model.Slug)" alt="@Model.Slug"  /><br/>
         @Model.Content
     </div>
 </main>

@@ -3,6 +3,13 @@
     margin: 0 auto;
 }
 
+.blog__container img {
+    max-width: 200px;
+    max-height: 200px;
+    min-width: 200px;
+    min-height: 200px;
+}
+
 /* Base */
 @media only screen and (min-width:1px) {
 }
@@ -69,5 +76,10 @@
     article img {
         width: 75%;
         max-width: 350px;
+    }
+
+    .blog__container {
+        display: flex;
+        flex-direction: row;
     }
 }

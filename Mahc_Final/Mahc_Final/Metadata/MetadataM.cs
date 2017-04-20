@@ -9,14 +9,16 @@ namespace Mahc_Final.Metadata
 {
     public class BlogPostMetadata
     {
-        [Required]
         [Display(Name = "Title")]
+        [Required(ErrorMessage = "{0} cannot be empty!")]
         public string Title { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "{0} cannot be empty!")]
         [DataType(DataType.MultilineText)]
+        [MinLength(5, ErrorMessage = "{0} must be at least {1} characters")]
         [Display(Name = "Content")]
         public string Content { get; set; }
-        [Required(ErrorMessage = "You need to provide an image.")]
+
         [DataType(DataType.Upload)]
         public string Slug { get; set; }
 

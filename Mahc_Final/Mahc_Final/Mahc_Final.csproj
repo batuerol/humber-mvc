@@ -270,11 +270,13 @@
     <Compile Include="ViewModels\UserCreateModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BlogImages\dlZMezy.jpg" />
     <Content Include="Content\AdminPanel.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\HomeIndex.css" />
     <Content Include="Content\jquery-ui-timepicker-addon.css" />
+    <Content Include="Content\Post.css" />
     <Content Include="DBContext\HospitalModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>HospitalModel.edmx</DependentUpon>
@@ -293,7 +295,7 @@
     <Content Include="Images\google.png" />
     <Content Include="Images\linkedin-icon.png" />
     <Content Include="Images\logo.png" />
-    <Content Include="Images\Placeholder.png" />
+    <Content Include="BlogImages\Placeholder.png" />
     <Content Include="Images\t.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

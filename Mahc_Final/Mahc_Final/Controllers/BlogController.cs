@@ -57,26 +57,35 @@ namespace Mahc_Final.Controllers
         [Route("Admin/NewPost")]
         [ValidateAntiForgeryToken]
         public ActionResult Create(HttpPostedFileBase file,
-            [Bind(Include = "Id,Title,Content,Excerpt,Slug,PostDate,UpdatedAt,PostStatus,AuthorId")] BlogPost blogPost)
+            [Bind(Include = "Id,Title,Content,Excerpt,PostDate,UpdatedAt,PostStatus,AuthorId")] BlogPost blogPost)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                blogPost.Excerpt = blogPost.Content.Length > 50 ? blogPost.Content.Substring(0, 50) : blogPost.Content;
-                blogPost.UpdatedAt = DateTime.Now;
-                blogPost.PostDate = DateTime.Now;
-                blogPost.Slug = file.FileName;
-
-                _dbEntities.BlogPosts.Add(blogPost);
-                _dbEntities.SaveChanges();
-
-                var path = Path.Combine(Server.MapPath("~/BlogImages/"), file.FileName);
-                file.SaveAs(path);
-
-                return RedirectToAction("Index");
+                ViewBag.PostStatus = new SelectList(new List<string> { "Publish", "Draft", "Revision" }, "Publish");
+                ViewBag.AuthorId = new SelectList(_dbEntities.HosMembers, "Id", "username", blogPost.AuthorId);
+                return View("Admin/Create", blogPost);
             }
 
-            ViewBag.AuthorId = new SelectList(_dbEntities.HosMembers, "Id", "username", blogPost.AuthorId);
-            return View("Admin/Create", blogPost);
+            blogPost.Excerpt = blogPost.Content.Length > 50 ? blogPost.Content.Substring(0, 50) : blogPost.Content;
+            blogPost.UpdatedAt = DateTime.Now;
+            blogPost.PostDate = DateTime.Now;
+
+            string blogImagePath = Server.MapPath("~/BlogImages/");
+            if (file != null)
+            {
+                blogPost.Slug = file.FileName;
+                string path = Path.Combine(blogImagePath, blogPost.Slug);
+                file.SaveAs(path);
+            }
+            else
+            {                
+                blogPost.Slug = "Placeholder.png";
+            }
+
+            _dbEntities.BlogPosts.Add(blogPost);
+            _dbEntities.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         // GET: BlogPosts/Edit/5
