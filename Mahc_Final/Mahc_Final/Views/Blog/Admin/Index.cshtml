@@ -13,6 +13,12 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Excerpt)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.PostDate)
         </th>
         <th>
@@ -30,6 +36,12 @@
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title, new { @class = "short-text" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Excerpt, new { @class = "short-text" })
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PostDate)
             </td>

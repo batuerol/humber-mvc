@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlTypes;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -16,8 +17,8 @@ namespace Mahc_Final.Controllers
     {
         private readonly HospitalContext _dbEntities = new HospitalContext();
 
-        // GET: BlogPosts
-        //[Authorize]
+        // GET: BlogPosts        
+        //[Authorize(Roles = "Admin, Superuser")]
         [Route("Admin/Posts")]
         public ActionResult Index()
         {
@@ -70,16 +71,13 @@ namespace Mahc_Final.Controllers
             blogPost.UpdatedAt = DateTime.Now;
             blogPost.PostDate = DateTime.Now;
 
-            string blogImagePath = Server.MapPath("~/BlogImages/");
-            if (file != null)
+            if (file == null)
             {
-                blogPost.Slug = file.FileName;
-                string path = Path.Combine(blogImagePath, blogPost.Slug);
-                file.SaveAs(path);
+                blogPost.Slug = "Placeholder.png";
             }
             else
-            {                
-                blogPost.Slug = "Placeholder.png";
+            {
+                imageUploadHandler(file, blogPost);
             }
 
             _dbEntities.BlogPosts.Add(blogPost);
@@ -113,16 +111,24 @@ namespace Mahc_Final.Controllers
         [HttpPost]
         [Route("Admin/Edit/{id}")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Content,Excerpt,Slug,UpdatedAt,PostDate,PostStatus,AuthorId")] BlogPost blogPost)
+        public ActionResult Edit(HttpPostedFileBase file,
+            [Bind(Include = "Id,Title,Content,Excerpt,Slug,PostDate,UpdatedAt,PostStatus,AuthorId")] BlogPost blogPost)
         {
             if (ModelState.IsValid)
             {
                 blogPost.UpdatedAt = DateTime.Now;
+                // NOTE(batuhan): Retarded EF
+                blogPost.PostDate = blogPost.PostDate;
+
+                if (file != null)
+                    imageUploadHandler(file, blogPost);
+
                 _dbEntities.Entry(blogPost).State = EntityState.Modified;
                 _dbEntities.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.AuthorId = new SelectList(_dbEntities.HosMembers, "Id", "username", blogPost.AuthorId);
+            ViewBag.PostStatus = new SelectList(new List<string> { "Publish", "Draft", "Revision" }, "Publish");
             return View("Admin/Edit", blogPost);
         }
 
@@ -149,10 +155,14 @@ namespace Mahc_Final.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             BlogPost blogPost = _dbEntities.BlogPosts.Find(id);
-            blogPost.PostStatus = "Archived";
-            blogPost.UpdatedAt = DateTime.Now;
-            _dbEntities.Entry(blogPost).State = EntityState.Modified;
-            //_dbEntities.BlogPosts.Remove(blogPost);
+            //blogPost.PostStatus = "Archived";
+            //blogPost.UpdatedAt = DateTime.Now;
+            //_dbEntities.Entry(blogPost).State = EntityState.Modified;
+            if (blogPost.Slug != "Placeholder.png")
+            {
+                System.IO.File.Delete(Path.Combine(Server.MapPath("~/BlogImages/"), blogPost.Slug));
+            }
+            _dbEntities.BlogPosts.Remove(blogPost);
             _dbEntities.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -226,6 +236,31 @@ namespace Mahc_Final.Controllers
                 _dbEntities.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        //A\\ 
+        /*
+         *  Placeholder.png renamed to {postdate}_placeholder.png
+         *  
+         */
+        private void imageUploadHandler(HttpPostedFileBase file, BlogPost blogPost)
+        {
+            string fileName = file.FileName;
+
+            if (fileName == "Placeholder.png")
+                fileName = blogPost.PostDate.
+                            ToString(CultureInfo.InvariantCulture) + "_"
+                           + fileName;
+
+            if (blogPost.Slug != file.FileName)
+            {
+                string path = Server.MapPath("~/BlogImages/");
+                if (blogPost.Slug != null && blogPost.Slug != "Placeholder.png")
+                    System.IO.File.Delete(Path.Combine(path, blogPost.Slug));
+
+                file.SaveAs(Path.Combine(path, fileName));
+                blogPost.Slug = fileName;
+            }
         }
     }
 }
