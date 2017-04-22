@@ -158,7 +158,10 @@
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CareersController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\faqsAdminController.cs" />
     <Compile Include="Controllers\faqsVisitorController.cs" />
+    <Compile Include="Controllers\feedbacksAdminController.cs" />
+    <Compile Include="Controllers\feedbacksVisitorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\Job_applicationsController.cs" />
@@ -362,11 +365,6 @@
     <Content Include="Views\Volunteers\Index.cshtml" />
     <Content Include="Views\Volunteer\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
-    <Content Include="Views\faqsVisitor\Create.cshtml" />
-    <Content Include="Views\faqsVisitor\Delete.cshtml" />
-    <Content Include="Views\faqsVisitor\Details.cshtml" />
-    <Content Include="Views\faqsVisitor\Edit.cshtml" />
-    <Content Include="Views\faqsVisitor\Index.cshtml" />
     <Content Include="Views\Blog\Admin\Create.cshtml" />
     <Content Include="Views\Blog\Admin\Delete.cshtml" />
     <Content Include="Views\Blog\Admin\Details.cshtml" />
@@ -393,6 +391,16 @@
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\faqsAdmin\Create.cshtml" />
+    <Content Include="Views\faqsAdmin\Delete.cshtml" />
+    <Content Include="Views\faqsAdmin\Details.cshtml" />
+    <Content Include="Views\faqsAdmin\Edit.cshtml" />
+    <Content Include="Views\faqsAdmin\Index.cshtml" />
+    <Content Include="Views\faqsVisitor\Index.cshtml" />
+    <Content Include="Views\feedbacksVisitor\Create.cshtml" />
+    <Content Include="Views\feedbacksAdmin\Delete.cshtml" />
+    <Content Include="Views\feedbacksAdmin\Details.cshtml" />
+    <Content Include="Views\feedbacksAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

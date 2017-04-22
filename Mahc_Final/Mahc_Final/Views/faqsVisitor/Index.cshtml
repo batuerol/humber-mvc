@@ -5,36 +5,35 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<style>
+    .display
+    {
+        margin-left:3%;
+    }
+    b {
+        font-size: medium;
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Question)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Answer)
-        </th>
-        <th></th>
-    </tr>
+    p {
+        text-indent: 3%;
+    }
+</style>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Question)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Answer)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+<h2>FAQ</h2>
+
+<hr />
+
+
+<div class="display">
+@foreach (var item in Model)
+{
+    <b>
+        @Html.DisplayFor(modelItem => item.Question)
+    </b>
+            <br />
+            <p>
+                @Html.DisplayFor(modelItem => item.Answer)
+            </p>
+            <br />
 }
-
-</table>
+</div>

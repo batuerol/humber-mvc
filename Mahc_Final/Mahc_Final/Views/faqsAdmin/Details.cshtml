@@ -2,15 +2,15 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
 }
 
-<h2>Details</h2>
+<h2>FAQ</h2>
 
 <div>
-    <h4>faq</h4>
     <hr />
     <dl class="dl-horizontal">
+        <h4>Details to Q&A Id: @Html.DisplayFor(model => model.Id)</h4>
         <dt>
             @Html.DisplayNameFor(model => model.Question)
         </dt>
@@ -33,3 +33,4 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
