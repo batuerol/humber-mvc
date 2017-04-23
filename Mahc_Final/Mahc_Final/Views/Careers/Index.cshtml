@@ -15,31 +15,19 @@
 <div class="row">
     <div class="col-lg-6 col-md-6">
         <table class="table">
-            <caption><h4>Latest opportunities</h4></caption>
+            <caption><h4>Latest 5 opportunities</h4></caption>
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.opportunities.First().Title)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.opportunities.First().Desc)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.opportunities.First().Status)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.opportunities.First().Date_created)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.opportunities.First().Created_by)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.opportunities.First().Date_last_modified)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.opportunities.First().Modified_by)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.opportunities.First().Job_types.Title)
                 </th>
                 <th></th>
             </tr>
@@ -48,51 +36,31 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Desc)
+                        @*@Html.DisplayFor(modelItem => item.Title)*@
+                        @Html.ActionLink(item.Title,"Details","Jobs",new { id = item.Id },null)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Status)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Date_created)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.HosMember.username)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Date_last_modified)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.HosMember1.username)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Job_types.Title)
-                    </td>
+                    </td>                    
                 </tr>
             }
         </table>
     </div>
     <div class="col-lg-6 col-md-6">
         <table class="table">
-            <caption><h4>Latest applications</h4></caption>
+            <caption><h4>Latest 5 applications</h4></caption>
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.applications.First().Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.applications.First().Email)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.applications.First().Phone)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.applications.First().CV)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.applications.First().Text)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.applications.First().Date)
@@ -107,19 +75,11 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
+                        @*@Html.DisplayFor(modelItem => item.Name)*@
+                        @Html.ActionLink(item.Name,"Details","Job_applications",new { id = item.Id },null)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Phone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CV)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Text)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Date)

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Mahc_Final.DBContext;
+using PagedList;
 
 namespace Mahc_Final.Controllers
 {
@@ -15,10 +16,49 @@ namespace Mahc_Final.Controllers
         private HospitalContext db = new HospitalContext();
 
         // GET: Job_applications
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var job_application = db.Job_applications.Include(j => j.Job);
-            return View("Admin/Index", job_application.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var job_applications = from s in db.Job_applications
+                       select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                job_applications = job_applications.Where(s => s.Name.Contains(searchString)
+                                       || s.Phone.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    job_applications = job_applications.OrderByDescending(s => s.Name);
+                    break;
+                case "Date":
+                    job_applications = job_applications.OrderBy(s => s.Date);
+                    break;
+                case "date_desc":
+                    job_applications = job_applications.OrderByDescending(s => s.Date);
+                    break;
+                default:
+                    job_applications = job_applications.OrderBy(s => s.Name);
+                    break;
+            }
+            //var job_application = db.Job_applications.Include(j => j.Job);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View("Admin/Index", job_applications.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Job_applications/Details/5

@@ -9,18 +9,71 @@ using System.Web.Mvc;
 using System.IO;
 using Mahc_Final.DBContext;
 using Mahc_Final.ViewModels;
+using PagedList;
 
 namespace Mahc_Final.Controllers
 {
     public class JobsController : Controller
     {
         private HospitalContext db = new HospitalContext();
-
         // GET: Jobs
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var jobs = db.Jobs.Include(j => j.Job_types);
-            return View("Admin/Index", jobs.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewBag.StatusSortParm = sortOrder == "Published" ? "not_published" : "Published";
+            ViewBag.CreatedSortParm = sortOrder == "Created" ? "created_desc" : "Created";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var jobs = from s in db.Jobs
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                jobs = jobs.Where(s => s.Title.Contains(searchString)
+                                       || s.Desc.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    jobs = jobs.OrderByDescending(s => s.Title);
+                    break;
+                case "Published":
+                    jobs = jobs.OrderByDescending(s => s.Status);
+                    break;
+                case "not_published":
+                    jobs = jobs.OrderBy(s => s.Status);
+                    break;
+                case "Created":
+                    jobs = jobs.OrderBy(s => s.Date_created);
+                    break;
+                case "created_desc":
+                    jobs = jobs.OrderByDescending(s => s.Date_created);
+                    break;
+                case "Date":
+                    jobs = jobs.OrderBy(s => s.Date_last_modified);
+                    break;
+                case "date_desc":
+                    jobs = jobs.OrderByDescending(s => s.Date_last_modified);
+                    break;
+                default:
+                    jobs = jobs.OrderBy(s => s.Title);
+                    break;
+            }
+            //var jobs = db.Jobs.Include(j => j.Job_types);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View("Admin/Index", jobs.ToPagedList(pageNumber,pageSize));
         }
        
 
