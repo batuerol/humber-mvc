@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DBContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Alerts">
           <Key>
             <PropertyRef Name="Id" />
@@ -46,6 +46,15 @@
           <Property Name="contact_no" Type="numeric" Precision="18" Scale="0" />
           <Property Name="avail_id" Type="int" />
           <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="contactInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="content" Type="nvarchar(max)" />
+          <Property Name="address_one" Type="nvarchar(max)" />
+          <Property Name="address_two" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="contactus">
           <Key>
@@ -576,6 +585,7 @@
           <EntitySet Name="Alerts" EntityType="Self.Alerts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BlogPosts" EntityType="Self.BlogPosts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="book_an_appointment" EntityType="Self.book_an_appointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contactInfo" EntityType="Self.contactInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="contactus" EntityType="Self.contactus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DoctorAvailability" EntityType="Self.DoctorAvailability" Schema="dbo" store:Type="Tables" />
@@ -688,8 +698,7 @@
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1419,7 +1428,17 @@
             <End Role="Tasks" EntitySet="Tasks" />
             <End Role="Volunteers" EntitySet="Volunteers" />
           </AssociationSet>
+          <EntitySet Name="contactInfoes" EntityType="DBContext.contactInfo" />
         </EntityContainer>
+        <EntityType Name="contactInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="address_one" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="address_two" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1752,6 +1771,16 @@
                 <ScalarProperty Name="Pref_work" ColumnName="Pref_work" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Agreement" ColumnName="Agreement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contactInfoes">
+            <EntityTypeMapping TypeName="DBContext.contactInfo">
+              <MappingFragment StoreEntitySet="contactInfo">
+                <ScalarProperty Name="address_two" ColumnName="address_two" />
+                <ScalarProperty Name="address_one" ColumnName="address_one" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

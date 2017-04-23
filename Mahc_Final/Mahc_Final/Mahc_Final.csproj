@@ -157,6 +157,9 @@
     <Compile Include="Controllers\AlertsController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CareersController.cs" />
+    <Compile Include="Controllers\contactInfoAdminController.cs" />
+    <Compile Include="Controllers\contactusAdminController.cs" />
+    <Compile Include="Controllers\contactusVisitorController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\faqsAdminController.cs" />
     <Compile Include="Controllers\faqsVisitorController.cs" />
@@ -176,6 +179,9 @@
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\book_an_appointment.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\contactInfo.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\contactu.cs">
@@ -401,6 +407,13 @@
     <Content Include="Views\feedbacksAdmin\Delete.cshtml" />
     <Content Include="Views\feedbacksAdmin\Details.cshtml" />
     <Content Include="Views\feedbacksAdmin\Index.cshtml" />
+    <Content Include="Views\contactInfoAdmin\Edit.cshtml" />
+    <Content Include="Views\contactInfoAdmin\Index.cshtml" />
+    <Content Include="Views\contactusVisitor\Create.cshtml" />
+    <Content Include="Views\contactusAdmin\Delete.cshtml" />
+    <Content Include="Views\contactusAdmin\Details.cshtml" />
+    <Content Include="Views\contactusAdmin\Edit.cshtml" />
+    <Content Include="Views\contactusAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
