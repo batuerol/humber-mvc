@@ -51,6 +51,5 @@ namespace Mahc_Final.DBContext
         public virtual DbSet<Staff1> Staff1 { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<Volunteer> Volunteers { get; set; }
-        public virtual DbSet<contactInfo> contactInfoes { get; set; }
     }
 }
