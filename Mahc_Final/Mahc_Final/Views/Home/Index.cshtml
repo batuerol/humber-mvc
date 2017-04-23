@@ -3,11 +3,25 @@
 }
 
 <link href="~/Content/HomeIndex.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/Slick/slick.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/Slick/slick-theme.css" rel="stylesheet" type="text/css" />
 
+@* 
+    TODO(batuhan): Place this part inside main,
+    display: flex causes problem.
+*@
+<section class="row">
+    @*@Html.Partial("_ErWaitTimes")*@
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-centered main_carousel">
+        <div><img src="~/BlogImages/Placeholder.png" alt="Placeholder" /></div>
+        <div><img src="~/BlogImages/dlZMezy.jpg" alt="Placeholder" /></div>
+        <div><img src="~/BlogImages/Placeholder.png" alt="Placeholder" /></div>
+    </div>
+</section>
 <main class="main">
+
     <section class="row">
         <div class="col-md-4">
-            @*@Html.Partial("_ErWaitTime")*@
             <h2>Make An Appointment</h2>
             <p>
                 ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
@@ -33,9 +47,14 @@
             </p>
         </div>
     </section>
-
     <section class="row blog__container">
         <h2 class="hidden">Latest Blog Posts</h2>
         @Html.Action("GetLatestPosts", "Blog", new { count = 2 })
     </section>
 </main>
+
+@section scripts{
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Slick/slick.js"></script>
+    <script type="text/javascript" src="~/Scripts/HomeCarousel.js"></script>
+}

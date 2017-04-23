@@ -157,6 +157,7 @@
     <Compile Include="Controllers\AlertsController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CareersController.cs" />
+    <Compile Include="Controllers\ERWaitTimesController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\faqsAdminController.cs" />
     <Compile Include="Controllers\faqsVisitorController.cs" />
@@ -275,11 +276,17 @@
   <ItemGroup>
     <Content Include="BlogImages\dlZMezy.jpg" />
     <Content Include="Content\AdminPanel.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\HomeIndex.css" />
     <Content Include="Content\jquery-ui-timepicker-addon.css" />
     <Content Include="Content\Post.css" />
+    <Content Include="Content\Slick\ajax-loader.gif" />
+    <Content Include="Content\Slick\fonts\slick.svg" />
+    <Content Include="Content\Slick\slick-theme.css" />
+    <Content Include="Content\Slick\slick.css" />
     <Content Include="DBContext\HospitalModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>HospitalModel.edmx</DependentUpon>
@@ -300,8 +307,6 @@
     <Content Include="Images\logo.png" />
     <Content Include="BlogImages\Placeholder.png" />
     <Content Include="Images\t.png" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -312,7 +317,21 @@
     <Content Include="DBContext\HospitalModel.edmx.diagram">
       <DependentUpon>HospitalModel.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\Slick\slick.scss" />
+    <Content Include="Content\Slick\slick-theme.scss" />
+    <Content Include="Content\Slick\fonts\slick.woff" />
+    <Content Include="Content\Slick\fonts\slick.ttf" />
+    <Content Include="Content\Slick\fonts\slick.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\HomeCarousel.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -324,6 +343,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Slick\slick.js" />
+    <Content Include="Scripts\Slick\slick.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -374,7 +395,6 @@
     <Content Include="Views\Blog\Public\Post.cshtml" />
     <Content Include="Views\Blog\Partials\_BlogPost.cshtml" />
     <Content Include="Views\Blog\Partials\_BlogPosts.cshtml" />
-    <Content Include="Views\Blog\Partials\_ErWaitTime.cshtml" />
     <Content Include="Views\Alerts\Create.cshtml" />
     <Content Include="Views\Alerts\Delete.cshtml" />
     <Content Include="Views\Alerts\Details.cshtml" />
@@ -401,19 +421,16 @@
     <Content Include="Views\feedbacksAdmin\Delete.cshtml" />
     <Content Include="Views\feedbacksAdmin\Details.cshtml" />
     <Content Include="Views\feedbacksAdmin\Index.cshtml" />
+    <Content Include="Views\ERWaitTimes\Create.cshtml" />
+    <Content Include="Views\ERWaitTimes\Delete.cshtml" />
+    <Content Include="Views\ERWaitTimes\Details.cshtml" />
+    <Content Include="Views\ERWaitTimes\Edit.cshtml" />
+    <Content Include="Views\ERWaitTimes\Admin\Index.cshtml" />
+    <Content Include="Views\Shared\_ERWaitTimes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="CVs\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
