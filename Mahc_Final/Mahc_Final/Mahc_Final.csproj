@@ -157,7 +157,13 @@
     <Compile Include="Controllers\AlertsController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CareersController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\ERWaitTimesController.cs" />
+=======
+    <Compile Include="Controllers\contactInfoAdminController.cs" />
+    <Compile Include="Controllers\contactusAdminController.cs" />
+    <Compile Include="Controllers\contactusVisitorController.cs" />
+>>>>>>> 6e6a1ce11374b04593c81acb64413e661e636db7
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\faqsAdminController.cs" />
     <Compile Include="Controllers\faqsVisitorController.cs" />
@@ -177,6 +183,9 @@
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\book_an_appointment.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\contactInfo.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\contactu.cs">
@@ -317,6 +326,7 @@
     <Content Include="DBContext\HospitalModel.edmx.diagram">
       <DependentUpon>HospitalModel.edmx</DependentUpon>
     </Content>
+<<<<<<< HEAD
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
@@ -328,6 +338,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+=======
+    <None Include="Properties\PublishProfiles\bmostytskyy.com - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\bmostytskyy.com - Web Deploy.pubxml">
+      <SubType>Designer</SubType>
+    </None>
+>>>>>>> 6e6a1ce11374b04593c81acb64413e661e636db7
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -421,12 +437,22 @@
     <Content Include="Views\feedbacksAdmin\Delete.cshtml" />
     <Content Include="Views\feedbacksAdmin\Details.cshtml" />
     <Content Include="Views\feedbacksAdmin\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\ERWaitTimes\Create.cshtml" />
     <Content Include="Views\ERWaitTimes\Delete.cshtml" />
     <Content Include="Views\ERWaitTimes\Details.cshtml" />
     <Content Include="Views\ERWaitTimes\Edit.cshtml" />
     <Content Include="Views\ERWaitTimes\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_ERWaitTimes.cshtml" />
+=======
+    <Content Include="Views\contactInfoAdmin\Edit.cshtml" />
+    <Content Include="Views\contactInfoAdmin\Index.cshtml" />
+    <Content Include="Views\contactusVisitor\Create.cshtml" />
+    <Content Include="Views\contactusAdmin\Delete.cshtml" />
+    <Content Include="Views\contactusAdmin\Details.cshtml" />
+    <Content Include="Views\contactusAdmin\Edit.cshtml" />
+    <Content Include="Views\contactusAdmin\Index.cshtml" />
+>>>>>>> 6e6a1ce11374b04593c81acb64413e661e636db7
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
