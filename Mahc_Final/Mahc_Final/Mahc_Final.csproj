@@ -312,6 +312,10 @@
     <Content Include="DBContext\HospitalModel.edmx.diagram">
       <DependentUpon>HospitalModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\bmostytskyy.com - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\bmostytskyy.com - Web Deploy.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
