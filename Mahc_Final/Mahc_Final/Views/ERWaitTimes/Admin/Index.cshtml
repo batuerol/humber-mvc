@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Mahc_Final.DBContext.ERWaitTime>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentWaitTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WaitingPatients)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrentWaitTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdatedAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WaitingPatients)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Lock }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Lock }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Lock })
+        </td>
+    </tr>
+}
+
+</table>

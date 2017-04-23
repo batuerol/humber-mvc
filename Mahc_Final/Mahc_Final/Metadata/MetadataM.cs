@@ -21,14 +21,28 @@ namespace Mahc_Final.Metadata
         public string Content { get; set; }
 
         [StringLength(50, ErrorMessage = "{0} must have length between {2}-{1}", MinimumLength = 2)]
-        [Display(Name = "Excerpty")]
+        [Display(Name = "Excerpt")]
         public string Excerpt { get; set; }
 
         [Display(Name = "Preview Image")]
         [DataType(DataType.Upload)]
         public string Slug { get; set; }
 
+        [DataType(DataType.DateTime)]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public System.DateTime PostDate { get; set; }
+    }
+
+    public class ERParamMetadata
+    {
+        [Required]
+        [DataType(DataType.DateTime)]
+        [Display(Name="Arrival Time")]
+        public System.DateTime ArrivalTime { get; set; }
+
+        [Required]
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Treatment Time")]
+        public System.DateTime TreatmentTime { get; set; }
     }
 }

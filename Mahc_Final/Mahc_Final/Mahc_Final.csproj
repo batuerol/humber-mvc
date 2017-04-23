@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
@@ -157,6 +157,10 @@
     <Compile Include="Controllers\AlertsController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CareersController.cs" />
+    <Compile Include="Controllers\ERWaitTimesController.cs" />
+    <Compile Include="Controllers\contactInfoAdminController.cs" />
+    <Compile Include="Controllers\contactusAdminController.cs" />
+    <Compile Include="Controllers\contactusVisitorController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\faqsAdminController.cs" />
     <Compile Include="Controllers\faqsVisitorController.cs" />
@@ -176,6 +180,9 @@
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\book_an_appointment.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\contactInfo.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\contactu.cs">
@@ -269,18 +276,23 @@
     <Compile Include="Metadata\MetadataM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BlogPostsViewModel.cs" />
-    <Compile Include="ViewModels\Careers.cs" />
     <Compile Include="ViewModels\JobApply.cs" />
     <Compile Include="ViewModels\UserCreateModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BlogImages\dlZMezy.jpg" />
     <Content Include="Content\AdminPanel.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\HomeIndex.css" />
     <Content Include="Content\jquery-ui-timepicker-addon.css" />
     <Content Include="Content\Post.css" />
+    <Content Include="Content\Slick\ajax-loader.gif" />
+    <Content Include="Content\Slick\fonts\slick.svg" />
+    <Content Include="Content\Slick\slick-theme.css" />
+    <Content Include="Content\Slick\slick.css" />
     <Content Include="DBContext\HospitalModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>HospitalModel.edmx</DependentUpon>
@@ -301,8 +313,6 @@
     <Content Include="Images\logo.png" />
     <Content Include="BlogImages\Placeholder.png" />
     <Content Include="Images\t.png" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -313,11 +323,25 @@
     <Content Include="DBContext\HospitalModel.edmx.diagram">
       <DependentUpon>HospitalModel.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\Slick\slick.scss" />
+    <Content Include="Content\Slick\slick-theme.scss" />
+    <Content Include="Content\Slick\fonts\slick.woff" />
+    <Content Include="Content\Slick\fonts\slick.ttf" />
+    <Content Include="Content\Slick\fonts\slick.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Properties\PublishProfiles\bmostytskyy.com - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\bmostytskyy.com - Web Deploy.pubxml">
       <SubType>Designer</SubType>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\HomeCarousel.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -329,6 +353,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Slick\slick.js" />
+    <Content Include="Scripts\Slick\slick.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -343,31 +369,31 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_AdminPanel.cshtml" />
-    <Content Include="Views\Jobs\Admin\Create.cshtml" />
-    <Content Include="Views\Jobs\Admin\Delete.cshtml" />
-    <Content Include="Views\Jobs\Admin\Details.cshtml" />
-    <Content Include="Views\Jobs\Admin\Edit.cshtml" />
-    <Content Include="Views\Jobs\Admin\Index.cshtml" />
+    <Content Include="Views\Jobs\Create.cshtml" />
+    <Content Include="Views\Jobs\Delete.cshtml" />
+    <Content Include="Views\Jobs\Details.cshtml" />
+    <Content Include="Views\Jobs\Edit.cshtml" />
+    <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Jobs\Public\Details.cshtml" />
-    <Content Include="Views\Jobs\Public\Index.cshtml" />
-    <Content Include="Views\Job_applications\Admin\Create.cshtml" />
-    <Content Include="Views\Job_applications\Admin\Delete.cshtml" />
-    <Content Include="Views\Job_applications\Admin\Details.cshtml" />
-    <Content Include="Views\Job_applications\Admin\Edit.cshtml" />
-    <Content Include="Views\Job_applications\Admin\Index.cshtml" />
+    <Content Include="Views\Jobs\PublicDetails.cshtml" />
+    <Content Include="Views\Jobs\PublicIndex.cshtml" />
+    <Content Include="Views\Job_applications\Create.cshtml" />
+    <Content Include="Views\Job_applications\Delete.cshtml" />
+    <Content Include="Views\Job_applications\Details.cshtml" />
+    <Content Include="Views\Job_applications\Edit.cshtml" />
+    <Content Include="Views\Job_applications\Index.cshtml" />
     <Content Include="Views\Careers\Index.cshtml" />
-    <Content Include="Views\Tasks\Admin\Create.cshtml" />
-    <Content Include="Views\Tasks\Admin\Delete.cshtml" />
-    <Content Include="Views\Tasks\Admin\Details.cshtml" />
-    <Content Include="Views\Tasks\Admin\Edit.cshtml" />
-    <Content Include="Views\Tasks\Admin\Index.cshtml" />
-    <Content Include="Views\Volunteers\Admin\Create.cshtml" />
-    <Content Include="Views\Volunteers\Admin\Delete.cshtml" />
-    <Content Include="Views\Volunteers\Admin\Details.cshtml" />
-    <Content Include="Views\Volunteers\Admin\Edit.cshtml" />
-    <Content Include="Views\Volunteers\Admin\Index.cshtml" />
+    <Content Include="Views\Tasks\Create.cshtml" />
+    <Content Include="Views\Tasks\Delete.cshtml" />
+    <Content Include="Views\Tasks\Details.cshtml" />
+    <Content Include="Views\Tasks\Edit.cshtml" />
+    <Content Include="Views\Tasks\Index.cshtml" />
+    <Content Include="Views\Volunteers\Create.cshtml" />
+    <Content Include="Views\Volunteers\Delete.cshtml" />
+    <Content Include="Views\Volunteers\Details.cshtml" />
+    <Content Include="Views\Volunteers\Edit.cshtml" />
+    <Content Include="Views\Volunteers\Index.cshtml" />
     <Content Include="Views\Volunteer\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Blog\Admin\Create.cshtml" />
@@ -379,22 +405,21 @@
     <Content Include="Views\Blog\Public\Post.cshtml" />
     <Content Include="Views\Blog\Partials\_BlogPost.cshtml" />
     <Content Include="Views\Blog\Partials\_BlogPosts.cshtml" />
-    <Content Include="Views\Blog\Partials\_ErWaitTime.cshtml" />
-    <Content Include="Views\Alerts\Admin\Create.cshtml" />
-    <Content Include="Views\Alerts\Admin\Delete.cshtml" />
-    <Content Include="Views\Alerts\Admin\Details.cshtml" />
-    <Content Include="Views\Alerts\Admin\Edit.cshtml" />
-    <Content Include="Views\Alerts\Admin\Index.cshtml" />
-    <Content Include="Views\Events\Admin\Create.cshtml" />
-    <Content Include="Views\Events\Admin\Delete.cshtml" />
-    <Content Include="Views\Events\Admin\Details.cshtml" />
-    <Content Include="Views\Events\Admin\Edit.cshtml" />
-    <Content Include="Views\Events\Admin\Index.cshtml" />
-    <Content Include="Views\News\Admin\Create.cshtml" />
-    <Content Include="Views\News\Admin\Delete.cshtml" />
-    <Content Include="Views\News\Admin\Details.cshtml" />
-    <Content Include="Views\News\Admin\Edit.cshtml" />
-    <Content Include="Views\News\Admin\Index.cshtml" />
+    <Content Include="Views\Alerts\Create.cshtml" />
+    <Content Include="Views\Alerts\Delete.cshtml" />
+    <Content Include="Views\Alerts\Details.cshtml" />
+    <Content Include="Views\Alerts\Edit.cshtml" />
+    <Content Include="Views\Alerts\Index.cshtml" />
+    <Content Include="Views\Events\Create.cshtml" />
+    <Content Include="Views\Events\Delete.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\faqsAdmin\Create.cshtml" />
     <Content Include="Views\faqsAdmin\Delete.cshtml" />
@@ -406,22 +431,23 @@
     <Content Include="Views\feedbacksAdmin\Delete.cshtml" />
     <Content Include="Views\feedbacksAdmin\Details.cshtml" />
     <Content Include="Views\feedbacksAdmin\Index.cshtml" />
-    <Content Include="Views\Careers\Admin\_Navigation.cshtml" />
-    <Content Include="Views\Careers\_Navigation.cshtml" />
-    <Content Include="Views\Calendar\Admin\_Navigation.cshtml" />
+    <Content Include="Views\ERWaitTimes\Create.cshtml" />
+    <Content Include="Views\ERWaitTimes\Delete.cshtml" />
+    <Content Include="Views\ERWaitTimes\Details.cshtml" />
+    <Content Include="Views\ERWaitTimes\Edit.cshtml" />
+    <Content Include="Views\ERWaitTimes\Admin\Index.cshtml" />
+    <Content Include="Views\Shared\_ERWaitTimes.cshtml" />
+    <Content Include="Views\contactInfoAdmin\Edit.cshtml" />
+    <Content Include="Views\contactInfoAdmin\Index.cshtml" />
+    <Content Include="Views\contactusVisitor\Create.cshtml" />
+    <Content Include="Views\contactusAdmin\Delete.cshtml" />
+    <Content Include="Views\contactusAdmin\Details.cshtml" />
+    <Content Include="Views\contactusAdmin\Edit.cshtml" />
+    <Content Include="Views\contactusAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="CVs\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

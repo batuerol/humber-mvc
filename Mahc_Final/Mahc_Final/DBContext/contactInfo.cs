@@ -7,19 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel.DataAnnotations;
-using Mahc_Final.Metadata;
-
 namespace Mahc_Final.DBContext
 {
     using System;
     using System.Collections.Generic;
-
-    [MetadataType(typeof(ERParamMetadata))]
-    public partial class ERParam
+    
+    public partial class contactInfo
     {
         public int Id { get; set; }
-        public System.DateTime ArrivalTime { get; set; }
-        public System.DateTime TreatmentTime { get; set; }
+        public string content { get; set; }
+        public string address_one { get; set; }
+        public string address_two { get; set; }
     }
 }
