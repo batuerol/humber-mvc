@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Mahc_Final.DBContext.Event>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+@section leftnav {
+    @Html.Partial("~/Views/Calendar/Admin/_Navigation.cshtml")
+}
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time_start)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time_end)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Featured)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Volunteers)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_created)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created_by)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_last_modified)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modified_by)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time_start)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time_end)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Featured)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Volunteers)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date_created)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HosMember.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date_last_modified)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HosMember1.username)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

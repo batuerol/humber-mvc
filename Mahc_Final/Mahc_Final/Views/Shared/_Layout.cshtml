@@ -103,10 +103,10 @@
                                     Work with Us <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Job Postings", "Index", "Home")</li>
-                                    <li>@Html.ActionLink("Visitor Opporunities", "Index", "Home")</li>
-                                    <li>@Html.ActionLink("Student Opportunities", "Index", "Home")</li>
-                                    <li>@Html.ActionLink("Physician Recruitment Opportunities", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Job Postings",  "PublicIndex", "Jobs")</li>
+                                    <li>@Html.ActionLink("Volunteer Opporunities", "Index", "Volunteers")</li>
+                                    <li>@Html.ActionLink("Student Opportunities", "PublicIndex", "Jobs")</li>
+                                    <li>@Html.ActionLink("Physician Recruitment Opportunities",  "PublicIndex", "Jobs")</li>
                                 </ul>
                             </li>
                             <li role="presentation" class="dropdown">
@@ -128,10 +128,14 @@
             </nav>
         </header>
     </div>
-    <div class="container body-content">
-        @RenderBody()
+    <div class="row">
+        <nav class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="border-bottom:none;">
+            @RenderSection("leftnav", required: false)
+        </nav>
+        <div class="container body-content">
+            @RenderBody()
+        </div>
     </div>
-
     <footer>
         <div class="container">
             <div class="row">

@@ -17,7 +17,7 @@ namespace Mahc_Final.Controllers
         // GET: Tasks
         public ActionResult Index()
         {
-            return View(db.Tasks.ToList());
+            return View("Admin/Index", db.Tasks.ToList());
         }
 
         // GET: Tasks/Details/5
@@ -32,13 +32,13 @@ namespace Mahc_Final.Controllers
             {
                 return HttpNotFound();
             }
-            return View(task);
+            return View("Admin/Details", task);
         }
 
         // GET: Tasks/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Admin/Create");
         }
 
         // POST: Tasks/Create
@@ -59,7 +59,7 @@ namespace Mahc_Final.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(task);
+            return View("Admin/Create", task);
         }
 
         // GET: Tasks/Edit/5
@@ -74,7 +74,7 @@ namespace Mahc_Final.Controllers
             {
                 return HttpNotFound();
             }
-            return View(task);
+            return View("Admin/Edit", task);
         }
 
         // POST: Tasks/Edit/5
@@ -101,7 +101,7 @@ namespace Mahc_Final.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(task);
+            return View("Admin/Edit", task);
         }
 
         // GET: Tasks/Delete/5
@@ -116,7 +116,7 @@ namespace Mahc_Final.Controllers
             {
                 return HttpNotFound();
             }
-            return View(task);
+            return View("Admin/Delete", task);
         }
 
         // POST: Tasks/Delete/5

@@ -82,8 +82,27 @@
             </div>
         </div>
     </header>
-    <div class="container body-content">
-        @RenderBody()
+    <style>
+        .row {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+            .row > [class*='col-'] {
+                display: flex;
+                flex-direction: column;
+            }
+    </style>
+    <div class="row">
+        <nav class="col-lg-1 col-md-1 col-sm-1 col-xs-1 navbar-left" style="padding-left: 75px;padding-top:50px; border-bottom:none; height:100%;">
+            @RenderSection("leftnav", required: false)
+        </nav>
+        <div class="container body-content col-lg-11 col-md-11 col-sm-11 col-xs-11">
+            @RenderBody()
+        </div>
     </div>
     <hr />
     <footer>

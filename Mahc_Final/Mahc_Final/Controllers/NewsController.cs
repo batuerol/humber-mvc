@@ -18,7 +18,7 @@ namespace Mahc_Final.Controllers
         public ActionResult Index()
         {
             var news = db.News;
-            return View(news.ToList());
+            return View("Admin/Index", news.ToList());
         }
 
         // GET: News/Details/5
@@ -33,13 +33,13 @@ namespace Mahc_Final.Controllers
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View("Admin/Details", news);
         }
 
         // GET: News/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Admin/Create");
         }
 
         // POST: News/Create
@@ -66,7 +66,7 @@ namespace Mahc_Final.Controllers
             {
                 ViewBag.Message = "Whoops! Something went wrong. Here's what went wrong: " + dex.Message; //One of the properties of these objects is Message which is a string of what went wrong. 
             }
-            return View(news);
+            return View("Admin/Create", news);
         }
 
         // GET: News/Edit/5
@@ -83,7 +83,7 @@ namespace Mahc_Final.Controllers
             }
             ViewBag.Created_by = new SelectList(db.HosMembers, "Id", "first_name", news.Created_by);
             ViewBag.Modified_by = new SelectList(db.HosMembers, "Id", "first_name", news.Modified_by);
-            return View(news);
+            return View("Admin/Edit", news);
         }
 
         // POST: News/Edit/5
@@ -113,7 +113,7 @@ namespace Mahc_Final.Controllers
             {
                 ViewBag.Message = "Whoops! Something went wrong. Here's what went wrong: " + dex.Message; //One of the properties of these objects is Message which is a string of what went wrong. 
             }
-            return View(news);
+            return View("Admin/Edit", news);
         }
 
         // GET: News/Delete/5
@@ -128,7 +128,7 @@ namespace Mahc_Final.Controllers
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View("Admin/Delete", news);
         }
 
         // POST: News/Delete/5

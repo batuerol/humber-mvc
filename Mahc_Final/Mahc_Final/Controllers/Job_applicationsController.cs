@@ -18,7 +18,7 @@ namespace Mahc_Final.Controllers
         public ActionResult Index()
         {
             var job_application = db.Job_applications.Include(j => j.Job);
-            return View(job_application.ToList());
+            return View("Admin/Index", job_application.ToList());
         }
 
         // GET: Job_applications/Details/5
@@ -33,14 +33,14 @@ namespace Mahc_Final.Controllers
             {
                 return HttpNotFound();
             }
-            return View(job_application);
+            return View("Admin/Details", job_application);
         }
 
         // GET: Job_applications/Create
         public ActionResult Create()
         {
             ViewBag.Job_id = new SelectList(db.Jobs, "Id", "Title");
-            return View();
+            return View("Admin/Create");
         }
 
         // POST: Job_applications/Create
@@ -59,7 +59,7 @@ namespace Mahc_Final.Controllers
             }
 
             ViewBag.Job_id = new SelectList(db.Jobs, "Id", "Title", job_application.Job_id);
-            return View(job_application);
+            return View("Admin/Create", job_application);
         }
 
         // GET: Job_applications/Edit/5
@@ -75,7 +75,7 @@ namespace Mahc_Final.Controllers
                 return HttpNotFound();
             }
             ViewBag.Job_id = new SelectList(db.Jobs, "Id", "Title", job_application.Job_id);
-            return View(job_application);
+            return View("Admin/Edit", job_application);
         }
 
         // POST: Job_applications/Edit/5
@@ -92,7 +92,7 @@ namespace Mahc_Final.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Job_id = new SelectList(db.Jobs, "Id", "Title", job_application.Job_id);
-            return View(job_application);
+            return View("Admin/Edit", job_application);
         }
 
         // GET: Job_applications/Delete/5
@@ -107,7 +107,7 @@ namespace Mahc_Final.Controllers
             {
                 return HttpNotFound();
             }
-            return View(job_application);
+            return View("Admin/Delete", job_application);
         }
 
         // POST: Job_applications/Delete/5

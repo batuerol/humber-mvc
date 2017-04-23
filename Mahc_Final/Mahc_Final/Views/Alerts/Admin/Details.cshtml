@@ -1,0 +1,86 @@
+﻿@model Mahc_Final.DBContext.Alert
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+@section leftnav {
+    @Html.Partial("~/Views/Calendar/Admin/_Navigation.cshtml")
+}
+<h2>Details</h2>
+
+<div>
+    <h4>Alert</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Due_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Due_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_last_modified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_last_modified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HosMember.first_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HosMember.first_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HosMember1.first_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HosMember1.first_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

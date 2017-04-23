@@ -18,7 +18,7 @@ namespace Mahc_Final.Controllers
         public ActionResult Index()
         {
             var volunteers = db.Volunteers.Include(v => v.Task);
-            return View(volunteers.ToList());
+            return View("Admin/Index", volunteers.ToList());
         }
 
         // GET: Volunteers/Details/5
@@ -33,14 +33,14 @@ namespace Mahc_Final.Controllers
             {
                 return HttpNotFound();
             }
-            return View(volunteer);
+            return View("Admin/Details", volunteer);
         }
 
         // GET: Volunteers/Create
         public ActionResult Create()
         {
             ViewBag.Task_id = new SelectList(db.Tasks, "Id", "Title");
-            return View();
+            return View("Admin/Create");
         }
 
         // POST: Volunteers/Create
@@ -66,7 +66,7 @@ namespace Mahc_Final.Controllers
             }
 
             ViewBag.Task_id = new SelectList(db.Tasks, "Id", "Title", volunteer.Task_id);
-            return View(volunteer);
+            return View("Admin/Create", volunteer);
         }
 
         // GET: Volunteers/Edit/5
@@ -82,7 +82,7 @@ namespace Mahc_Final.Controllers
                 return HttpNotFound();
             }
             ViewBag.Task_id = new SelectList(db.Tasks, "Id", "Title", volunteer.Task_id);
-            return View(volunteer);
+            return View("Admin/Edit", volunteer);
         }
 
         // POST: Volunteers/Edit/5
@@ -100,7 +100,7 @@ namespace Mahc_Final.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Task_id = new SelectList(db.Tasks, "Id", "Title", volunteer.Task_id);
-            return View(volunteer);
+            return View("Admin/Edit", volunteer);
         }
 
         // GET: Volunteers/Delete/5
@@ -115,7 +115,7 @@ namespace Mahc_Final.Controllers
             {
                 return HttpNotFound();
             }
-            return View(volunteer);
+            return View("Admin/Delete", volunteer);
         }
 
         // POST: Volunteers/Delete/5

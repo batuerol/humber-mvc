@@ -18,7 +18,7 @@ namespace Mahc_Final.Controllers
         public ActionResult Index()
         {
             var alerts = db.Alerts;
-            return View(alerts.ToList());
+            return View("Admin/Index", alerts.ToList());
         }
 
         // GET: Alerts/Details/5
@@ -33,13 +33,13 @@ namespace Mahc_Final.Controllers
             {
                 return HttpNotFound();
             }
-            return View(alert);
+            return View("Admin/Details", alert);
         }
 
         // GET: Alerts/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Admin/Create");
         }
 
         // POST: Alerts/Create
@@ -66,7 +66,7 @@ namespace Mahc_Final.Controllers
             {
                 ViewBag.Message = "Whoops! Something went wrong. Here's what went wrong: " + dex.Message; //One of the properties of these objects is Message which is a string of what went wrong. 
             }
-            return View(alert);
+            return View("Admin/Create", alert);
         }
 
         // GET: Alerts/Edit/5
@@ -81,7 +81,7 @@ namespace Mahc_Final.Controllers
             {
                 return HttpNotFound();
             }
-            return View(alert);
+            return View("Admin/Edit", alert);
         }
 
         // POST: Alerts/Edit/5
@@ -111,7 +111,7 @@ namespace Mahc_Final.Controllers
             {
                 ViewBag.Message = "Whoops! Something went wrong. Here's what went wrong: " + dex.Message; //One of the properties of these objects is Message which is a string of what went wrong. 
             }
-            return View(alert);
+            return View("Admin/Edit", alert);
         }
 
         // GET: Alerts/Delete/5
@@ -126,7 +126,7 @@ namespace Mahc_Final.Controllers
             {
                 return HttpNotFound();
             }
-            return View(alert);
+            return View("Admin/Delete", alert);
         }
 
         // POST: Alerts/Delete/5

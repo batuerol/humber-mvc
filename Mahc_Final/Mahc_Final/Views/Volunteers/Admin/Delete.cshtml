@@ -1,0 +1,78 @@
+﻿@model Mahc_Final.DBContext.Volunteer
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+
+@section leftnav {
+    @Html.Partial("~/Views/Careers/Admin/_Navigation.cshtml")
+}
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Volunteer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pref_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pref_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pref_work)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pref_work)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
