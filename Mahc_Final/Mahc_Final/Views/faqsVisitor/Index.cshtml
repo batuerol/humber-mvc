@@ -37,3 +37,12 @@
             <br />
 }
 </div>
+
+@{
+    var controller = ViewContext.RouteData.Values["controller"];
+    var action = ViewContext.RouteData.Values["action"];
+    ViewDataDictionary parameters = new ViewDataDictionary();
+    parameters["action"] = action;
+    parameters["controller"] = controller;
+}
+@Html.Partial("contactForm", new Mahc_Final.DBContext.contactu(), parameters);

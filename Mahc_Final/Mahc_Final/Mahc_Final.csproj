@@ -163,10 +163,11 @@
     <Compile Include="Controllers\AlertsController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CareersController.cs" />
+    <Compile Include="Controllers\contactFormController.cs" />
+    <Compile Include="Controllers\contactUsVisitorController.cs" />
     <Compile Include="Controllers\ERWaitTimesController.cs" />
-    <Compile Include="Controllers\contactInfoAdminController.cs" />
-    <Compile Include="Controllers\contactusAdminController.cs" />
-    <Compile Include="Controllers\contactusVisitorController.cs" />
+    <Compile Include="Controllers\contactUsAdminController.cs" />
+    <Compile Include="Controllers\contactFormAdminController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\faqsAdminController.cs" />
     <Compile Include="Controllers\faqsVisitorController.cs" />
@@ -659,13 +660,12 @@
     <Content Include="Views\ERWaitTimes\Edit.cshtml" />
     <Content Include="Views\ERWaitTimes\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_ERWaitTimes.cshtml" />
-    <Content Include="Views\contactInfoAdmin\Edit.cshtml" />
-    <Content Include="Views\contactInfoAdmin\Index.cshtml" />
-    <Content Include="Views\contactusVisitor\Create.cshtml" />
-    <Content Include="Views\contactusAdmin\Delete.cshtml" />
-    <Content Include="Views\contactusAdmin\Details.cshtml" />
-    <Content Include="Views\contactusAdmin\Edit.cshtml" />
-    <Content Include="Views\contactusAdmin\Index.cshtml" />
+    <Content Include="Views\contactUsAdmin\Edit.cshtml" />
+    <Content Include="Views\contactUsAdmin\Index.cshtml" />
+    <Content Include="Views\contactFormAdmin\Delete.cshtml" />
+    <Content Include="Views\contactFormAdmin\Details.cshtml" />
+    <Content Include="Views\contactFormAdmin\Edit.cshtml" />
+    <Content Include="Views\contactFormAdmin\Index.cshtml" />
     <Content Include="Views\Jobs\Admin\Create.cshtml" />
     <Content Include="Views\Jobs\Admin\Delete.cshtml" />
     <Content Include="Views\Jobs\Admin\Details.cshtml" />
@@ -724,6 +724,8 @@
     <Content Include="Views\Events\Public\Details.cshtml" />
     <Content Include="Views\News\Public\Details.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_jquery_full.cshtml" />
+    <Content Include="Views\contactUsVisitor\Index.cshtml" />
+    <Content Include="Views\Shared\contactForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

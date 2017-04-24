@@ -10,112 +10,45 @@ using Mahc_Final.DBContext;
 
 namespace Mahc_Final.Controllers
 {
-    public class contactusAdminController : Controller
+    public class contactUsAdminController : Controller
     {
         private HospitalContext db = new HospitalContext();
 
-
-        // GET: contactusAdmin
+        // GET: contactInfoAdmin
         public ActionResult Index()
         {
-            return View(db.contactus.ToList());
+            return View(db.contactInfoes.ToList());
         }
 
-        // GET: contactusAdmin/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            contactu contactu = db.contactus.Find(id);
-            if (contactu == null)
-            {
-                return HttpNotFound();
-            }
-            return View(contactu);
-        }
-
-        // GET: contactusAdmin/Edit/5
+        // GET: contactInfoAdmin/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            contactu contactu = db.contactus.Find(id);
-            if (contactu == null)
+            contactInfo contactInfo = db.contactInfoes.Find(id);
+            if (contactInfo == null)
             {
                 return HttpNotFound();
             }
-            return View(contactu);
+            return View(contactInfo);
         }
 
-        // POST: contactusAdmin/Edit/5
+        // POST: contactInfoAdmin/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,VisitorEmail,VisitorName,Date,Question,Reply")] contactu contactu)
+        public ActionResult Edit([Bind(Include = "Id,content,address_one,address_two")] contactInfo contactInfo)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(contactu).State = EntityState.Modified;
+                db.Entry(contactInfo).State = EntityState.Modified;
                 db.SaveChanges();
-
-                //if SMTP was setup, it will send a mail 
-                //MailMessage mail = new MailMessage();
-                // mail.To.Add(contactu.VisitorEmail);
-                //mail.From = new MailAddress("muskokahospital@muskokahospital.ca");
-                //mail.Subject = "Muskoka Hospital Reply to your Question";
-                //string Body = contactu.Reply;
-                //mail.Body = Body;
-                //mail.IsBodyHtml = true;
-                //SmtpClient smtp = new SmtpClient();
-                //smtp.Host = "smtp.gmail.com";
-                //smtp.Port = 587;
-                //smtp.UseDefaultCredentials = false;
-                //smtp.Credentials = new System.Net.NetworkCredential
-                //("username", "password");// Sender's usrname and password goes here
-                //smtp.EnableSsl = true;
-                //smtp.Send(mail);
-
                 return RedirectToAction("Index");
             }
-            return View(contactu);
-        }
-
-        // GET: contactusAdmin/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            contactu contactu = db.contactus.Find(id);
-            if (contactu == null)
-            {
-                return HttpNotFound();
-            }
-            return View(contactu);
-        }
-
-        // POST: contactusAdmin/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            contactu contactu = db.contactus.Find(id);
-            db.contactus.Remove(contactu);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            return View(contactInfo);
         }
     }
 }
