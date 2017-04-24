@@ -203,5 +203,38 @@ namespace Mahc_Final.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        //Public
+        public ActionResult PublicIndex()
+        {
+            var news = db.News.OrderBy(s=> s.Date_last_modified).Where(j => j.Published == true);
+            return View("Public/Index", news.ToList());
+        }
+
+        public ActionResult PublicDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            try
+            {
+                //a request will be sent to the database here. 
+                News article = db.News.Find(id);
+                if (article == null)
+                {
+                    return HttpNotFound();
+                }
+                return View("Public/Details", article);
+            }
+            catch (Exception dex) //this catch is finding a server error. 
+            {
+                ViewBag.Message = "Something went wrong: " + dex.Message;
+            }
+            return RedirectToAction("PublicIndex"); //if the try was successful, then the return above would execute.
+                                                    //this return would execute if catch was needed
+        }
+
     }
 }

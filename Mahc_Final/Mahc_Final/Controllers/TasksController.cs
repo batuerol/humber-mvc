@@ -197,7 +197,7 @@ namespace Mahc_Final.Controllers
         //Public
         public ActionResult PublicIndex()
         {
-            var tasks= db.Tasks.OrderBy(s => s.Modified_date);
+            var tasks= db.Tasks.OrderBy(s => s.Modified_date).Where(j => j.Status == true);
             return View("Public/Index", tasks.ToList());
         }
 

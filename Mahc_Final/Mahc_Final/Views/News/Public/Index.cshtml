@@ -1,14 +1,14 @@
-﻿@model IEnumerable<Mahc_Final.DBContext.Job>
+﻿@model IEnumerable<Mahc_Final.DBContext.News>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section leftnav {
-@Html.Partial("~/Views/Careers/Public/_Navigation.cshtml")
+    @Html.Partial("~/Views/Calendar/Public/_Navigation.cshtml")
 }
-<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-    <h2>Job opportunities</h2>
+<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+    <h2>News</h2>
 
     <section>
 
@@ -19,7 +19,7 @@
                     @Html.ActionLink(item.Title, "PublicDetails", new { id = item.Id })
                 </h3>
                 <p>
-                    @Html.DisplayFor(modelItem => item.Desc)
+                    @Html.DisplayFor(modelItem => item.Content)
                 </p>
                 @Html.ActionLink("Read more..", "PublicDetails", new { id = item.Id })
             </article>

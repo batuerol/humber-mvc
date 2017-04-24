@@ -463,6 +463,14 @@
     <Content Include="Views\Tasks\Public\Details.cshtml" />
     <Content Include="Views\Volunteer\Public\_Navigation.cshtml" />
     <Content Include="Views\Tasks\Public\Index.cshtml" />
+    <Content Include="Views\Calendar\Public\_Navigation.cshtml" />
+    <Content Include="Views\News\Public\Index.cshtml" />
+    <Content Include="Views\Alerts\Public\Index.cshtml" />
+    <Content Include="Views\Events\Public\Index.cshtml" />
+    <Content Include="Views\Careers\Public\Index.cshtml" />
+    <Content Include="Views\Alerts\Public\Details.cshtml" />
+    <Content Include="Views\Events\Public\Details.cshtml" />
+    <Content Include="Views\News\Public\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

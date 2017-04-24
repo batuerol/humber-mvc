@@ -1,0 +1,21 @@
+﻿@model Mahc_Final.DBContext.News
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section leftnav {
+    @Html.Partial("~/Views/Calendar/Public/_Navigation.cshtml")
+}
+<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+    <h2>@Html.DisplayFor(model => model.Title)</h2>
+    <p>Posted @Html.DisplayFor(model => model.Date_last_modified)</p>
+    <p>by @Html.DisplayFor(model => model.HosMember.first_name) @Html.DisplayFor(model => model.HosMember.last_name)</p>
+
+    <p>
+        @Html.DisplayFor(model => model.Content)
+    </p>
+    <p>
+        @Html.ActionLink("Back to List", "PublicIndex")
+    </p>
+</div>

@@ -197,6 +197,9 @@ namespace Mahc_Final.Models
         [Display(Name = "Featured")]
         public bool Featured;
         public string Volunteers;
+        [Required]
+        [DataType(DataType.MultilineText)]
+        [Display(Name = "Description")]
         public string Desc;
         [Display(Name = "Created")]
         public System.DateTime Date_created;
