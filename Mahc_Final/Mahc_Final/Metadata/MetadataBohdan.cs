@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace Mahc_Final.Models
@@ -27,8 +28,13 @@ namespace Mahc_Final.Models
         public int Type;
         [Required(ErrorMessage = "Please, provide the description for current job!")]
         [DataType(DataType.MultilineText)]
+        [UIHint("tinymce_jquery_full"),AllowHtml]
         [Display(Name = "Description")]
-        public string Desc;
+        public string Desc
+        {
+            get;
+            set;
+        }
         [Display(Name = "Published")]
         public bool Status;
         [DataType(DataType.DateTime)]
@@ -80,8 +86,13 @@ namespace Mahc_Final.Models
         public string Regularity;
         [Required(ErrorMessage = "Please, provide the description for current task!")]
         [DataType(DataType.MultilineText)]
+        [UIHint("tinymce_jquery_full"), AllowHtml]
         [Display(Name = "Description")]
-        public string Desc;
+        public string Desc
+        {
+            get;
+            set;
+        }
         [Display(Name = "Published")]
         public bool Status;
         [Required]
@@ -135,8 +146,13 @@ namespace Mahc_Final.Models
         public System.DateTime Due_time;
         [Required]
         [DataType(DataType.MultilineText)]
+        [UIHint("tinymce_jquery_full"), AllowHtml]
         [Display(Name = "Description")]
-        public string Desc;
+        public string Desc
+        {
+            get;
+            set;
+        }
         [Display(Name = "Published")]
         public bool Status;
         [Display(Name = "Created")]
@@ -158,8 +174,13 @@ namespace Mahc_Final.Models
         public string Title;
         [Required]
         [DataType(DataType.MultilineText)]
+        [UIHint("tinymce_jquery_full"), AllowHtml]
         [Display(Name = "Content")]
-        public string Content;
+        public string Content
+        {
+            get;
+            set;
+        }
         [Display(Name = "Published")]
         public bool Published;
         [Display(Name = "Featured")]
@@ -197,7 +218,15 @@ namespace Mahc_Final.Models
         [Display(Name = "Featured")]
         public bool Featured;
         public string Volunteers;
-        public string Desc;
+        [Required]
+        [DataType(DataType.MultilineText)]
+        [UIHint("tinymce_jquery_full"), AllowHtml]
+        [Display(Name = "Description")]
+        public string Desc
+        {
+            get;
+            set;
+        }
         [Display(Name = "Created")]
         public System.DateTime Date_created;
         [Display(Name = "Created by")]

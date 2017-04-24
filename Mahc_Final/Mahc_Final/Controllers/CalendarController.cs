@@ -11,7 +11,13 @@ namespace Mahc_Final.Controllers
         // GET: Calendar
         public ActionResult Index()
         {
-            return View();
+            return View("Admin/Index");
+        }
+
+        public ActionResult PublicIndex()
+        {
+            //RedirectToAction("PublicIndex","News");
+            return View("Public/Index");// why??? 
         }
     }
 }

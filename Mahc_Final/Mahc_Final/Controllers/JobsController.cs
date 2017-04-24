@@ -70,6 +70,10 @@ namespace Mahc_Final.Controllers
                     jobs = jobs.OrderBy(s => s.Title);
                     break;
             }
+            /*foreach (Job job in jobs)
+            {
+                job.Desc=job.Desc.Substring(0, 100)+"...";
+            }*/
             //var jobs = db.Jobs.Include(j => j.Job_types);
             int pageSize = 5;
             int pageNumber = (page ?? 1);
@@ -218,7 +222,7 @@ namespace Mahc_Final.Controllers
         //Public
         public ActionResult PublicIndex()
         {
-            var jobs = db.Jobs.Include(j => j.Job_types);
+            var jobs = db.Jobs.Include(j => j.Job_types).Where(j => j.Status==true);
             return View("Public/Index", jobs.ToList());
         }
 
@@ -250,8 +254,8 @@ namespace Mahc_Final.Controllers
             }
             return RedirectToAction("PublicIndex"); //if the try was successful, then the return above would execute.
                                                     //this return would execute if catch was needed
-
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         //[Bind(Include = "Id,Job_id,Name,Email,Phone,CV,Text")]
@@ -283,7 +287,7 @@ namespace Mahc_Final.Controllers
                 ViewBag.Message = "Whoops! Something went wrong. Here's what went wrong: " + dex.Message; //One of the properties of these objects is Message which is a string of what went wrong. 
             }
 
-
+            ja.job = db.Jobs.Find(ja.application.Job_id);
             // ViewBag.Type = new SelectList(db.Job_types, "Id", "Title", jobs.Type);
             return View("Public/Details", ja);
         }

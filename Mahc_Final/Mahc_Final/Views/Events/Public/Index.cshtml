@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Mahc_Final.DBContext.Event>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section leftnav {
+    @Html.Partial("~/Views/Calendar/Public/_Navigation.cshtml")
+}
+<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+    <h2>Events</h2>
+
+    <section>
+
+        @foreach (var item in Model)
+        {
+            <article>
+                <h3>
+                    @Html.ActionLink(item.Title, "PublicDetails", new { id = item.Id })
+                </h3>
+                <p>
+                    @*@Html.DisplayFor(modelItem => item.Desc)*@
+                    @Html.Raw(item.Desc)
+                </p>
+                @Html.ActionLink("Read more..", "PublicDetails", new { id = item.Id })
+            </article>
+        }
+
+    </section>
+</div>

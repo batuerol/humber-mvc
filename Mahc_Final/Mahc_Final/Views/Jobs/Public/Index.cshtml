@@ -5,22 +5,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section leftnav {
-@Html.Partial("~/Views/Careers/_Navigation.cshtml")
+@Html.Partial("~/Views/Careers/Public/_Navigation.cshtml")
 }
-<h2>View</h2>
+<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+    <h2>Job opportunities</h2>
 
-<section>
+    <section>
 
-@foreach (var item in Model) {
-    <article>
-        <h3>
-            @Html.ActionLink(item.Title, "PublicDetails", new { id = item.Id })
-        </h3>
-        <p>
-            @Html.DisplayFor(modelItem => item.Desc)
-        </p>
-         @Html.ActionLink("Read more..", "PublicDetails", new { id = item.Id })
-    </article>
-}
+        @foreach (var item in Model)
+        {
+            <article>
+                <h3>
+                    @Html.ActionLink(item.Title, "PublicDetails", new { id = item.Id })
+                </h3>
+                <p>
+                    @*@Html.DisplayFor(modelItem => item.Desc)*@
+                    @Html.Raw(item.Desc)
+                </p>
+                @Html.ActionLink("Read more..", "PublicDetails", new { id = item.Id })
+            </article>
+        }
 
-</section>
+    </section>
+</div>
