@@ -13,7 +13,8 @@
     <p>by @Html.DisplayFor(model => model.HosMember.first_name) @Html.DisplayFor(model => model.HosMember.last_name)</p>
 
     <p>
-        @Html.DisplayFor(model => model.Content)
+        @*@Html.DisplayFor(model => model.Content)*@
+        @Html.Raw(Model.Content)
     </p>
     <p>
         @Html.ActionLink("Back to List", "PublicIndex")

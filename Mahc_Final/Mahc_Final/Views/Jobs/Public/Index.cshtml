@@ -19,7 +19,8 @@
                     @Html.ActionLink(item.Title, "PublicDetails", new { id = item.Id })
                 </h3>
                 <p>
-                    @Html.DisplayFor(modelItem => item.Desc)
+                    @*@Html.DisplayFor(modelItem => item.Desc)*@
+                    @Html.Raw(item.Desc)
                 </p>
                 @Html.ActionLink("Read more..", "PublicDetails", new { id = item.Id })
             </article>

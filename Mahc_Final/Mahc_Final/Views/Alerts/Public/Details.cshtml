@@ -12,7 +12,8 @@
     <p><i>Active up to : @Html.DisplayFor(model => model.Due_time)</i></p>
     <p><i>Active from: @Html.DisplayFor(model => model.Date_last_modified)</i></p>
     <p>
-        @Html.DisplayFor(model => model.Desc)
+        @*@Html.DisplayFor(model => model.Desc)*@
+        @Html.Raw(Model.Desc)
     </p>
 
     

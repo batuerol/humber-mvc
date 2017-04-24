@@ -46,7 +46,10 @@
             @Html.DisplayFor(model => model.Time_end)
         </dd>
     </dl>
-    <p>@Html.DisplayFor(model => model.Desc)</p>
+    <p>
+        @*@Html.DisplayFor(model => model.Desc)*@
+        @Html.Raw(Model.Desc)
+    </p>
     <p>
         @Html.ActionLink("Back to List", "PublicIndex")
     </p>

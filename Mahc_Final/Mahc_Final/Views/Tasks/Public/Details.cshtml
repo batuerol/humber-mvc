@@ -45,7 +45,8 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.task.Desc)
+                @*@Html.DisplayFor(model => model.task.Desc)*@
+                @Html.Raw(Model.task.Desc)
             </dd>
 
             <dt>

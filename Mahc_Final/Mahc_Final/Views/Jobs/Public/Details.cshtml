@@ -34,7 +34,8 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.job.Desc)
+                @*@Html.DisplayFor(model => model.job.Desc)*@
+                @Html.Raw(Model.job.Desc)
             </dd>
         </dl>
     </div>
