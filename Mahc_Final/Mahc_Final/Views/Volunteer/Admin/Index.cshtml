@@ -1,0 +1,90 @@
+﻿@model Mahc_Final.ViewModels.Volunteers
+@{
+    ViewBag.Title = "Volunteer's feature";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+
+@section leftnav {
+    @Html.Partial("~/Views/Volunteer/Admin/_Navigation.cshtml")
+}
+
+
+<h2>Volunteers feature admin</h2>
+
+<div class="row">
+    <div class="col-lg-6 col-md-6">
+        <table class="table">
+            <caption><h4>Latest 5 tasks</h4></caption>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.tasks.First().Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tasks.First().Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tasks.First().Modified_date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tasks.First().Modified_by)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.tasks)
+            {
+                <tr>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.Title)*@
+                        @Html.ActionLink(item.Title, "Details", "Tasks", new { id = item.Id }, null)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modified_date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HosMember1.username)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="col-lg-6 col-md-6">
+        <table class="table">
+            <caption><h4>Latest 5 applications</h4></caption>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.volunteers.First().Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.volunteers.First().Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.volunteers.First().Date)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.volunteers)
+            {
+                <tr>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.Name)*@
+                        @Html.ActionLink(item.Name, "Details", "Volunteers", new { id = item.Id }, null)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+<p>@Html.ActionLink("Back", "Index", "Admin")</p>

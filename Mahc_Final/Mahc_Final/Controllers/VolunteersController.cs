@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Mahc_Final.DBContext;
+using PagedList;
 
 namespace Mahc_Final.Controllers
 {
@@ -15,10 +16,49 @@ namespace Mahc_Final.Controllers
         private HospitalContext db = new HospitalContext();
 
         // GET: Volunteers
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var volunteers = db.Volunteers.Include(v => v.Task);
-            return View("Admin/Index", volunteers.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var volunteers = from s in db.Volunteers
+                        select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                volunteers = volunteers.Where(s => s.Name.Contains(searchString)
+                                       || s.Phone.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    volunteers = volunteers.OrderByDescending(s => s.Name);
+                    break;               
+                case "Date":
+                    volunteers = volunteers.OrderBy(s => s.Date);
+                    break;
+                case "date_desc":
+                    volunteers = volunteers.OrderByDescending(s => s.Date);
+                    break;
+                default:
+                    volunteers = volunteers.OrderBy(s => s.Name);
+                    break;
+            }
+            //var volunteers = db.Volunteers.Include(j => j.Job_types);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View("Admin/Index", volunteers.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Volunteers/Details/5

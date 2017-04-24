@@ -20,7 +20,7 @@ namespace Mahc_Final.Controllers
                                     orderby o.Date_last_modified descending
                                     select o).Take(5).ToList();
             OppApp.applications = db.Job_applications.OrderByDescending(a => a.Date).Take(5).ToList();
-            return View(OppApp);
+            return View("Admin/Index",OppApp);
         }
     }
 }

@@ -285,6 +285,7 @@
     <Compile Include="ViewModels\Careers.cs" />
     <Compile Include="ViewModels\JobApply.cs" />
     <Compile Include="ViewModels\UserCreateModel.cs" />
+    <Compile Include="ViewModels\Volunteers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BlogImages\dlZMezy.jpg" />
@@ -424,7 +425,7 @@
     <Content Include="Views\Job_applications\Admin\Details.cshtml" />
     <Content Include="Views\Job_applications\Admin\Edit.cshtml" />
     <Content Include="Views\Job_applications\Admin\Index.cshtml" />
-    <Content Include="Views\Careers\Index.cshtml" />
+    <Content Include="Views\Careers\Admin\Index.cshtml" />
     <Content Include="Views\Tasks\Admin\Create.cshtml" />
     <Content Include="Views\Tasks\Admin\Delete.cshtml" />
     <Content Include="Views\Tasks\Admin\Details.cshtml" />
@@ -435,7 +436,7 @@
     <Content Include="Views\Volunteers\Admin\Details.cshtml" />
     <Content Include="Views\Volunteers\Admin\Edit.cshtml" />
     <Content Include="Views\Volunteers\Admin\Index.cshtml" />
-    <Content Include="Views\Volunteer\Index.cshtml" />
+    <Content Include="Views\Volunteer\Admin\Index.cshtml" />
     <Content Include="Views\Alerts\Admin\Create.cshtml" />
     <Content Include="Views\Alerts\Admin\Delete.cshtml" />
     <Content Include="Views\Alerts\Admin\Details.cshtml" />
@@ -453,8 +454,9 @@
     <Content Include="Views\News\Admin\Index.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Careers\Admin\_Navigation.cshtml" />
-    <Content Include="Views\Careers\_Navigation.cshtml" />
     <Content Include="Views\Calendar\Admin\_Navigation.cshtml" />
+    <Content Include="Views\Volunteer\Admin\_Navigation.cshtml" />
+    <Content Include="Views\Volunteer\_Navigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

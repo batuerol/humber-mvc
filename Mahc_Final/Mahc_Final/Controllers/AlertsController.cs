@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Mahc_Final.DBContext;
+using PagedList;
 
 namespace Mahc_Final.Controllers
 {
@@ -15,10 +16,62 @@ namespace Mahc_Final.Controllers
         private HospitalContext db = new HospitalContext();
 
         // GET: Alerts
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var alerts = db.Alerts;
-            return View("Admin/Index", alerts.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewBag.StatusSortParm = sortOrder == "Published" ? "not_published" : "Published";
+            ViewBag.CreatedSortParm = sortOrder == "Created" ? "created_desc" : "Created";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var alerts = from s in db.Alerts
+                       select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                alerts = alerts.Where(s => s.Title.Contains(searchString)
+                                       || s.Desc.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    alerts = alerts.OrderByDescending(s => s.Title);
+                    break;
+                case "Published":
+                    alerts = alerts.OrderByDescending(s => s.Status);
+                    break;
+                case "not_published":
+                    alerts = alerts.OrderBy(s => s.Status);
+                    break;
+                case "Created":
+                    alerts = alerts.OrderBy(s => s.Date_created);
+                    break;
+                case "created_desc":
+                    alerts = alerts.OrderByDescending(s => s.Date_created);
+                    break;
+                case "Date":
+                    alerts = alerts.OrderBy(s => s.Date_last_modified);
+                    break;
+                case "date_desc":
+                    alerts = alerts.OrderByDescending(s => s.Date_last_modified);
+                    break;
+                default:
+                    alerts = alerts.OrderBy(s => s.Title);
+                    break;
+            }
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View("Admin/Index", alerts.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Alerts/Details/5

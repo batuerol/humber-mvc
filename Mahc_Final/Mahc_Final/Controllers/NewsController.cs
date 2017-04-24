@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Mahc_Final.DBContext;
+using PagedList;
 
 namespace Mahc_Final.Controllers
 {
@@ -15,10 +16,62 @@ namespace Mahc_Final.Controllers
         private HospitalContext db = new HospitalContext();
 
         // GET: News
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var news = db.News;
-            return View("Admin/Index", news.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewBag.StatusSortParm = sortOrder == "Published" ? "not_published" : "Published";
+            ViewBag.CreatedSortParm = sortOrder == "Created" ? "created_desc" : "Created";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var news = from s in db.News
+                         select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                news = news.Where(s => s.Title.Contains(searchString)
+                                       || s.Content.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    news = news.OrderByDescending(s => s.Title);
+                    break;
+                case "Published":
+                    news = news.OrderByDescending(s => s.Published);
+                    break;
+                case "not_published":
+                    news = news.OrderBy(s => s.Published);
+                    break;
+                case "Created":
+                    news = news.OrderBy(s => s.Date_created);
+                    break;
+                case "created_desc":
+                    news = news.OrderByDescending(s => s.Date_created);
+                    break;
+                case "Date":
+                    news = news.OrderBy(s => s.Date_last_modified);
+                    break;
+                case "date_desc":
+                    news = news.OrderByDescending(s => s.Date_last_modified);
+                    break;
+                default:
+                    news = news.OrderBy(s => s.Title);
+                    break;
+            }
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View("Admin/Index", news.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: News/Details/5
