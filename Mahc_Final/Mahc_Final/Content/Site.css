@@ -19,11 +19,11 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
-    /*max-width: 380px;*/
-}
+    max-width: 380px;
+}*/
 
 ul {
     list-style-type: none;
@@ -46,7 +46,6 @@ ul {
     border: 2px solid darkseagreen;
     border-radius: 4px;
 }
-
 #bootstrap-overrides button[type=button] {
     background-color: darkseagreen;
 }
@@ -119,11 +118,11 @@ ul {
 .header-bar {
     float: right;
 }
-
+/*
 .textcolour {
-    /*background-color: cadetblue;*/
+    background-color: cadetblue;
 }
-
+*/
 footer {
     background-color: gainsboro;
     color: black;
@@ -151,7 +150,7 @@ p.footer {
 }
 
 .changeBtn {
-    margin-bottom: 0.5em;
+    /*margin-bottom: 0.5em;*/
     display: inline;
     padding: 0.2em;
 }
@@ -165,3 +164,5 @@ a:link {
     float: none !important;
     margin: 0 auto;
 }
+
+

@@ -1,15 +1,16 @@
-﻿@model IEnumerable<Mahc_Final.DBContext.Job>
+﻿@model IEnumerable<Mahc_Final.DBContext.Task>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@section leftnav {
-@Html.Partial("~/Views/Careers/Public/_Navigation.cshtml")
-}
-<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-    <h2>View</h2>
 
+@section leftnav {
+    @Html.Partial("~/Views/Volunteer/Public/_Navigation.cshtml")
+}
+
+<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+    <h2>Available tasks</h2>
     <section>
 
         @foreach (var item in Model)

@@ -284,6 +284,7 @@
     <Compile Include="ViewModels\BlogPostsViewModel.cs" />
     <Compile Include="ViewModels\Careers.cs" />
     <Compile Include="ViewModels\JobApply.cs" />
+    <Compile Include="ViewModels\TaskVolunteer.cs" />
     <Compile Include="ViewModels\UserCreateModel.cs" />
     <Compile Include="ViewModels\Volunteers.cs" />
   </ItemGroup>
@@ -457,6 +458,11 @@
     <Content Include="Views\Calendar\Admin\_Navigation.cshtml" />
     <Content Include="Views\Volunteer\Admin\_Navigation.cshtml" />
     <Content Include="Views\Volunteer\_Navigation.cshtml" />
+    <Content Include="Views\Careers\Public\_Navigation.cshtml" />
+    <Content Include="Views\Volunteers\Public\Create.cshtml" />
+    <Content Include="Views\Tasks\Public\Details.cshtml" />
+    <Content Include="Views\Volunteer\Public\_Navigation.cshtml" />
+    <Content Include="Views\Tasks\Public\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

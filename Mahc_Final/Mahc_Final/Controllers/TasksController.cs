@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Mahc_Final.DBContext;
 using PagedList;
+using Mahc_Final.ViewModels;
 
 namespace Mahc_Final.Controllers
 {
@@ -192,6 +193,69 @@ namespace Mahc_Final.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        //Public
+        public ActionResult PublicIndex()
+        {
+            var tasks= db.Tasks.OrderBy(s => s.Modified_date);
+            return View("Public/Index", tasks.ToList());
+        }
+
+        public ActionResult PublicDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            try
+            {
+                //a request will be sent to the database here. 
+                Task tasks = db.Tasks.Find(id);
+                if (tasks == null)
+                {
+                    return HttpNotFound();
+                }
+                TaskVolunteer tskvol = new TaskVolunteer();
+                Volunteer apn = new Volunteer();
+                apn.Task_id = (int)id;
+                tskvol.task = tasks;
+                tskvol.application = apn;
+                //ViewBag.Task_id = db.Tasks.Where(j => j.Id==id && j.Status == true);
+                //ViewBag.Task_id = db.Tasks.Where(j =>j.Status == true);
+                return View("Public/Details", tskvol);
+            }
+            catch (Exception dex) //this catch is finding a server error. 
+            {
+                ViewBag.Message = "Something went wrong: " + dex.Message;
+            }
+            return RedirectToAction("PublicIndex"); //if the try was successful, then the return above would execute.
+                                                    //this return would execute if catch was needed
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //[Bind(Include = "Id,Job_id,Name,Email,Phone,CV,Text")]
+        public ActionResult PublicDetails(TaskVolunteer tskvol)
+        {
+            try //if you auto build the controllers, visual studio will NOT include a try/catch
+            { //a try/catch will try what you want to do, then "catch" what goes wrong. Try/catch can even catch server errors such as if the database server is down
+                if (ModelState.IsValid)
+                {
+
+                    tskvol.application.Date = DateTime.Now;
+                    db.Volunteers.Add(tskvol.application);
+                    db.SaveChanges();
+                    return RedirectToAction("PublicIndex");
+                }
+            }
+            catch (DataException dex) //you can create an Exception/DataException object here and set it to a variable. I've called it dex here. 
+            {
+                ViewBag.Message = "Whoops! Something went wrong. Here's what went wrong: " + dex.Message; //One of the properties of these objects is Message which is a string of what went wrong. 
+            }
+
+
+            tskvol.task = db.Tasks.Find(tskvol.application.Task_id);
+            // ViewBag.Type = new SelectList(db.Job_types, "Id", "Title", jobs.Type);
+            return View("Public/Details", tskvol);
         }
     }
 }

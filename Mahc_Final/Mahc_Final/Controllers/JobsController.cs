@@ -283,7 +283,7 @@ namespace Mahc_Final.Controllers
                 ViewBag.Message = "Whoops! Something went wrong. Here's what went wrong: " + dex.Message; //One of the properties of these objects is Message which is a string of what went wrong. 
             }
 
-
+            ja.job = db.Jobs.Find(ja.application.Job_id);
             // ViewBag.Type = new SelectList(db.Job_types, "Id", "Title", jobs.Type);
             return View("Public/Details", ja);
         }

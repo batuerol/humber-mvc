@@ -104,7 +104,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>@Html.ActionLink("Job Postings",  "PublicIndex", "Jobs")</li>
-                                    <li>@Html.ActionLink("Volunteer Opporunities", "Index", "Volunteers")</li>
+                                    <li>@Html.ActionLink("Volunteer Opporunities", "PublicIndex", "Tasks")</li>
                                     <li>@Html.ActionLink("Student Opportunities", "PublicIndex", "Jobs")</li>
                                     <li>@Html.ActionLink("Physician Recruitment Opportunities",  "PublicIndex", "Jobs")</li>
                                 </ul>
@@ -128,13 +128,9 @@
             </nav>
         </header>
     </div>
-    <div class="row">
-        <nav class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="border-bottom:none;">
-            @RenderSection("leftnav", required: false)
-        </nav>
-        <div class="container body-content">
-            @RenderBody()
-        </div>
+    <div class="container body-content">
+        @RenderSection("leftnav", required: false)
+        @RenderBody()
     </div>
     <footer>
         <div class="container">
