@@ -115,6 +115,11 @@ namespace Mahc_Final.Controllers
             return RedirectToAction("Index");
         }
 
+        public PartialViewResult GetCurrentTime()
+        {
+            return PartialView("_ERWaitTimes", null);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

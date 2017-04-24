@@ -2,11 +2,14 @@
 
 <link rel="stylesheet" type="text/css" href="~/Content/ErWaitTime.css">
 <section class="er__container">
-    <div class="clock">
-        <div class="clock__logo">
-            <span>Er Wait Time</span>
+    <a role="button" data-toggle="collapse" href="#erContainer" aria-controls="erContainer">
+        Er Wait Time
+    </a>
+    <div id="erContainer" class="collapse in">
+        <div class="er__text">
+            <span>Estimated Wait Time:</span>
         </div>
-        <div class="clock__current_time">
+        <div class="er__wait_time">
             @*@Model.CurrentWaitTime*@
             ~15 min
         </div>

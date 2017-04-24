@@ -1,0 +1,7 @@
+﻿.er__container {
+    position: fixed;
+    left: 20px;
+    border: 1px solid black;
+    background-color: cornflowerblue;
+    color: yellow;
+}
