@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using Mahc_Final.Models;
 using Mahc_Final.DBContext;
+using System.Threading.Tasks;
+using Stripe;
 
 namespace Mahc_Final.Controllers
 {
@@ -36,92 +38,120 @@ namespace Mahc_Final.Controllers
             }
             return View(gift);
         }
-        /* Viewers can not Create or Delete a Gift they can just view the list or details about a particular gift
-        // GET: ViewGifts/Create
-        public ActionResult Create()
+        public ActionResult Proceed(int? id)
         {
-            ViewBag.cat_id = new SelectList(db.GiftCats, "Id", "cat_name");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Gift gift = db.Gifts.Find(id);
+            if (gift == null)
+            {
+                return HttpNotFound();
+            }
+            var price = gift.price;
+            TempData["price"] = price;
+            return RedirectToAction("Pay");
+
+
+
+        }
+
+        private static async Task<string> GetTokenId(UserInfo ui)
+        {
+            return await Task.Run(() =>
+            {
+                var myToken = new StripeTokenCreateOptions();
+                myToken.Card = new StripeCreditCardOptions()
+                {
+                    Number = ui.CardNumber,
+                    ExpirationYear = ui.ExpYear,
+                    ExpirationMonth = ui.ExpMonth,
+                    Cvc = ui.Cvc
+                };
+
+                var tokenService = new StripeTokenService();
+                var stripeToken = tokenService.Create(myToken);
+
+                return stripeToken.Id;
+            });
+        }
+
+
+        private static async Task<string> ChargeCustomer(string tokenId, float payAmount)
+        {
+            return await System.Threading.Tasks.Task.Run(() =>
+            {
+                var myCharge = new StripeChargeCreateOptions
+                {
+                    Amount = Convert.ToInt32(payAmount * 100),
+                    Currency = "cad",
+                    Description = "Gift Payment",
+                    SourceTokenOrExistingSourceId = tokenId
+                };
+
+                var chargeService = new StripeChargeService();
+                var stripeCharge = chargeService.Create(myCharge);
+
+                return stripeCharge.Id;
+            });
+        }
+
+
+
+        public ActionResult Pay()
+        {
+            TempData.Keep();
+
             return View();
         }
 
-        // POST: ViewGifts/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,cat_id,name,desc,image,price")] Gift gift)
+        public async Task<ActionResult> Pay(string price, UserInfo ui)
         {
-            if (ModelState.IsValid)
-            {
-                db.Gifts.Add(gift);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            var errorMessage = String.Empty;
+            var chargeId = String.Empty;
+            //Gift gft = new Gift();
 
-            ViewBag.cat_id = new SelectList(db.GiftCats, "Id", "cat_name", gift.cat_id);
-            return View(gift);
-        }
 
-        // GET: ViewGifts/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Gift gift = db.Gifts.Find(id);
-            if (gift == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.cat_id = new SelectList(db.GiftCats, "Id", "cat_name", gift.cat_id);
-            return View(gift);
-        }
 
-        // POST: ViewGifts/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,cat_id,name,desc,image,price")] Gift gift)
-        {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(gift).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var tokenId = await GetTokenId(ui);
+                chargeId = await ChargeCustomer(tokenId, float.Parse(price));
             }
-            ViewBag.cat_id = new SelectList(db.GiftCats, "Id", "cat_name", gift.cat_id);
-            return View(gift);
-        }
-
-        // GET: ViewGifts/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
+            catch (Exception e)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                TempData["msg"] = "Make sure you have entered correct information about your card!";
+                return RedirectToAction("Pay");
             }
-            Gift gift = db.Gifts.Find(id);
-            if (gift == null)
-            {
-                return HttpNotFound();
-            }
-            return View(gift);
-        }
-
-        // POST: ViewGifts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Gift gift = db.Gifts.Find(id);
-            db.Gifts.Remove(gift);
-            db.SaveChanges();
+            TempData["payingstatus"] = "Successfull payment";
             return RedirectToAction("Index");
         }
-        */
-        protected override void Dispose(bool disposing)
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+
+
+
+    
+
+
+
+
+
+
+
+
+    /* Viewers can not Create or Delete a Gift they can just view the list or details about a particular gift*/
+   
+    protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
