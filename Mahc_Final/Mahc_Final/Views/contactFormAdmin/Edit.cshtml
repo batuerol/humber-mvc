@@ -70,14 +70,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Reply, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <textarea class="form-control text-box" id="Reply" name="Reply" rows="10" value="" required></textarea>
+                <textarea class="form-control text-box" id="Reply" name="Reply" rows="10" style="min-width: 100%" required></textarea>
                 @Html.ValidationMessageFor(model => model.Reply, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Reply" class="btn btn-default" onclick="Btn_SendMail_Click" />
+                <input type="submit" value="Reply" class="btn btn-default submit" onclick="Btn_SendMail_Click" />
             </div>
         </div>
     </div>
