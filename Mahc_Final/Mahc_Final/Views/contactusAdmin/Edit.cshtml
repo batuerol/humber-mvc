@@ -1,4 +1,4 @@
-﻿@model Mahc_Final.DBContext.contactu
+﻿@model Mahc_Final.DBContext.contactInfo
 
 @{
     ViewBag.Title = "Edit";
@@ -6,91 +6,60 @@
 }
 
 <style>
-    .hide {
-        display: none;
+    box{
+        width: 100%;
     }
-
-    .submit {
+    .boxInfo{
+        width: 100%;
+    }
+    .submit{
         float: right;
     }
 </style>
 
-<h2>Reply Message</h2>
+<h2>Contact Us</h2>
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
-        <h4>Message Id: @Html.DisplayFor(model => model.Id)</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
-        <div class="hide">
-            <div class="form-group">
-                @Html.LabelFor(model => model.VisitorEmail, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.VisitorEmail, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.VisitorEmail, "", new { @class = "text-danger" })
+        <div class="box">
+            <div class="form-group col-md-1 boxInfo">
+                <b>Contact Information Content: </b>
+                <textarea class="form-control text-box" id="content" name="content" rows="10" style="min-width: 100%">@Html.DisplayFor(model => model.content)</textarea>
+                @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
+
+                <br />
+
+                <b>Hospital Address: </b>
+                <textarea class="form-control text-box" id="address_one" name="address_one" rows="5" style="min-width: 100%">@Html.DisplayFor(model => model.address_one)</textarea>
+                @Html.ValidationMessageFor(model => model.address_one, "", new { @class = "text-danger" })
+
+                <br />
+
+                <b>Hospital Address: </b>
+                    <textarea class="form-control text-box" id="address_two" name="address_two" rows="5" style="min-width: 100%">@Html.DisplayFor(model => model.address_two)</textarea>
+                    @Html.ValidationMessageFor(model => model.address_two, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.VisitorName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.VisitorName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.VisitorName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Question, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Question, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Question, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-
-        <p><b>Email: </b>@Html.DisplayFor(model => model.VisitorEmail)</p>
-        <p><b>Name: </b>@Html.DisplayFor(model => model.VisitorName)</p>
-        <p><b>Date: </b>@Html.DisplayFor(model => model.Date)</p>
-        <p><b>Message: </b>@Html.DisplayFor(model => model.Question)</p>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Reply, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <textarea class="form-control text-box" id="Reply" name="Reply" rows="10" value="" required></textarea>
-                @Html.ValidationMessageFor(model => model.Reply, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Reply" class="btn btn-default" onclick="Btn_SendMail_Click" />
+                <input type="submit" value="Save" class="btn btn-default submit" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Main Page", "Index")
 </div>
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

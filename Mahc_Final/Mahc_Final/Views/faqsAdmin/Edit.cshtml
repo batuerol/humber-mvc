@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_AdminPanel.cshtml";
 }
 
+<style>
+    .submit{
+        float: right;
+    }
+</style>
+
 <h2>FAQ</h2>
 
 
@@ -19,24 +25,23 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Question, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <textarea class="form-control text-box" id="Question" name="Question" rows="3">@Html.DisplayFor(model => model.Question)</textarea>
+                <b>Question: </b><textarea class="form-control text-box" id="Question" name="Question" rows="3" style="min-width: 100%">@Html.DisplayFor(model => model.Question)</textarea>
                 @Html.ValidationMessageFor(model => model.Question, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Answer, htmlAttributes: new { @class = "control-label col-md-2" })
+            
             <div class="col-md-10">
-                <textarea class="form-control text-box" id="Answer" name="Answer" rows="5">@Html.DisplayFor(model => model.Answer)</textarea>
+                <b>Answer: </b><textarea class="form-control text-box" id="Answer" name="Answer" rows="5" style="min-width: 100%">@Html.DisplayFor(model => model.Answer)</textarea>
                 @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default submit" />
             </div>
         </div>
     </div>
