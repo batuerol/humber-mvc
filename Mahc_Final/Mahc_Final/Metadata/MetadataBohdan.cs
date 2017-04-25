@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Mvc;//For editor template
 using System.ComponentModel.DataAnnotations;
 
 namespace Mahc_Final.Models
@@ -28,7 +28,7 @@ namespace Mahc_Final.Models
         public int Type;
         [Required(ErrorMessage = "Please, provide the description for current job!")]
         [DataType(DataType.MultilineText)]
-        [UIHint("tinymce_jquery_full"),AllowHtml]
+        [UIHint("tinymce_jquery_full"),AllowHtml]//For editor template
         [Display(Name = "Description")]
         public string Desc
         {
