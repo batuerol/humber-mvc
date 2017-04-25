@@ -44,7 +44,7 @@ namespace Mahc_Final.Controllers
                 return RedirectToAction(action, controller, new { thankmessage = "Thank you for your question! We will get back to you as soon as possible." });
             }
 
-            return View(contactu);
+            return RedirectToAction(action, controller, new { thankmessage = "Please confirm you are not a robot!" });
         }
     }
 }
