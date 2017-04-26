@@ -166,10 +166,13 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\AlertsController.cs" />
+    <Compile Include="Controllers\book_an_appointmentController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CareersController.cs" />
     <Compile Include="Controllers\contactFormController.cs" />
     <Compile Include="Controllers\contactUsVisitorController.cs" />
+    <Compile Include="Controllers\DoctorAvailabilitiesController.cs" />
+    <Compile Include="Controllers\doctorsController.cs" />
     <Compile Include="Controllers\ERWaitTimesController.cs" />
     <Compile Include="Controllers\contactUsAdminController.cs" />
     <Compile Include="Controllers\contactFormAdminController.cs" />
@@ -778,6 +781,23 @@
     <Content Include="Views\Adminis\Index.cshtml" />
     <Content Include="Views\ViewGifts\Pay.cshtml" />
     <Content Include="Views\Shared\contactForm.cshtml" />
+    <Content Include="Views\doctors\Create.cshtml" />
+    <Content Include="Views\doctors\Delete.cshtml" />
+    <Content Include="Views\doctors\Details.cshtml" />
+    <Content Include="Views\doctors\Edit.cshtml" />
+    <Content Include="Views\doctors\Index.cshtml" />
+    <Content Include="Views\DoctorAvailabilities\Create.cshtml" />
+    <Content Include="Views\DoctorAvailabilities\Delete.cshtml" />
+    <Content Include="Views\DoctorAvailabilities\Details.cshtml" />
+    <Content Include="Views\DoctorAvailabilities\Edit.cshtml" />
+    <Content Include="Views\DoctorAvailabilities\Index.cshtml" />
+    <Content Include="Views\book_an_appointment\Create.cshtml" />
+    <Content Include="Views\book_an_appointment\Delete.cshtml" />
+    <Content Include="Views\book_an_appointment\Details.cshtml" />
+    <Content Include="Views\book_an_appointment\Edit.cshtml" />
+    <Content Include="Views\book_an_appointment\Index.cshtml" />
+    <Content Include="Views\book_an_appointment\SuccessMessage.cshtml" />
+    <Content Include="Views\book_an_appointment\FindDoctorDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
