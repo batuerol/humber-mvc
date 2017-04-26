@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Mahc_Final.DBContext;
 using PagedList;
 using Mahc_Final.ViewModels;
+using Mahc_Final.Helpers;
 
 namespace Mahc_Final.Controllers
 {
@@ -71,6 +72,10 @@ namespace Mahc_Final.Controllers
                     break;
             }
             //var tasks = db.Tasks.Include(j => j.Job_types);
+            foreach (Task a in tasks)
+            {
+                a.Desc = Helpers.HtmlDescriptionHelper.GetShortDescFromHtml(a.Desc);
+            }
             int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View("Admin/Index", tasks.ToPagedList(pageNumber, pageSize));
@@ -168,6 +173,7 @@ namespace Mahc_Final.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Task task = db.Tasks.Find(id);
+
             if (task == null)
             {
                 return HttpNotFound();
@@ -181,8 +187,22 @@ namespace Mahc_Final.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Task task = db.Tasks.Find(id);
-            db.Tasks.Remove(task);
-            db.SaveChanges();
+            try
+            {
+                db.Tasks.Remove(task);
+                db.SaveChanges();
+            }
+            catch (Exception dex)
+            {
+                ViewBag.Message = "Something went wrong...";
+                Volunteer vol = db.Volunteers.Where(a => a.Task_id== id).First();
+                if (vol != null)
+                {
+                    ViewBag.Message += " You were trying to delete task which have active volunteers";
+                }
+                return View("Admin/Delete", task);
+            }
+           
             return RedirectToAction("Index");
         }
 

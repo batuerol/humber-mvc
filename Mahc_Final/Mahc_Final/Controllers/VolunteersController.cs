@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Mahc_Final.DBContext;
 using PagedList;
+using Mahc_Final.Helpers;
 
 namespace Mahc_Final.Controllers
 {
@@ -55,6 +56,8 @@ namespace Mahc_Final.Controllers
                     volunteers = volunteers.OrderBy(s => s.Name);
                     break;
             }
+
+           
             //var volunteers = db.Volunteers.Include(j => j.Job_types);
             int pageSize = 5;
             int pageNumber = (page ?? 1);
@@ -81,6 +84,12 @@ namespace Mahc_Final.Controllers
         {
             ViewBag.Task_id = new SelectList(db.Tasks, "Id", "Title");
             return View("Admin/Create");
+        }
+        // GET: Volunteers/Create
+        public ActionResult PublicCreate()
+        {
+            ViewBag.Task_id = new SelectList(db.Tasks, "Id", "Title");
+            return View("Public/Create");
         }
 
         // POST: Volunteers/Create

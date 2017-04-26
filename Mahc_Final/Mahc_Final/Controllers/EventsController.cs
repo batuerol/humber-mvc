@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Mahc_Final.DBContext;
 using PagedList;
+using Mahc_Final.Helpers;
 
 namespace Mahc_Final.Controllers
 {
@@ -69,6 +70,11 @@ namespace Mahc_Final.Controllers
                     events = events.OrderBy(s => s.Title);
                     break;
             }
+
+            foreach (Event e in events)
+            {
+                e.Desc = Helpers.HtmlDescriptionHelper.GetShortDescFromHtml(e.Desc);
+            }
             int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View("Admin/Index", events.ToPagedList(pageNumber, pageSize));
@@ -102,8 +108,14 @@ namespace Mahc_Final.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,Type,Location,Time_start,Time_end,Status,Featured,Volunteers,Desc")] Event @event)
         {
-            try //if you auto build the controllers, visual studio will NOT include a try/catch
+            if (@event.Time_start>=@event.Time_end)
+            {
+                ViewBag.Message = "Event start date should be less than end date: ";
+                return View("Admin/Create", @event);
+            }
+                try //if you auto build the controllers, visual studio will NOT include a try/catch
             { //a try/catch will try what you want to do, then "catch" what goes wrong. Try/catch can even catch server errors such as if the database server is down
+                
                 if (ModelState.IsValid)
                 {
                     @event.Created_by = 1;
@@ -144,6 +156,11 @@ namespace Mahc_Final.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,Type,Location,Time_start,Time_end,Status,Featured,Volunteers,Desc")] Event @event)
         {
+            if (@event.Time_start >= @event.Time_end)
+            {
+                ViewBag.Message = "Event start date should be less than end date: ";
+                return View("Admin/Edit", @event);
+            }
             try
             {
                 Event currentEvent = db.Events.FirstOrDefault(j => j.Id == @event.Id);
@@ -238,6 +255,36 @@ namespace Mahc_Final.Controllers
             return RedirectToAction("PublicIndex"); //if the try was successful, then the return above would execute.
                                                     //this return would execute if catch was needed
         }
+        // GET: Events/Details/5
+        public ActionResult GetUpcomingEvents()
+        {
+            var events = from s in db.Events orderby s.Time_start ascending
+                         where s.Featured == true && s.Status==true && s.Time_start>DateTime.Now
+                         select s;
+
+            if(events.Count()==0)
+            {
+                events = from s in db.Events
+                         orderby s.Time_end descending
+                         where s.Featured == true && s.Status == true 
+                         select s;
+            }
+            if (events.Count() != 0)
+            {
+                events = events.Take(2);
+            }
+            else
+            {
+                ViewBag.Message = "No events to display";
+            }
+            foreach (Event e in events)
+            {
+                e.Desc = Helpers.HtmlDescriptionHelper.GetShortDescFromHtml(e.Desc);
+            }
+            return PartialView("_UpcomingEvents", events);
+        }
+
+       
 
     }
 }

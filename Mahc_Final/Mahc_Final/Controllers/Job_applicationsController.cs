@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Mahc_Final.DBContext;
 using PagedList;
+using Mahc_Final.Helpers;
 
 namespace Mahc_Final.Controllers
 {
@@ -56,6 +57,10 @@ namespace Mahc_Final.Controllers
                     break;
             }
             //var job_application = db.Job_applications.Include(j => j.Job);
+            foreach (Job_applications a in job_applications)
+            {
+                a.Text = Helpers.HtmlDescriptionHelper.GetShortDescFromHtml(a.Text);
+            }
             int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View("Admin/Index", job_applications.ToPagedList(pageNumber, pageSize));

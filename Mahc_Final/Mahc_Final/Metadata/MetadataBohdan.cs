@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;//For editor template
 using System.ComponentModel.DataAnnotations;
 
-namespace Mahc_Final.Models
+namespace Mahc_Final.Metadata
 {
     /* Careers feature */
     public class Job_typesMetadata

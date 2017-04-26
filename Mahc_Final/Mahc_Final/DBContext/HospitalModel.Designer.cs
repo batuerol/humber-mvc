@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿// T4 code generation is enabled for model 'C:\Users\Sharanjeet Kaur\Desktop\humber-mvc\Mahc_Final\Mahc_Final\DBContext\HospitalModel.edmx'. 
+=======
+﻿// T4 code generation is enabled for model 'C:\Users\sheen\Documents\GitHub\humber-mvc\Mahc_Final\Mahc_Final\DBContext\HospitalModel.edmx'. 
+>>>>>>> 7afad7b34ecc06406d98292dbed52003ce4a83de
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
