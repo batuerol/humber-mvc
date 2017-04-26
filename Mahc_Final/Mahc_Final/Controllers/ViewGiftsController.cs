@@ -38,6 +38,9 @@ namespace Mahc_Final.Controllers
             }
             return View(gift);
         }
+       
+
+        /*
         public ActionResult Proceed(int? id)
         {
             if (id == null)
@@ -55,11 +58,11 @@ namespace Mahc_Final.Controllers
 
 
 
-        }
+        }*/
 
         private static async Task<string> GetTokenId(UserInfo ui)
         {
-            return await Task.Run(() =>
+            return await System.Threading.Tasks.Task.Run(() =>
             {
                 var myToken = new StripeTokenCreateOptions();
                 myToken.Card = new StripeCreditCardOptions()
@@ -99,9 +102,9 @@ namespace Mahc_Final.Controllers
 
 
 
-        public ActionResult Pay()
+        public ActionResult Pay(string price)
         {
-            TempData.Keep();
+            //TempData.Keep();
 
             return View();
         }

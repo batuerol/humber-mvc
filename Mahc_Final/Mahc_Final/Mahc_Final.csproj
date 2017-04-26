@@ -164,6 +164,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminOrdersController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\AlertsController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\Job_applicationsController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\Staff1Controller.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="Controllers\VolunteersController.cs" />
@@ -287,6 +289,7 @@
     <Compile Include="DBContext\Task.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBContext\UserInfo.cs" />
     <Compile Include="DBContext\Volunteer.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
@@ -295,7 +298,6 @@
     </Compile>
     <Compile Include="Metadata\MetadataBohdan.cs" />
     <Compile Include="Metadata\MetadataM.cs" />
-    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BlogPostsViewModel.cs" />
     <Compile Include="ViewModels\Careers.cs" />
@@ -763,11 +765,11 @@
     <Content Include="Views\RolesAdmin\Details.cshtml" />
     <Content Include="Views\RolesAdmin\Edit.cshtml" />
     <Content Include="Views\RolesAdmin\Index.cshtml" />
-    <Content Include="Views\HosMembersAdmin\Create.cshtml" />
-    <Content Include="Views\HosMembersAdmin\Delete.cshtml" />
-    <Content Include="Views\HosMembersAdmin\Details.cshtml" />
-    <Content Include="Views\HosMembersAdmin\Edit.cshtml" />
-    <Content Include="Views\HosMembersAdmin\Index.cshtml" />
+    <Content Include="Views\News\HosMembersAdmin\Create.cshtml" />
+    <Content Include="Views\News\HosMembersAdmin\Delete.cshtml" />
+    <Content Include="Views\News\HosMembersAdmin\Details.cshtml" />
+    <Content Include="Views\News\HosMembersAdmin\Edit.cshtml" />
+    <Content Include="Views\News\HosMembersAdmin\Index.cshtml" />
     <Content Include="Views\Members\Create.cshtml" />
     <Content Include="Views\Members\Delete.cshtml" />
     <Content Include="Views\Members\Details.cshtml" />
@@ -776,12 +778,32 @@
     <Content Include="Views\Members\Login.cshtml" />
     <Content Include="Views\Shared\_AdminPanel.cshtml" />
     <Content Include="Views\Adminis\Index.cshtml" />
-    <Content Include="Views\ViewGifts\Pay.cshtml" />
     <Content Include="Views\Shared\contactForm.cshtml" />
+    <Content Include="Views\Staff1\Create.cshtml" />
+    <Content Include="Views\Staff1\Delete.cshtml" />
+    <Content Include="Views\Staff1\Details.cshtml" />
+    <Content Include="Views\Staff1\Edit.cshtml" />
+    <Content Include="Views\Staff1\Index.cshtml" />
+    <Content Include="Views\Departments\Create.cshtml" />
+    <Content Include="Views\Departments\Delete.cshtml" />
+    <Content Include="Views\Departments\Details.cshtml" />
+    <Content Include="Views\Departments\Edit.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Visitor\_display1.cshtml" />
+    <Content Include="Views\AdminOrders\CreateOrder.cshtml" />
+    <Content Include="Views\AdminOrders\Delete.cshtml" />
+    <Content Include="Views\AdminOrders\Details.cshtml" />
+    <Content Include="Views\AdminOrders\Edit.cshtml" />
+    <Content Include="Views\AdminOrders\Index.cshtml" />
+    <Content Include="Views\ViewGifts\Pay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="CVs\" />
+    <Folder Include="gifts\" />
+    <Folder Include="members\" />
+    <Folder Include="Models\" />
+    <Folder Include="photos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

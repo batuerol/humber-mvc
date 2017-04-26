@@ -66,8 +66,22 @@ namespace Mahc_Final.Controllers
             else
             {
                 FormsAuthentication.SetAuthCookie(user.username, false);
-                return RedirectToAction("Index", "Members"); // go to the index of the Users Controller when logging successfully
+                return RedirectToAction("Index", "Home"); // go to the index of the Users Controller when logging successfully
             }
+        }
+
+
+
+        public ActionResult Logout()
+        {
+            string returnUrl = Request.QueryString["ReturnUrl"];
+            FormsAuthentication.SignOut();
+            if (returnUrl != null)
+            {
+                return Redirect(returnUrl);
+            }
+            ViewBag.Message = "You have been successfully logged out";
+            return RedirectToAction("Index","Home");
         }
 
 
