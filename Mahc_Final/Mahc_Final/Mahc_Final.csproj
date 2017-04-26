@@ -300,6 +300,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlDescriptionHelper.cs" />
     <Compile Include="Metadata\MetadataBohdan.cs" />
     <Compile Include="Metadata\MetadataM.cs" />
     <Compile Include="Models\UserInfo.cs" />
@@ -653,7 +654,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_AdminPanel.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
@@ -810,11 +810,14 @@
     <Content Include="Views\book_an_appointment\Index.cshtml" />
     <Content Include="Views\book_an_appointment\SuccessMessage.cshtml" />
     <Content Include="Views\book_an_appointment\FindDoctorDetails.cshtml" />
+    <Content Include="Views\Shared\_UpcomingEvents.cshtml" />
+    <Content Include="Views\Shared\_BecomeVolunteer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="CVs\" />
     <Folder Include="Views\Adminis\" />
+    <Folder Include="Views\Events\Partial\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

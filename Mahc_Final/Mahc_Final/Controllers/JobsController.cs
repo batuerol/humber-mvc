@@ -10,6 +10,7 @@ using System.IO;
 using Mahc_Final.DBContext;
 using Mahc_Final.ViewModels;
 using PagedList;
+using Mahc_Final.Helpers;
 
 namespace Mahc_Final.Controllers
 {
@@ -75,6 +76,10 @@ namespace Mahc_Final.Controllers
                 job.Desc=job.Desc.Substring(0, 100)+"...";
             }*/
             //var jobs = db.Jobs.Include(j => j.Job_types);
+            foreach (Job a in jobs)
+            {
+                a.Desc = Helpers.HtmlDescriptionHelper.GetShortDescFromHtml(a.Desc);
+            }
             int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View("Admin/Index", jobs.ToPagedList(pageNumber,pageSize));
@@ -186,6 +191,7 @@ namespace Mahc_Final.Controllers
         // GET: Jobs/Delete/5
         public ActionResult Delete(int? id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -204,8 +210,22 @@ namespace Mahc_Final.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Job job = db.Jobs.Find(id);
-            db.Jobs.Remove(job);
-            db.SaveChanges();
+            try
+            {
+                db.Jobs.Remove(job);
+                db.SaveChanges();
+            }
+            catch(Exception dex)
+            {
+                ViewBag.Message = "Something went wrong..." ;
+                Job_applications ja = db.Job_applications.Where(a => a.Job_id == id).First();
+                if (ja!=null)
+                {
+                    ViewBag.Message += " You were trying to delete job which have active applications";
+                }
+                return View("Admin/Delete", job);
+            }
+            
             return RedirectToAction("Index");
         }
 
@@ -220,9 +240,14 @@ namespace Mahc_Final.Controllers
 
 
         //Public
-        public ActionResult PublicIndex()
+        public ActionResult PublicIndex(int? Job_type)
         {
-            var jobs = db.Jobs.Include(j => j.Job_types).Where(j => j.Status==true);
+            var jobs = db.Jobs.Include(j => j.Job_types).Where(j => j.Status == true);
+            if (Job_type != null)
+            {
+                jobs = jobs.Where(j => j.Status == true && j.Type == Job_type);
+            }
+            ViewBag.Job_Type = new SelectList(db.Job_types, "Id", "Title");
             return View("Public/Index", jobs.ToList());
         }
 
@@ -266,7 +291,7 @@ namespace Mahc_Final.Controllers
                 if (ModelState.IsValid)
                 {
                     var fileName = "";
-                    if (file.ContentLength > 0)
+                    if (file != null && file.ContentLength > 0)
                     {
                         fileName = Path.GetFileName(file.FileName);
                         ja.application.CV = fileName;
@@ -274,7 +299,7 @@ namespace Mahc_Final.Controllers
                     ja.application.Date = DateTime.Now;
                     db.Job_applications.Add(ja.application);
                     db.SaveChanges();
-                    if (file.ContentLength > 0)
+                    if (file != null && file.ContentLength > 0)
                     {
                         var path = Path.Combine(Server.MapPath("~/CVs/"), fileName);
                         file.SaveAs(path);

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Mahc_Final.DBContext;
 using PagedList;
+using Mahc_Final.Helpers;
 
 namespace Mahc_Final.Controllers
 {
@@ -68,6 +69,10 @@ namespace Mahc_Final.Controllers
                 default:
                     news = news.OrderBy(s => s.Title);
                     break;
+            }
+            foreach (News a in news)
+            {
+                a.Content = Helpers.HtmlDescriptionHelper.GetShortDescFromHtml(a.Content);
             }
             int pageSize = 5;
             int pageNumber = (page ?? 1);

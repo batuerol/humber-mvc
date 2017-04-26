@@ -11,7 +11,6 @@
 
 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
     <h2>@Html.DisplayFor(model => model.task.Title)</h2>
-
     <div>
         <h3>Task details</h3>
         <hr />
@@ -40,22 +39,7 @@
                 @Html.DisplayFor(model => model.task.Regularity)
             </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.task.Desc)
-            </dt>
 
-            <dd>
-                @*@Html.DisplayFor(model => model.task.Desc)*@
-                @Html.Raw(Model.task.Desc)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.task.Status)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.task.Status)
-            </dd>
 
             <dt>
                 @Html.DisplayNameFor(model => model.task.Contact_person)
@@ -73,6 +57,11 @@
                 @Html.DisplayFor(model => model.task.Contact_phone)
             </dd>
         </dl>
+        <hr/>
+        <p>
+            @*@Html.DisplayFor(model => model.task.Desc)*@
+            @Html.Raw(Model.task.Desc)
+        </p>
     </div>
     @using (Html.BeginForm())
     {
