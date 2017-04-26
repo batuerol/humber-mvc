@@ -9,16 +9,20 @@ using Mahc_Final.ViewModels;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Newtonsoft.Json.Linq;
 
 namespace Mahc_Final.Controllers
 {
     public class CareersController : Controller
     {
+
         static HttpClient client = new HttpClient();
-        string developer = "";
+
+        
         private HospitalContext db = new HospitalContext();
+
         // GET: Careers
-        public  ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             Careers OppApp = new Careers() ;
 
@@ -26,34 +30,13 @@ namespace Mahc_Final.Controllers
                                     orderby o.Date_last_modified descending
                                     select o).Take(5).ToList();
             OppApp.applications = db.Job_applications.OrderByDescending(a => a.Date).Take(5).ToList();
-            GetDeveloper("Careers").Wait();
+
+            
+            var responseString = await client.GetStringAsync("http://mmgnr1keg7.execute-api.us-east-1.amazonaws.com/prod/api/feature/careers");
+            //developer = await GetDeveloperAsync("careers");
+            dynamic developer = JObject.Parse(responseString);
+            ViewBag.Developer=(string)developer["name"] ;
             return View("Admin/Index",OppApp);
-        }
-
-        public async System.Threading.Tasks.Task GetDeveloper(string feature)
-        {
-            client.BaseAddress = new Uri("https://mmgnr1keg7.execute-api.us-east-1.amazonaws.com/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            try
-            {
-                developer = await GetDeveloperAsync(feature);
-            }
-            catch (Exception e)
-            {
-            }
-            return;
-        }
-        static async Task<string> GetDeveloperAsync(string feature="Careers")
-        {
-            string developer = null;
-            HttpResponseMessage response = await client.GetAsync("Prod/api/feature/"+feature);
-            if (response.IsSuccessStatusCode)
-            {
-                developer = await response.Content.ReadAsAsync<string>();
-            }
-            return developer;
         }
     }
 }
