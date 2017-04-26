@@ -26,7 +26,7 @@ namespace Mahc_Final.Controllers
                                     orderby o.Date_last_modified descending
                                     select o).Take(5).ToList();
             OppApp.applications = db.Job_applications.OrderByDescending(a => a.Date).Take(5).ToList();
-            //GetDeveloper("Careers").Wait();
+            GetDeveloper("Careers").Wait();
             return View("Admin/Index",OppApp);
         }
 
@@ -39,12 +39,11 @@ namespace Mahc_Final.Controllers
             try
             {
                 developer = await GetDeveloperAsync(feature);
-                Console.WriteLine(developer);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
             }
+            return;
         }
         static async Task<string> GetDeveloperAsync(string feature="Careers")
         {
