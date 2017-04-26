@@ -62,7 +62,7 @@
 
         function getAvails() {
             document.getElementById('av-d').style = 'inline';
-            $.getJSON('/book_an_appointment/FindDoctor/' + doctorid, function (results) {
+            $.getJSON('hospital/book_an_appointment/FindDoctor/' + doctorid, function (results) {
                 var html = '<p></p>';
                 results.map(function (result) {
                     var date = new Date(parseInt(result.avail_date.substr(6)));
