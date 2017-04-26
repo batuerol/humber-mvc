@@ -12,7 +12,7 @@ namespace Mahc_Final.DBContext
 {
     using System;
     using System.Collections.Generic;
-    [MetadataType(typeof(Mahc_Final.Metadata.AlertsMetadata))]
+    [MetadataType(typeof(Models.AlertsMetadata))]
     public partial class Alert
     {
         public int Id { get; set; }

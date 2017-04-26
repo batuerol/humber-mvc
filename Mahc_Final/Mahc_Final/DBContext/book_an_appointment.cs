@@ -11,25 +11,14 @@ namespace Mahc_Final.DBContext
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class book_an_appointment
     {
         public int Id { get; set; }
         public Nullable<int> dr_id { get; set; }
-        [Required]
-        [DisplayName("First Name")]
         public string First_Name { get; set; }
-        [Required]
-        [DisplayName("Last Name")]
         public string Last_Name { get; set; }
-        [DisplayName("Email")]
-        [DataType(DataType.EmailAddress)]
         public string Email_id { get; set; }
-        [Required]
-        [DisplayName("Contact No.")]
-        [DataType(DataType.PhoneNumber)]
         public Nullable<decimal> contact_no { get; set; }
         public Nullable<int> avail_id { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
