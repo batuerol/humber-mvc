@@ -182,6 +182,7 @@
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\Job_applicationsController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\Staff1Controller.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="Controllers\VolunteersController.cs" />
@@ -775,13 +776,22 @@
     <Content Include="Views\Members\Index.cshtml" />
     <Content Include="Views\Members\Login.cshtml" />
     <Content Include="Views\Shared\_AdminPanel.cshtml" />
-    <Content Include="Views\Adminis\Index.cshtml" />
-    <Content Include="Views\ViewGifts\Pay.cshtml" />
     <Content Include="Views\Shared\contactForm.cshtml" />
+    <Content Include="Views\Departments\Create.cshtml" />
+    <Content Include="Views\Departments\Delete.cshtml" />
+    <Content Include="Views\Departments\Details.cshtml" />
+    <Content Include="Views\Departments\Edit.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Staff1\Create.cshtml" />
+    <Content Include="Views\Staff1\Delete.cshtml" />
+    <Content Include="Views\Staff1\Details.cshtml" />
+    <Content Include="Views\Staff1\Edit.cshtml" />
+    <Content Include="Views\Staff1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="CVs\" />
+    <Folder Include="Views\Adminis\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
