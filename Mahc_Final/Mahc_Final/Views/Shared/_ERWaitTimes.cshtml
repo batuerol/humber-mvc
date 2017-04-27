@@ -7,11 +7,13 @@
     </a>
     <div id="erContainer" class="collapse in">
         <div class="er__text">
-            <span>Estimated Wait Time:</span>
+            <span>Estimated Wait Time: @Model.CurrentWaitTime</span>
         </div>
-        <div class="er__wait_time">
-            @*@Model.CurrentWaitTime*@
-            ~15 min
+        <div class="er__text">
+            <span>Waiting Patients: @Model.WaitingPatients</span>
+        </div>
+        <div class="er__text">
+            <span>Updated At: @Model.UpdatedAt</span>
         </div>
     </div>
 </section>

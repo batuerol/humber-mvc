@@ -10,14 +10,14 @@ using Mahc_Final.DBContext;
 
 namespace Mahc_Final.Controllers
 {
-    public class ERWaitTimesController : Controller
+    public class ERWaitTimesController: Controller
     {
-        private HospitalContext db = new HospitalContext();
+        private readonly HospitalContext _db = new HospitalContext();
 
         // GET: ERWaitTimes
         public ActionResult Index()
         {
-            return View(db.ERWaitTimes.ToList());
+            return View(_db.ERWaitTimes.ToList());
         }
 
         // GET: ERWaitTimes/Details/5
@@ -27,7 +27,7 @@ namespace Mahc_Final.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ERWaitTime eRWaitTime = db.ERWaitTimes.Find(id);
+            ERWaitTime eRWaitTime = _db.ERWaitTimes.Find(id);
             if (eRWaitTime == null)
             {
                 return HttpNotFound();
@@ -46,85 +46,56 @@ namespace Mahc_Final.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Lock,CurrentWaitTime,UpdatedAt,WaitingPatients")] ERWaitTime eRWaitTime)
+        public ActionResult Create([Bind(Include = "ArrivalTime, TreatmentTime")] ERParam newEntry)
         {
             if (ModelState.IsValid)
             {
-                db.ERWaitTimes.Add(eRWaitTime);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                _db.ERParams.Add(newEntry);
+                _db.SaveChanges();
+                CalculateNewERTime();
+                return RedirectToAction("Create");
             }
 
-            return View(eRWaitTime);
-        }
-
-        // GET: ERWaitTimes/Edit/5
-        public ActionResult Edit(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ERWaitTime eRWaitTime = db.ERWaitTimes.Find(id);
-            if (eRWaitTime == null)
-            {
-                return HttpNotFound();
-            }
-            return View(eRWaitTime);
-        }
-
-        // POST: ERWaitTimes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Lock,CurrentWaitTime,UpdatedAt,WaitingPatients")] ERWaitTime eRWaitTime)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(eRWaitTime).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(eRWaitTime);
-        }
-
-        // GET: ERWaitTimes/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ERWaitTime eRWaitTime = db.ERWaitTimes.Find(id);
-            if (eRWaitTime == null)
-            {
-                return HttpNotFound();
-            }
-            return View(eRWaitTime);
-        }
-
-        // POST: ERWaitTimes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            ERWaitTime eRWaitTime = db.ERWaitTimes.Find(id);
-            db.ERWaitTimes.Remove(eRWaitTime);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return View(newEntry);
         }
 
         public PartialViewResult GetCurrentTime()
         {
-            return PartialView("_ERWaitTimes", null);
+            CalculateNewERTime();
+            return PartialView("_ERWaitTimes", _db.ERWaitTimes.First(x => x.Lock == "X"));
+        }
+
+        private void CalculateNewERTime()
+        {
+            var lastOneHour = DateTime.UtcNow.AddHours(-1);
+            var nextOneHour = DateTime.UtcNow.AddHours(1);
+            var records = (from p in _db.ERParams where (p.ArrivalTime >= lastOneHour && p.ArrivalTime <= nextOneHour) select p);
+            int recordCount = records.Count();
+            if (recordCount == 0)
+                return;
+
+            TimeSpan timeDiff = new TimeSpan();
+            foreach (var erParam in records)
+            {
+                timeDiff += (erParam.TreatmentTime - erParam.ArrivalTime);
+            }
+
+            int wait = (int)timeDiff.TotalMinutes / records.Count();
+
+            var erEntity = _db.ERWaitTimes.Single(x => x.Lock == "X");
+            erEntity.UpdatedAt = DateTime.UtcNow;
+            erEntity.CurrentWaitTime = wait;
+            erEntity.WaitingPatients = records.Count();
+
+            _db.Entry(erEntity).State = EntityState.Modified;
+            _db.SaveChanges();
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

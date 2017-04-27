@@ -37,7 +37,7 @@ namespace Mahc_Final.Metadata
     {
         [Required]
         [DataType(DataType.DateTime)]
-        [Display(Name="Arrival Time")]
+        [Display(Name = "Arrival Time")]
         public System.DateTime ArrivalTime { get; set; }
 
         [Required]
