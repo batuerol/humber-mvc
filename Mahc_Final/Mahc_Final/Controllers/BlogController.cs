@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using Mahc_Final.DBContext;
@@ -68,7 +69,8 @@ namespace Mahc_Final.Controllers
                 return View("Admin/Create", blogPost);
             }
 
-            blogPost.Excerpt = blogPost.Content.Length > 50 ? blogPost.Content.Substring(0, 50) : blogPost.Content;
+            //blogPost.Excerpt = blogPost.Content.Length > 50 ? blogPost.Content.Substring(0, 50) : blogPost.Content;
+            blogPost.Excerpt = ProcessContent(blogPost.Content);
             blogPost.UpdatedAt = DateTime.Now;
             blogPost.PostDate = DateTime.Now;
 
@@ -85,6 +87,26 @@ namespace Mahc_Final.Controllers
             _dbEntities.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        /**
+         * Takes content, escapes html and shortens it to max 50 characters.         
+         **/
+        private static string ProcessContent(string content)
+        {
+            if (string.IsNullOrEmpty(content))
+            {
+                return string.Empty;
+            }
+
+            string escaped = StripHTML(content);
+            string excerpt = escaped.Length > 50 ? escaped.Substring(0, 50) : escaped;
+            return excerpt;
+        }
+
+        private static string StripHTML(string input)
+        {
+            return Regex.Replace(input, "<.*?>", String.Empty);
         }
 
         // GET: BlogPosts/Edit/5
@@ -113,16 +135,16 @@ namespace Mahc_Final.Controllers
         [Route("Admin/Edit/{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(HttpPostedFileBase file,
-            [Bind(Include = "Id,Title,Content,Excerpt,Slug,PostDate,UpdatedAt,PostStatus,AuthorId")] BlogPost blogPost)
+            [Bind(Include = "Id,Title,Content,Slug,PostDate,UpdatedAt,PostStatus,AuthorId")] BlogPost blogPost)
         {
             if (ModelState.IsValid)
             {
                 blogPost.UpdatedAt = DateTime.Now;
                 // NOTE(batuhan): Retarded EF
                 blogPost.PostDate = blogPost.PostDate;
-
+                blogPost.Excerpt = ProcessContent(blogPost.Content);
                 if (file != null)
-                    imageUploadHandler(file, blogPost);                
+                    imageUploadHandler(file, blogPost);
 
                 _dbEntities.Entry(blogPost).State = EntityState.Modified;
                 _dbEntities.SaveChanges();

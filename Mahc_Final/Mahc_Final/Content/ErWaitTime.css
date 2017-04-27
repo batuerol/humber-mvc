@@ -3,6 +3,8 @@
     left: 20px;
     border: 1px solid black;
     background-color: cornflowerblue;
-    color: yellow;
+    color: black;
+    font-family: monospace;
+    font-weight: bold;
     z-index: 10;
 }

@@ -12,29 +12,8 @@ namespace Mahc_Final.Controllers
 {
     public class ERWaitTimesController: Controller
     {
-        private readonly HospitalContext _db = new HospitalContext();
-
-        // GET: ERWaitTimes
-        public ActionResult Index()
-        {
-            return View(_db.ERWaitTimes.ToList());
-        }
-
-        // GET: ERWaitTimes/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ERWaitTime eRWaitTime = _db.ERWaitTimes.Find(id);
-            if (eRWaitTime == null)
-            {
-                return HttpNotFound();
-            }
-            return View(eRWaitTime);
-        }
-
+        private readonly HospitalContext _db = new HospitalContext();        
+       
         // GET: ERWaitTimes/Create
         public ActionResult Create()
         {

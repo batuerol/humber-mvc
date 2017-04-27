@@ -2,15 +2,25 @@
 
 <link rel="stylesheet" type="text/css" href="~/Content/ErWaitTime.css">
 <section class="er__container">
-    <a role="button" data-toggle="collapse" href="#erContainer" aria-controls="erContainer">
-        Er Wait Time
-    </a>
-    <div id="erContainer" class="collapse in">
-        <div class="er__text">
-            <span>Estimated Wait Time: @Model.CurrentWaitTime</span>
-        </div>
-        <div class="er__text">
-            <span>Updated At: @Model.UpdatedAt</span>
+    @{        
+        string controllerName = ViewContext.RouteData.Values["controller"].ToString();
+        string actionName = ViewContext.RouteData.Values["action"].ToString();
+        bool autoExpand = controllerName == "Home" && actionName == "Index";
+        string cssClass = autoExpand ? "collapse in" : "collapse";
+    }
+    <div>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" href="#erContainer" aria-controls="erContainer" aria-expanded="@autoExpand.ToString()">
+            ER Wait Time
+        </button>
+    </div>
+    <div id="erContainer" class="@cssClass">
+        <div class="well">
+            <div class="er__text">
+                <span>Estimated Wait Time: @Model.CurrentWaitTime</span>
+            </div>
+            <div class="er__text">
+                <span>Updated At: @Model.UpdatedAt</span>
+            </div>
         </div>
     </div>
 </section>
