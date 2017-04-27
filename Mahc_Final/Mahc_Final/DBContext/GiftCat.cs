@@ -11,6 +11,7 @@ namespace Mahc_Final.DBContext
 {
     using System;
     using System.Collections.Generic;
+     using System.ComponentModel.DataAnnotations;
     
     public partial class GiftCat
     {
@@ -21,6 +22,9 @@ namespace Mahc_Final.DBContext
         }
     
         public int Id { get; set; }
+         [Required]
+        [StringLength(255, ErrorMessage = "Category must be at least 2 characters", MinimumLength = 2)]
+        [Display(Name = "Gift Category")]
         public string cat_name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
