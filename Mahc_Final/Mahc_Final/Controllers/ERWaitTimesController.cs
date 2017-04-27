@@ -67,24 +67,22 @@ namespace Mahc_Final.Controllers
 
         private void CalculateNewERTime()
         {
-            var lastOneHour = DateTime.UtcNow.AddHours(-1);
-            var nextOneHour = DateTime.UtcNow.AddHours(1);
-            var records = (from p in _db.ERParams where (p.ArrivalTime >= lastOneHour && p.ArrivalTime <= nextOneHour) select p);
+            var lastOneHour = DateTime.Now.AddHours(-1);
+            var records = (from p in _db.ERParams where (p.ArrivalTime >= lastOneHour) select p);
             int recordCount = records.Count();
             if (recordCount == 0)
                 return;
 
-            TimeSpan timeDiff = new TimeSpan();
+            int minutes = 0;
             foreach (var erParam in records)
             {
-                timeDiff += (erParam.TreatmentTime - erParam.ArrivalTime);
+                minutes += (int)((erParam.TreatmentTime - erParam.ArrivalTime).TotalMinutes);
             }
-
-            int wait = (int)timeDiff.TotalMinutes / records.Count();
+            minutes = minutes / recordCount;
 
             var erEntity = _db.ERWaitTimes.Single(x => x.Lock == "X");
-            erEntity.UpdatedAt = DateTime.UtcNow;
-            erEntity.CurrentWaitTime = wait;
+            erEntity.UpdatedAt = DateTime.Now;
+            erEntity.CurrentWaitTime = minutes;
             erEntity.WaitingPatients = records.Count();
 
             _db.Entry(erEntity).State = EntityState.Modified;
