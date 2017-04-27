@@ -62,7 +62,17 @@ namespace Mahc_Final.Controllers
         public PartialViewResult GetCurrentTime()
         {
             CalculateNewERTime();
-            return PartialView("_ERWaitTimes", _db.ERWaitTimes.First(x => x.Lock == "X"));
+            var erWaitTime = _db.ERWaitTimes.First(x => x.Lock == "X");
+            if (erWaitTime.UpdatedAt.AddHours(1) < DateTime.Now)
+            {
+                erWaitTime.UpdatedAt = DateTime.Now;
+                erWaitTime.CurrentWaitTime = 0;
+                // TODO(batuhan): Save to archive.
+                _db.Entry(erWaitTime).State = EntityState.Modified;
+                _db.SaveChanges();
+            }
+
+            return PartialView("_ERWaitTimes", erWaitTime);
         }
 
         private void CalculateNewERTime()

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Mahc_Final.Metadata
 {
@@ -16,6 +17,7 @@ namespace Mahc_Final.Metadata
 
         [Required(ErrorMessage = "{0} cannot be empty!")]
         [DataType(DataType.MultilineText)]
+        [UIHint("tinymce_jquery_full"), AllowHtml]
         [MinLength(5, ErrorMessage = "{0} must be at least {1} characters")]
         [Display(Name = "Content")]
         public string Content { get; set; }

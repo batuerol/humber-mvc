@@ -19,6 +19,7 @@ namespace Mahc_Final.Controllers
 
         // GET: BlogPosts        
         //[Authorize(Roles = "Admin, Superuser")]
+        //[Authorize]
         [Route("Admin/Posts")]
         public ActionResult Index()
         {
@@ -121,7 +122,7 @@ namespace Mahc_Final.Controllers
                 blogPost.PostDate = blogPost.PostDate;
 
                 if (file != null)
-                    imageUploadHandler(file, blogPost);
+                    imageUploadHandler(file, blogPost);                
 
                 _dbEntities.Entry(blogPost).State = EntityState.Modified;
                 _dbEntities.SaveChanges();
