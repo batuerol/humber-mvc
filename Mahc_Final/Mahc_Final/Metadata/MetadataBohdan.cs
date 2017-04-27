@@ -128,6 +128,8 @@ namespace Mahc_Final.Models
         [StringLength(255, ErrorMessage = "Email must be at least 2 characters", MinimumLength = 2)]
         [Display(Name = "Your email")]
         public string Email;
+        [Display(Name = "Task")]
+        public int Task_id;
         [Required(ErrorMessage = "Contact phone shuold be provided")]
         [RegularExpression(@"^([\+]?[0-9]{1,3}[\s.-][0-9]{1,12})([\s.-]?[0-9]{1,4}?)$", ErrorMessage = "Phone shuold be valid")]
         public string Phone;

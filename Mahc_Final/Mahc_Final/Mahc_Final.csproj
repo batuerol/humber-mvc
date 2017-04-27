@@ -298,7 +298,7 @@
     <Compile Include="DBContext\Volunteer.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Global.asax.cs">
+    <Compile Include="Views\Shared\Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HtmlDescriptionHelper.cs" />
@@ -344,7 +344,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="gifts\ mnsdb.jpg" />
     <Content Include="gifts\Dreamland Bedside Bouquet.jpg" />
-    <Content Include="Global.asax" />
+    <Content Include="Views\Shared\Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\fbk.png" />
     <Content Include="Images\google.png" />
