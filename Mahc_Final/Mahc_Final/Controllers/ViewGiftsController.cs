@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -38,7 +38,7 @@ namespace Mahc_Final.Controllers
             }
             return View(gift);
         }
-       
+
 
         /*
         public ActionResult Proceed(int? id)
@@ -60,7 +60,7 @@ namespace Mahc_Final.Controllers
 
         }*/
 
-        /*private static async Task<string> GetTokenId(UserInfo ui)
+        private static async Task<string> GetTokenId(UserInfo ui)
         {
             return await System.Threading.Tasks.Task.Run(() =>
             {
@@ -99,7 +99,7 @@ namespace Mahc_Final.Controllers
                 return stripeCharge.Id;
             });
         }
-        */
+
 
 
         public ActionResult Pay(string price)
@@ -112,6 +112,28 @@ namespace Mahc_Final.Controllers
 
 
 
+        [HttpPost]
+        public async Task<ActionResult> Pay(string price, UserInfo ui)
+        {
+            var errorMessage = String.Empty;
+            var chargeId = String.Empty;
+            //Gift gft = new Gift();
+
+
+
+            try
+            {
+                var tokenId = await GetTokenId(ui);
+                chargeId = await ChargeCustomer(tokenId, (float.Parse(price)+((float.Parse(price)*13)/100)));
+            }
+            catch (Exception e)
+            {
+                TempData["msg"] = "Make sure you have entered correct information about your card!";
+                return RedirectToAction("Pay");
+            }
+            TempData["payingstatus"] = "Thank you!Your Payment has been processed successfully";
+            return RedirectToAction("Index");
+        }
 
         public ActionResult Create()
         {
@@ -121,7 +143,6 @@ namespace Mahc_Final.Controllers
 
 
 
-    
 
 
 
@@ -130,9 +151,10 @@ namespace Mahc_Final.Controllers
 
 
 
-    /* Viewers can not Create or Delete a Gift they can just view the list or details about a particular gift*/
-   
-    protected override void Dispose(bool disposing)
+
+        /* Viewers can not Create or Delete a Gift they can just view the list or details about a particular gift*/
+
+        protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
