@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -19,12 +19,12 @@ namespace Mahc_Final.Controllers
         private HospitalContext db = new HospitalContext();
 
         // GET: Members
-        
+
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Index()
         {
-            var members = db.HosMembers.Include(m => m.Role).Where(m => m.role_id> 0).OrderByDescending(m => m.role_id);
+            var members = db.HosMembers.Include(m => m.Role).Where(m => m.role_id > 0).OrderByDescending(m => m.role_id);
             return View(members.ToList());
         }
 
@@ -66,7 +66,7 @@ namespace Mahc_Final.Controllers
             else
             {
                 FormsAuthentication.SetAuthCookie(user.username, false);
-                return RedirectToAction("Index", "Home"); // go to the index of the Users Controller when logging successfully
+                return RedirectToAction("Index", "Admin"); // go to the index of the Admin Controller when logging successfully
             }
         }
 
@@ -81,7 +81,7 @@ namespace Mahc_Final.Controllers
                 return Redirect(returnUrl);
             }
             ViewBag.Message = "You have been successfully logged out";
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "ViewGifts");
         }
 
 
@@ -101,7 +101,7 @@ namespace Mahc_Final.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,first_name,last_name,username,password,phone,email,role_id,pic")] HosMember hosMember,HttpPostedFileBase pic)
+        public ActionResult Create([Bind(Include = "Id,first_name,last_name,username,password,phone,email,role_id,pic")] HosMember hosMember, HttpPostedFileBase pic)
         {
 
             if (ModelState.IsValid)
@@ -119,7 +119,7 @@ namespace Mahc_Final.Controllers
 
                 return RedirectToAction("Index");
             }
-           
+
 
             ViewBag.role_id = new SelectList(db.Roles, "id", "rolename", hosMember.role_id);
             return View(hosMember);
