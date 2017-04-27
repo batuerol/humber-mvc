@@ -11,7 +11,7 @@
     @Html.Partial("~/Views/Careers/Admin/_Navigation.cshtml")
 }
 <h2>Edit</h2>
-
+@ViewBag.Message
 
 @using (Html.BeginForm())
 {
@@ -22,7 +22,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
-
+        @Html.HiddenFor(model => model.Agreement_)
         <div class="form-group">
             @Html.LabelFor(model => model.Job_id, "Job_id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

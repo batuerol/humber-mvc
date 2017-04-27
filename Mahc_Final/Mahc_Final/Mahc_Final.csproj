@@ -167,6 +167,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminOrdersController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\AlertsController.cs" />
     <Compile Include="Controllers\book_an_appointmentController.cs" />
@@ -304,6 +305,7 @@
     <Compile Include="Metadata\MetadataBohdan.cs" />
     <Compile Include="Metadata\MetadataM.cs" />
     <Compile Include="Models\Some.cs" />
+    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BlogPostsViewModel.cs" />
     <Compile Include="ViewModels\Careers.cs" />
@@ -340,6 +342,8 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="gifts\ mnsdb.jpg" />
+    <Content Include="gifts\Dreamland Bedside Bouquet.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\fbk.png" />
@@ -371,6 +375,8 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="members\Sharan.png" />
+    <Content Include="photos\Dr. David.davidmclinden.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\HomeCarousel.js" />
@@ -809,6 +815,16 @@
     <Content Include="Views\Shared\_BecomeVolunteer.cshtml" />
     <Content Include="Views\Calendar\Admin\Index.cshtml" />
     <Content Include="Views\Calendar\Public\Index.cshtml" />
+    <Content Include="Views\AdminOrders\CreateOrder.cshtml" />
+    <Content Include="Views\AdminOrders\Delete.cshtml" />
+    <Content Include="Views\AdminOrders\Details.cshtml" />
+    <Content Include="Views\AdminOrders\Edit.cshtml" />
+    <Content Include="Views\AdminOrders\Index.cshtml" />
+    <Content Include="Views\HosMembersAdmin\Create.cshtml" />
+    <Content Include="Views\HosMembersAdmin\Delete.cshtml" />
+    <Content Include="Views\HosMembersAdmin\Details.cshtml" />
+    <Content Include="Views\HosMembersAdmin\Edit.cshtml" />
+    <Content Include="Views\HosMembersAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

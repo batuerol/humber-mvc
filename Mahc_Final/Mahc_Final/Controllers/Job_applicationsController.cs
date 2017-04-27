@@ -135,9 +135,14 @@ namespace Mahc_Final.Controllers
         {
             if (ModelState.IsValid)
             {
+                ViewBag.Message = "Good";
                 db.Entry(job_application).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Message = job_application.CV+" " + job_application.Text + " " + job_application.Date + " " + job_application.Agreement_;
             }
             ViewBag.Job_id = new SelectList(db.Jobs, "Id", "Title", job_application.Job_id);
             return View("Admin/Edit", job_application);
