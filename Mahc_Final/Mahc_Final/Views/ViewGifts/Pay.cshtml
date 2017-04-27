@@ -6,10 +6,11 @@
 }
 
 <h2>Pay</h2>
-@if (TempData["payingstatus"] != null)
+@if (TempData["msg"] != null)
 {
-    <h1>@TempData["payingstatus"]</h1>
+    <h1>@TempData["msg"]</h1>
 }
+
 
 
 @using (Html.BeginForm())
