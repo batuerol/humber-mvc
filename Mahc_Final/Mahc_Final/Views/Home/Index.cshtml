@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<link href="~/Content/HomeIndex.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/Slick/slick.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/Slick/slick-theme.css" rel="stylesheet" type="text/css" />
+
+@*
+    TODO(batuhan): Place this part inside main,
+    display: flex causes problem.
+*@
+@*<a style="visibility: hidden;">asd</a>*@
+<section class="row">
+    <div class="col-md-12 col-centered main_carousel">
+        <div><img src="~/BlogImages/Home.jpg" alt="Placeholder" class="pics" /></div>
+        <div><img src="~/BlogImages/dlZMezy.jpg" alt="Placeholder" class="pics" /></div>
+        <div><img src="~/BlogImages/Placeholder.png" alt="Placeholder" class="pics" /></div>
+    </div>
+</section>
+
+<main class="main">
+    <section class="row">
+        <div class="col-md-4">
+            <h2>Make An Appointment</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p>
+                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a>
+            </p>
+        </div>
+        <div class="col-md-4">
+            @Html.Action("GetUpcomingEvents", "Events")
+        </div>
+        <div class="col-md-4">
+            <h2>Make Payment</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p>
+                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a>
+            </p>
+        </div>
+    </section>
+    <section class="row blog__container">
+        <h2 class="hidden">Latest Blog Posts</h2>
+        @Html.Action("GetLatestPosts", "Blog", new { count = 2 })
+    </section>
+</main>
+
+@section scripts{
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Slick/slick.js"></script>
+    <script type="text/javascript" src="~/Scripts/HomeCarousel.js"></script>
+}

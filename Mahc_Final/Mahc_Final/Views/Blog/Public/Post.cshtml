@@ -1,0 +1,23 @@
+﻿@model Mahc_Final.DBContext.BlogPost
+
+<link rel="stylesheet" href="@Url.Content("~/Content/Post.css")" />
+
+<main>
+    <h1>@Model.Title</h1>    
+    <hr />
+    <div>
+        <img src="@Url.Content("~/BlogImages/" + Model.Slug)" alt="@Model.Slug" /><br /><br />
+        @*@Model.Content*@
+        @Html.Raw(Model.Content)
+    </div>
+    
+    <hr />
+    <div style="font-size: 0.7em;">
+        <span><em>Posted At: @Html.DisplayFor(model => model.PostDate)</em></span>
+        <br />
+        <span><em>@Html.DisplayFor(model => model.HosMember.first_name)</em></span>
+    </div>
+</main>
+<p>
+    @Html.ActionLink("Posts", "PublicBlog", "Blog")
+</p>

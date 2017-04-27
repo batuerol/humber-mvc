@@ -1,0 +1,1810 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Alerts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar(max)" Nullable="false" />
+          <Property Name="Due_time" Type="datetime" Nullable="false" />
+          <Property Name="Desc" Type="text" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Date_created" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Date_last_modified" Type="datetime" />
+          <Property Name="Modified_by" Type="int" />
+        </EntityType>
+        <EntityType Name="BlogPosts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Content" Type="varchar(max)" Nullable="false" />
+          <Property Name="Excerpt" Type="varchar(max)" Nullable="false" />
+          <Property Name="Slug" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="PreviewImage" Type="varbinary(max)" />
+          <Property Name="PostDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetime" Nullable="false" />
+          <Property Name="PostStatus" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="book_an_appointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dr_id" Type="int" />
+          <Property Name="First_Name" Type="varchar(max)" />
+          <Property Name="Last_Name" Type="varchar(max)" />
+          <Property Name="Email_id" Type="varchar(max)" />
+          <Property Name="contact_no" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="avail_id" Type="int" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="contactInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="content" Type="nvarchar(max)" />
+          <Property Name="address_one" Type="nvarchar(max)" />
+          <Property Name="address_two" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="contactus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VisitorEmail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VisitorName" Type="nvarchar(max)" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Question" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Reply" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dept_name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DoctorAvailability">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dr_id" Type="int" />
+          <Property Name="avail_date" Type="date" />
+          <Property Name="time" Type="varchar(max)" />
+          <Property Name="status" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="doctors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Email" Type="varchar(max)" />
+          <Property Name="Ext_no" Type="varchar(max)" />
+          <Property Name="Building/Room_no" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="donations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Email" Type="varchar(max)" />
+          <Property Name="Amount" Type="varchar(max)" />
+          <Property Name="status" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="ERArchive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreDate" Type="datetime" Nullable="false" />
+          <Property Name="AverageWaitTime" Type="int" Nullable="false" />
+          <Property Name="NumberOfPatients" Type="int" Nullable="false" />
+          <Property Name="SavedBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ERParams">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArrivalTime" Type="datetime" Nullable="false" />
+          <Property Name="TreatmentTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ERWaitTime">
+          <Key>
+            <PropertyRef Name="Lock" />
+          </Key>
+          <Property Name="Lock" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CurrentWaitTime" Type="int" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetime" Nullable="false" />
+          <Property Name="WaitingPatients" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar(max)" Nullable="false" />
+          <Property Name="Type" Type="varchar(max)" />
+          <Property Name="Location" Type="varchar(max)" />
+          <Property Name="Time_start" Type="datetime" Nullable="false" />
+          <Property Name="Time_end" Type="datetime" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Featured" Type="bit" Nullable="false" />
+          <Property Name="Volunteers" Type="varchar(max)" />
+          <Property Name="Desc" Type="text" Nullable="false" />
+          <Property Name="Date_created" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Date_last_modified" Type="datetime" />
+          <Property Name="Modified_by" Type="int" />
+        </EntityType>
+        <EntityType Name="faq">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question" Type="nvarchar(max)" />
+          <Property Name="Answer" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VisitorEmail" Type="nvarchar(max)" />
+          <Property Name="VisitorName" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="GiftCat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cat_name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Gifts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cat_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="desc" Type="varchar" MaxLength="50" />
+          <Property Name="image" Type="varchar(max)" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="HosMembers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="30" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="role_id" Type="int" Nullable="false" />
+          <Property Name="pic" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Job_applications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Job_id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
+          <Property Name="Email" Type="varchar(max)" Nullable="false" />
+          <Property Name="Phone" Type="varchar(max)" Nullable="false" />
+          <Property Name="CV" Type="varchar(max)" />
+          <Property Name="Text" Type="text" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Agreement " Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Job_types">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar(max)" Nullable="false" />
+          <Property Name="Desc" Type="text" />
+        </EntityType>
+        <EntityType Name="Jobs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar(max)" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Desc" Type="text" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Date_created" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Date_last_modified" Type="datetime" />
+          <Property Name="Modified_by" Type="int" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar(max)" Nullable="false" />
+          <Property Name="Content" Type="text" Nullable="false" />
+          <Property Name="Published" Type="bit" Nullable="false" />
+          <Property Name="Featured" Type="bit" Nullable="false" />
+          <Property Name="Date_created" Type="datetime" />
+          <Property Name="Created_by" Type="int" />
+          <Property Name="Date_last_modified" Type="datetime" />
+          <Property Name="Modified_by" Type="int" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sender_first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="sender_last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="sender_phone" Type="nchar" MaxLength="10" />
+          <Property Name="sender_email" Type="nchar" MaxLength="10" />
+          <Property Name="patient_first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="patient_last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="patient_phn_num" Type="varchar" MaxLength="50" />
+          <Property Name="gift_id" Type="int" Nullable="false" />
+          <Property Name="message" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rolename" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dept_id" Type="int" Nullable="false" />
+          <Property Name="fname" Type="varchar" MaxLength="50" />
+          <Property Name="lname" Type="varchar" MaxLength="50" />
+          <Property Name="image" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="phone" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar(max)" Nullable="false" />
+          <Property Name="Type" Type="varchar(max)" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="Regularity" Type="varchar(max)" />
+          <Property Name="Desc" Type="text" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Contact_person" Type="varchar(max)" Nullable="false" />
+          <Property Name="Contact_phone" Type="varchar(max)" Nullable="false" />
+          <Property Name="Created_date" Type="datetime" Nullable="false" />
+          <Property Name="Created_by" Type="int" Nullable="false" />
+          <Property Name="Modified_date" Type="datetime" Nullable="false" />
+          <Property Name="Modified_by" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Volunteers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Task_id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
+          <Property Name="Email" Type="varchar(max)" Nullable="false" />
+          <Property Name="Phone" Type="varchar(max)" Nullable="false" />
+          <Property Name="Pref_time" Type="varchar(max)" />
+          <Property Name="Pref_work" Type="varchar(max)" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Agreement" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Alerts__Created___151B244E">
+          <End Role="HosMembers" Type="Self.HosMembers" Multiplicity="0..1" />
+          <End Role="Alerts" Type="Self.Alerts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alerts">
+              <PropertyRef Name="Created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Alerts__Modified__160F4887">
+          <End Role="HosMembers" Type="Self.HosMembers" Multiplicity="0..1" />
+          <End Role="Alerts" Type="Self.Alerts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alerts">
+              <PropertyRef Name="Modified_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events__Created___245D67DE">
+          <End Role="HosMembers" Type="Self.HosMembers" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="Created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events__Modified__25518C17">
+          <End Role="HosMembers" Type="Self.HosMembers" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="Modified_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Job_appli__Job_i__3B75D760">
+          <End Role="Jobs" Type="Self.Jobs" Multiplicity="1" />
+          <End Role="Job_applications" Type="Self.Job_applications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jobs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Job_applications">
+              <PropertyRef Name="Job_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Jobs__Created_by__0F624AF8">
+          <End Role="HosMembers" Type="Self.HosMembers" Multiplicity="0..1" />
+          <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Jobs">
+              <PropertyRef Name="Created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Jobs__Modified_b__10566F31">
+          <End Role="HosMembers" Type="Self.HosMembers" Multiplicity="0..1" />
+          <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Jobs">
+              <PropertyRef Name="Modified_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Jobs__Type__3C69FB99">
+          <End Role="Job_types" Type="Self.Job_types" Multiplicity="1" />
+          <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job_types">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Jobs">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__News__Created_by__1BC821DD">
+          <End Role="HosMembers" Type="Self.HosMembers" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="Created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__News__Modified_b__1CBC4616">
+          <End Role="HosMembers" Type="Self.HosMembers" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="Modified_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tasks__Created_b__2645B050">
+          <End Role="HosMembers" Type="Self.HosMembers" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="Created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tasks__Modified___2739D489">
+          <End Role="HosMembers" Type="Self.HosMembers" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="Modified_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Volunteer__Task___5165187F">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+          <End Role="Volunteers" Type="Self.Volunteers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Volunteers">
+              <PropertyRef Name="Task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogPosts_Users_AuthorId">
+          <End Role="HosMembers" Type="Self.HosMembers" Multiplicity="1" />
+          <End Role="BlogPosts" Type="Self.BlogPosts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BlogPosts">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_book_an_appointment_ToTable">
+          <End Role="doctors" Type="Self.doctors" Multiplicity="0..1" />
+          <End Role="book_an_appointment" Type="Self.book_an_appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="book_an_appointment">
+              <PropertyRef Name="dr_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_book_an_appointment_ToTable_1">
+          <End Role="DoctorAvailability" Type="Self.DoctorAvailability" Multiplicity="0..1" />
+          <End Role="book_an_appointment" Type="Self.book_an_appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoctorAvailability">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="book_an_appointment">
+              <PropertyRef Name="avail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorAvailability_ToTable">
+          <End Role="doctors" Type="Self.doctors" Multiplicity="0..1" />
+          <End Role="DoctorAvailability" Type="Self.DoctorAvailability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DoctorAvailability">
+              <PropertyRef Name="dr_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ERArchive_Users_Id">
+          <End Role="HosMembers" Type="Self.HosMembers" Multiplicity="1" />
+          <End Role="ERArchive" Type="Self.ERArchive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ERArchive">
+              <PropertyRef Name="SavedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gifts_ToTable">
+          <End Role="GiftCat" Type="Self.GiftCat" Multiplicity="1" />
+          <End Role="Gifts" Type="Self.Gifts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiftCat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gifts">
+              <PropertyRef Name="cat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="HosMembers" Type="Self.HosMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HosMembers">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_ToTable1">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Staff1">
+              <PropertyRef Name="dept_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ToTable">
+          <End Role="Gifts" Type="Self.Gifts" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gifts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="gift_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBContextStoreContainer">
+          <EntitySet Name="Alerts" EntityType="Self.Alerts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlogPosts" EntityType="Self.BlogPosts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="book_an_appointment" EntityType="Self.book_an_appointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contactInfo" EntityType="Self.contactInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contactus" EntityType="Self.contactus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DoctorAvailability" EntityType="Self.DoctorAvailability" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="doctors" EntityType="Self.doctors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="donations" EntityType="Self.donations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ERArchive" EntityType="Self.ERArchive" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ERParams" EntityType="Self.ERParams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ERWaitTime" EntityType="Self.ERWaitTime" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="faq" EntityType="Self.faq" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="feedback" EntityType="Self.feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GiftCat" EntityType="Self.GiftCat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gifts" EntityType="Self.Gifts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HosMembers" EntityType="Self.HosMembers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Job_applications" EntityType="Self.Job_applications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Job_types" EntityType="Self.Job_types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff1" EntityType="Self.Staff1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Volunteers" EntityType="Self.Volunteers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Alerts__Created___151B244E" Association="Self.FK__Alerts__Created___151B244E">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="Alerts" EntitySet="Alerts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Alerts__Modified__160F4887" Association="Self.FK__Alerts__Modified__160F4887">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="Alerts" EntitySet="Alerts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__Created___245D67DE" Association="Self.FK__Events__Created___245D67DE">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__Modified__25518C17" Association="Self.FK__Events__Modified__25518C17">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Job_appli__Job_i__3B75D760" Association="Self.FK__Job_appli__Job_i__3B75D760">
+            <End Role="Jobs" EntitySet="Jobs" />
+            <End Role="Job_applications" EntitySet="Job_applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Jobs__Created_by__0F624AF8" Association="Self.FK__Jobs__Created_by__0F624AF8">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Jobs__Modified_b__10566F31" Association="Self.FK__Jobs__Modified_b__10566F31">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Jobs__Type__3C69FB99" Association="Self.FK__Jobs__Type__3C69FB99">
+            <End Role="Job_types" EntitySet="Job_types" />
+            <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__News__Created_by__1BC821DD" Association="Self.FK__News__Created_by__1BC821DD">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK__News__Modified_b__1CBC4616" Association="Self.FK__News__Modified_b__1CBC4616">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tasks__Created_b__2645B050" Association="Self.FK__Tasks__Created_b__2645B050">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tasks__Modified___2739D489" Association="Self.FK__Tasks__Modified___2739D489">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Volunteer__Task___5165187F" Association="Self.FK__Volunteer__Task___5165187F">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="Volunteers" EntitySet="Volunteers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogPosts_Users_AuthorId" Association="Self.FK_BlogPosts_Users_AuthorId">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="BlogPosts" EntitySet="BlogPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_book_an_appointment_ToTable" Association="Self.FK_book_an_appointment_ToTable">
+            <End Role="doctors" EntitySet="doctors" />
+            <End Role="book_an_appointment" EntitySet="book_an_appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_book_an_appointment_ToTable_1" Association="Self.FK_book_an_appointment_ToTable_1">
+            <End Role="DoctorAvailability" EntitySet="DoctorAvailability" />
+            <End Role="book_an_appointment" EntitySet="book_an_appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorAvailability_ToTable" Association="Self.FK_DoctorAvailability_ToTable">
+            <End Role="doctors" EntitySet="doctors" />
+            <End Role="DoctorAvailability" EntitySet="DoctorAvailability" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ERArchive_Users_Id" Association="Self.FK_ERArchive_Users_Id">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="ERArchive" EntitySet="ERArchive" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gifts_ToTable" Association="Self.FK_Gifts_ToTable">
+            <End Role="GiftCat" EntitySet="GiftCat" />
+            <End Role="Gifts" EntitySet="Gifts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Role" Association="Self.FK_Member_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="HosMembers" EntitySet="HosMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_ToTable1" Association="Self.FK_Staff_ToTable1">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Staff1" EntitySet="Staff1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToTable" Association="Self.FK_Table_ToTable">
+            <End Role="Gifts" EntitySet="Gifts" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Alert">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Due_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Date_created" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Date_last_modified" Type="DateTime" Precision="3" />
+          <Property Name="Modified_by" Type="Int32" />
+          <NavigationProperty Name="HosMember" Relationship="Self.FK__Alerts__Created___151B244E" FromRole="Alerts" ToRole="HosMembers" />
+          <NavigationProperty Name="HosMember1" Relationship="Self.FK__Alerts__Modified__160F4887" FromRole="Alerts" ToRole="HosMembers" />
+        </EntityType>
+        <EntityType Name="BlogPost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Excerpt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Slug" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PreviewImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PostStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HosMember" Relationship="Self.FK_BlogPosts_Users_AuthorId" FromRole="BlogPosts" ToRole="HosMembers" />
+        </EntityType>
+        <EntityType Name="book_an_appointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dr_id" Type="Int32" />
+          <Property Name="First_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="contact_no" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="avail_id" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="doctor" Relationship="Self.FK_book_an_appointment_ToTable" FromRole="book_an_appointment" ToRole="doctors" />
+          <NavigationProperty Name="DoctorAvailability" Relationship="Self.FK_book_an_appointment_ToTable_1" FromRole="book_an_appointment" ToRole="DoctorAvailability" />
+        </EntityType>
+        <EntityType Name="contactu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VisitorEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VisitorName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Reply" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dept_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Staff1" Relationship="Self.FK_Staff_ToTable1" FromRole="Departments" ToRole="Staff1" />
+        </EntityType>
+        <EntityType Name="DoctorAvailability">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="dr_id" Type="Int32" />
+          <Property Name="avail_date" Type="DateTime" Precision="0" />
+          <Property Name="time" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="book_an_appointment" Relationship="Self.FK_book_an_appointment_ToTable_1" FromRole="DoctorAvailability" ToRole="book_an_appointment" />
+          <NavigationProperty Name="doctor" Relationship="Self.FK_DoctorAvailability_ToTable" FromRole="DoctorAvailability" ToRole="doctors" />
+        </EntityType>
+        <EntityType Name="doctor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Ext_no" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Building_Room_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="book_an_appointment" Relationship="Self.FK_book_an_appointment_ToTable" FromRole="doctors" ToRole="book_an_appointment" />
+          <NavigationProperty Name="DoctorAvailabilities" Relationship="Self.FK_DoctorAvailability_ToTable" FromRole="doctors" ToRole="DoctorAvailability" />
+        </EntityType>
+        <EntityType Name="donation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ERArchive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AverageWaitTime" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfPatients" Type="Int32" Nullable="false" />
+          <Property Name="SavedBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HosMember" Relationship="Self.FK_ERArchive_Users_Id" FromRole="ERArchive" ToRole="HosMembers" />
+        </EntityType>
+        <EntityType Name="ERParam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArrivalTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TreatmentTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ERWaitTime">
+          <Key>
+            <PropertyRef Name="Lock" />
+          </Key>
+          <Property Name="Lock" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CurrentWaitTime" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WaitingPatients" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Time_start" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Time_end" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Featured" Type="Boolean" Nullable="false" />
+          <Property Name="Volunteers" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_created" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Date_last_modified" Type="DateTime" Precision="3" />
+          <Property Name="Modified_by" Type="Int32" />
+          <NavigationProperty Name="HosMember" Relationship="Self.FK__Events__Created___245D67DE" FromRole="Events" ToRole="HosMembers" />
+          <NavigationProperty Name="HosMember1" Relationship="Self.FK__Events__Modified__25518C17" FromRole="Events" ToRole="HosMembers" />
+        </EntityType>
+        <EntityType Name="faq">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VisitorEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VisitorName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GiftCat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cat_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Gifts" Relationship="Self.FK_Gifts_ToTable" FromRole="GiftCat" ToRole="Gifts" />
+        </EntityType>
+        <EntityType Name="Gift">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cat_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="GiftCat" Relationship="Self.FK_Gifts_ToTable" FromRole="Gifts" ToRole="GiftCat" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Table_ToTable" FromRole="Gifts" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="HosMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="role_id" Type="Int32" Nullable="false" />
+          <Property Name="pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Alerts" Relationship="Self.FK__Alerts__Created___151B244E" FromRole="HosMembers" ToRole="Alerts" />
+          <NavigationProperty Name="Alerts1" Relationship="Self.FK__Alerts__Modified__160F4887" FromRole="HosMembers" ToRole="Alerts" />
+          <NavigationProperty Name="BlogPosts" Relationship="Self.FK_BlogPosts_Users_AuthorId" FromRole="HosMembers" ToRole="BlogPosts" />
+          <NavigationProperty Name="ERArchives" Relationship="Self.FK_ERArchive_Users_Id" FromRole="HosMembers" ToRole="ERArchive" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__Events__Created___245D67DE" FromRole="HosMembers" ToRole="Events" />
+          <NavigationProperty Name="Events1" Relationship="Self.FK__Events__Modified__25518C17" FromRole="HosMembers" ToRole="Events" />
+          <NavigationProperty Name="Jobs" Relationship="Self.FK__Jobs__Created_by__0F624AF8" FromRole="HosMembers" ToRole="Jobs" />
+          <NavigationProperty Name="Jobs1" Relationship="Self.FK__Jobs__Modified_b__10566F31" FromRole="HosMembers" ToRole="Jobs" />
+          <NavigationProperty Name="News" Relationship="Self.FK__News__Created_by__1BC821DD" FromRole="HosMembers" ToRole="News" />
+          <NavigationProperty Name="News1" Relationship="Self.FK__News__Modified_b__1CBC4616" FromRole="HosMembers" ToRole="News" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK__Tasks__Created_b__2645B050" FromRole="HosMembers" ToRole="Tasks" />
+          <NavigationProperty Name="Tasks1" Relationship="Self.FK__Tasks__Modified___2739D489" FromRole="HosMembers" ToRole="Tasks" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Member_Role" FromRole="HosMembers" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Job_applications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Job_id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CV" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Agreement_" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Job" Relationship="Self.FK__Job_appli__Job_i__3B75D760" FromRole="Job_applications" ToRole="Jobs" />
+        </EntityType>
+        <EntityType Name="Job_types">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Jobs" Relationship="Self.FK__Jobs__Type__3C69FB99" FromRole="Job_types" ToRole="Jobs" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Date_created" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Date_last_modified" Type="DateTime" Precision="3" />
+          <Property Name="Modified_by" Type="Int32" />
+          <NavigationProperty Name="HosMember" Relationship="Self.FK__Jobs__Created_by__0F624AF8" FromRole="Jobs" ToRole="HosMembers" />
+          <NavigationProperty Name="HosMember1" Relationship="Self.FK__Jobs__Modified_b__10566F31" FromRole="Jobs" ToRole="HosMembers" />
+          <NavigationProperty Name="Job_applications" Relationship="Self.FK__Job_appli__Job_i__3B75D760" FromRole="Jobs" ToRole="Job_applications" />
+          <NavigationProperty Name="Job_types" Relationship="Self.FK__Jobs__Type__3C69FB99" FromRole="Jobs" ToRole="Job_types" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Published" Type="Boolean" Nullable="false" />
+          <Property Name="Featured" Type="Boolean" Nullable="false" />
+          <Property Name="Date_created" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="Int32" />
+          <Property Name="Date_last_modified" Type="DateTime" Precision="3" />
+          <Property Name="Modified_by" Type="Int32" />
+          <NavigationProperty Name="HosMember" Relationship="Self.FK__News__Created_by__1BC821DD" FromRole="News" ToRole="HosMembers" />
+          <NavigationProperty Name="HosMember1" Relationship="Self.FK__News__Modified_b__1CBC4616" FromRole="News" ToRole="HosMembers" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="sender_first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sender_last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sender_phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="sender_email" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="patient_first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="patient_last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="patient_phn_num" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gift_id" Type="Int32" Nullable="false" />
+          <Property Name="message" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Gift" Relationship="Self.FK_Table_ToTable" FromRole="Order" ToRole="Gifts" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rolename" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="HosMembers" Relationship="Self.FK_Member_Role" FromRole="Role" ToRole="HosMembers" />
+        </EntityType>
+        <EntityType Name="Staff1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dept_id" Type="Int32" Nullable="false" />
+          <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Staff_ToTable1" FromRole="Staff1" ToRole="Departments" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Regularity" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Contact_person" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contact_phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Created_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Created_by" Type="Int32" Nullable="false" />
+          <Property Name="Modified_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Modified_by" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HosMember" Relationship="Self.FK__Tasks__Created_b__2645B050" FromRole="Tasks" ToRole="HosMembers" />
+          <NavigationProperty Name="HosMember1" Relationship="Self.FK__Tasks__Modified___2739D489" FromRole="Tasks" ToRole="HosMembers" />
+          <NavigationProperty Name="Volunteers" Relationship="Self.FK__Volunteer__Task___5165187F" FromRole="Tasks" ToRole="Volunteers" />
+        </EntityType>
+        <EntityType Name="Volunteer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Task_id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pref_time" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Pref_work" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Agreement" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Task" Relationship="Self.FK__Volunteer__Task___5165187F" FromRole="Volunteers" ToRole="Tasks" />
+        </EntityType>
+        <Association Name="FK__Alerts__Created___151B244E">
+          <End Role="HosMembers" Type="Self.HosMember" Multiplicity="0..1" />
+          <End Role="Alerts" Type="Self.Alert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alerts">
+              <PropertyRef Name="Created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Alerts__Modified__160F4887">
+          <End Role="HosMembers" Type="Self.HosMember" Multiplicity="0..1" />
+          <End Role="Alerts" Type="Self.Alert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alerts">
+              <PropertyRef Name="Modified_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlogPosts_Users_AuthorId">
+          <End Role="HosMembers" Type="Self.HosMember" Multiplicity="1" />
+          <End Role="BlogPosts" Type="Self.BlogPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BlogPosts">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_book_an_appointment_ToTable">
+          <End Role="doctors" Type="Self.doctor" Multiplicity="0..1" />
+          <End Role="book_an_appointment" Type="Self.book_an_appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="book_an_appointment">
+              <PropertyRef Name="dr_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_book_an_appointment_ToTable_1">
+          <End Role="DoctorAvailability" Type="Self.DoctorAvailability" Multiplicity="0..1" />
+          <End Role="book_an_appointment" Type="Self.book_an_appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoctorAvailability">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="book_an_appointment">
+              <PropertyRef Name="avail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_ToTable1">
+          <End Role="Departments" Type="Self.Department" Multiplicity="1" />
+          <End Role="Staff1" Type="Self.Staff1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Staff1">
+              <PropertyRef Name="dept_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorAvailability_ToTable">
+          <End Role="doctors" Type="Self.doctor" Multiplicity="0..1" />
+          <End Role="DoctorAvailability" Type="Self.DoctorAvailability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DoctorAvailability">
+              <PropertyRef Name="dr_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ERArchive_Users_Id">
+          <End Role="HosMembers" Type="Self.HosMember" Multiplicity="1" />
+          <End Role="ERArchive" Type="Self.ERArchive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ERArchive">
+              <PropertyRef Name="SavedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events__Created___245D67DE">
+          <End Role="HosMembers" Type="Self.HosMember" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="Created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events__Modified__25518C17">
+          <End Role="HosMembers" Type="Self.HosMember" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="Modified_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gifts_ToTable">
+          <End Role="GiftCat" Type="Self.GiftCat" Multiplicity="1" />
+          <End Role="Gifts" Type="Self.Gift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiftCat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gifts">
+              <PropertyRef Name="cat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ToTable">
+          <End Role="Gifts" Type="Self.Gift" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gifts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="gift_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Jobs__Created_by__0F624AF8">
+          <End Role="HosMembers" Type="Self.HosMember" Multiplicity="0..1" />
+          <End Role="Jobs" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Jobs">
+              <PropertyRef Name="Created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Jobs__Modified_b__10566F31">
+          <End Role="HosMembers" Type="Self.HosMember" Multiplicity="0..1" />
+          <End Role="Jobs" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Jobs">
+              <PropertyRef Name="Modified_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__News__Created_by__1BC821DD">
+          <End Role="HosMembers" Type="Self.HosMember" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="Created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__News__Modified_b__1CBC4616">
+          <End Role="HosMembers" Type="Self.HosMember" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="Modified_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tasks__Created_b__2645B050">
+          <End Role="HosMembers" Type="Self.HosMember" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="Created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tasks__Modified___2739D489">
+          <End Role="HosMembers" Type="Self.HosMember" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HosMembers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="Modified_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="HosMembers" Type="Self.HosMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HosMembers">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Job_appli__Job_i__3B75D760">
+          <End Role="Jobs" Type="Self.Job" Multiplicity="1" />
+          <End Role="Job_applications" Type="Self.Job_applications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jobs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Job_applications">
+              <PropertyRef Name="Job_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Jobs__Type__3C69FB99">
+          <End Role="Job_types" Type="Self.Job_types" Multiplicity="1" />
+          <End Role="Jobs" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job_types">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Jobs">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Volunteer__Task___5165187F">
+          <End Role="Tasks" Type="Self.Task" Multiplicity="1" />
+          <End Role="Volunteers" Type="Self.Volunteer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Volunteers">
+              <PropertyRef Name="Task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HospitalContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alerts" EntityType="Self.Alert" />
+          <EntitySet Name="BlogPosts" EntityType="Self.BlogPost" />
+          <EntitySet Name="book_an_appointment" EntityType="Self.book_an_appointment" />
+          <EntitySet Name="contactus" EntityType="Self.contactu" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="DoctorAvailabilities" EntityType="Self.DoctorAvailability" />
+          <EntitySet Name="doctors" EntityType="Self.doctor" />
+          <EntitySet Name="donations" EntityType="Self.donation" />
+          <EntitySet Name="ERArchives" EntityType="Self.ERArchive" />
+          <EntitySet Name="ERParams" EntityType="Self.ERParam" />
+          <EntitySet Name="ERWaitTimes" EntityType="Self.ERWaitTime" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="faqs" EntityType="Self.faq" />
+          <EntitySet Name="feedbacks" EntityType="Self.feedback" />
+          <EntitySet Name="GiftCats" EntityType="Self.GiftCat" />
+          <EntitySet Name="Gifts" EntityType="Self.Gift" />
+          <EntitySet Name="HosMembers" EntityType="Self.HosMember" />
+          <EntitySet Name="Job_applications" EntityType="Self.Job_applications" />
+          <EntitySet Name="Job_types" EntityType="Self.Job_types" />
+          <EntitySet Name="Jobs" EntityType="Self.Job" />
+          <EntitySet Name="News" EntityType="Self.News" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Staff1" EntityType="Self.Staff1" />
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="Volunteers" EntityType="Self.Volunteer" />
+          <AssociationSet Name="FK__Alerts__Created___151B244E" Association="Self.FK__Alerts__Created___151B244E">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="Alerts" EntitySet="Alerts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Alerts__Modified__160F4887" Association="Self.FK__Alerts__Modified__160F4887">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="Alerts" EntitySet="Alerts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlogPosts_Users_AuthorId" Association="Self.FK_BlogPosts_Users_AuthorId">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="BlogPosts" EntitySet="BlogPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_book_an_appointment_ToTable" Association="Self.FK_book_an_appointment_ToTable">
+            <End Role="doctors" EntitySet="doctors" />
+            <End Role="book_an_appointment" EntitySet="book_an_appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_book_an_appointment_ToTable_1" Association="Self.FK_book_an_appointment_ToTable_1">
+            <End Role="DoctorAvailability" EntitySet="DoctorAvailabilities" />
+            <End Role="book_an_appointment" EntitySet="book_an_appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_ToTable1" Association="Self.FK_Staff_ToTable1">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Staff1" EntitySet="Staff1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorAvailability_ToTable" Association="Self.FK_DoctorAvailability_ToTable">
+            <End Role="doctors" EntitySet="doctors" />
+            <End Role="DoctorAvailability" EntitySet="DoctorAvailabilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ERArchive_Users_Id" Association="Self.FK_ERArchive_Users_Id">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="ERArchive" EntitySet="ERArchives" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__Created___245D67DE" Association="Self.FK__Events__Created___245D67DE">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__Modified__25518C17" Association="Self.FK__Events__Modified__25518C17">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gifts_ToTable" Association="Self.FK_Gifts_ToTable">
+            <End Role="GiftCat" EntitySet="GiftCats" />
+            <End Role="Gifts" EntitySet="Gifts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToTable" Association="Self.FK_Table_ToTable">
+            <End Role="Gifts" EntitySet="Gifts" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Jobs__Created_by__0F624AF8" Association="Self.FK__Jobs__Created_by__0F624AF8">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Jobs__Modified_b__10566F31" Association="Self.FK__Jobs__Modified_b__10566F31">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__News__Created_by__1BC821DD" Association="Self.FK__News__Created_by__1BC821DD">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK__News__Modified_b__1CBC4616" Association="Self.FK__News__Modified_b__1CBC4616">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tasks__Created_b__2645B050" Association="Self.FK__Tasks__Created_b__2645B050">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tasks__Modified___2739D489" Association="Self.FK__Tasks__Modified___2739D489">
+            <End Role="HosMembers" EntitySet="HosMembers" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Role" Association="Self.FK_Member_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="HosMembers" EntitySet="HosMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Job_appli__Job_i__3B75D760" Association="Self.FK__Job_appli__Job_i__3B75D760">
+            <End Role="Jobs" EntitySet="Jobs" />
+            <End Role="Job_applications" EntitySet="Job_applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Jobs__Type__3C69FB99" Association="Self.FK__Jobs__Type__3C69FB99">
+            <End Role="Job_types" EntitySet="Job_types" />
+            <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Volunteer__Task___5165187F" Association="Self.FK__Volunteer__Task___5165187F">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="Volunteers" EntitySet="Volunteers" />
+          </AssociationSet>
+          <EntitySet Name="contactInfoes" EntityType="DBContext.contactInfo" />
+        </EntityContainer>
+        <EntityType Name="contactInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="address_one" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="address_two" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBContextStoreContainer" CdmEntityContainer="HospitalContext">
+          <EntitySetMapping Name="Alerts">
+            <EntityTypeMapping TypeName="DBContext.Alert">
+              <MappingFragment StoreEntitySet="Alerts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Due_time" ColumnName="Due_time" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Date_created" ColumnName="Date_created" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Date_last_modified" ColumnName="Date_last_modified" />
+                <ScalarProperty Name="Modified_by" ColumnName="Modified_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlogPosts">
+            <EntityTypeMapping TypeName="DBContext.BlogPost">
+              <MappingFragment StoreEntitySet="BlogPosts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Excerpt" ColumnName="Excerpt" />
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="PreviewImage" ColumnName="PreviewImage" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="PostStatus" ColumnName="PostStatus" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="book_an_appointment">
+            <EntityTypeMapping TypeName="DBContext.book_an_appointment">
+              <MappingFragment StoreEntitySet="book_an_appointment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="dr_id" ColumnName="dr_id" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Email_id" ColumnName="Email_id" />
+                <ScalarProperty Name="contact_no" ColumnName="contact_no" />
+                <ScalarProperty Name="avail_id" ColumnName="avail_id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contactus">
+            <EntityTypeMapping TypeName="DBContext.contactu">
+              <MappingFragment StoreEntitySet="contactus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="VisitorEmail" ColumnName="VisitorEmail" />
+                <ScalarProperty Name="VisitorName" ColumnName="VisitorName" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Reply" ColumnName="Reply" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="DBContext.Department">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DoctorAvailabilities">
+            <EntityTypeMapping TypeName="DBContext.DoctorAvailability">
+              <MappingFragment StoreEntitySet="DoctorAvailability">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="dr_id" ColumnName="dr_id" />
+                <ScalarProperty Name="avail_date" ColumnName="avail_date" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="doctors">
+            <EntityTypeMapping TypeName="DBContext.doctor">
+              <MappingFragment StoreEntitySet="doctors">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Ext_no" ColumnName="Ext_no" />
+                <ScalarProperty Name="Building_Room_no" ColumnName="Building/Room_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="donations">
+            <EntityTypeMapping TypeName="DBContext.donation">
+              <MappingFragment StoreEntitySet="donations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ERArchives">
+            <EntityTypeMapping TypeName="DBContext.ERArchive">
+              <MappingFragment StoreEntitySet="ERArchive">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StoreDate" ColumnName="StoreDate" />
+                <ScalarProperty Name="AverageWaitTime" ColumnName="AverageWaitTime" />
+                <ScalarProperty Name="NumberOfPatients" ColumnName="NumberOfPatients" />
+                <ScalarProperty Name="SavedBy" ColumnName="SavedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ERParams">
+            <EntityTypeMapping TypeName="DBContext.ERParam">
+              <MappingFragment StoreEntitySet="ERParams">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+                <ScalarProperty Name="TreatmentTime" ColumnName="TreatmentTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ERWaitTimes">
+            <EntityTypeMapping TypeName="DBContext.ERWaitTime">
+              <MappingFragment StoreEntitySet="ERWaitTime">
+                <ScalarProperty Name="Lock" ColumnName="Lock" />
+                <ScalarProperty Name="CurrentWaitTime" ColumnName="CurrentWaitTime" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="WaitingPatients" ColumnName="WaitingPatients" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="DBContext.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Time_start" ColumnName="Time_start" />
+                <ScalarProperty Name="Time_end" ColumnName="Time_end" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Featured" ColumnName="Featured" />
+                <ScalarProperty Name="Volunteers" ColumnName="Volunteers" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Date_created" ColumnName="Date_created" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Date_last_modified" ColumnName="Date_last_modified" />
+                <ScalarProperty Name="Modified_by" ColumnName="Modified_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="faqs">
+            <EntityTypeMapping TypeName="DBContext.faq">
+              <MappingFragment StoreEntitySet="faq">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="feedbacks">
+            <EntityTypeMapping TypeName="DBContext.feedback">
+              <MappingFragment StoreEntitySet="feedback">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="VisitorEmail" ColumnName="VisitorEmail" />
+                <ScalarProperty Name="VisitorName" ColumnName="VisitorName" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GiftCats">
+            <EntityTypeMapping TypeName="DBContext.GiftCat">
+              <MappingFragment StoreEntitySet="GiftCat">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="cat_name" ColumnName="cat_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gifts">
+            <EntityTypeMapping TypeName="DBContext.Gift">
+              <MappingFragment StoreEntitySet="Gifts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="desc" ColumnName="desc" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HosMembers">
+            <EntityTypeMapping TypeName="DBContext.HosMember">
+              <MappingFragment StoreEntitySet="HosMembers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="pic" ColumnName="pic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Job_applications">
+            <EntityTypeMapping TypeName="DBContext.Job_applications">
+              <MappingFragment StoreEntitySet="Job_applications">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Job_id" ColumnName="Job_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="CV" ColumnName="CV" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Agreement_" ColumnName="Agreement " />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Job_types">
+            <EntityTypeMapping TypeName="DBContext.Job_types">
+              <MappingFragment StoreEntitySet="Job_types">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="DBContext.Job">
+              <MappingFragment StoreEntitySet="Jobs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Date_created" ColumnName="Date_created" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Date_last_modified" ColumnName="Date_last_modified" />
+                <ScalarProperty Name="Modified_by" ColumnName="Modified_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="DBContext.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Published" ColumnName="Published" />
+                <ScalarProperty Name="Featured" ColumnName="Featured" />
+                <ScalarProperty Name="Date_created" ColumnName="Date_created" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Date_last_modified" ColumnName="Date_last_modified" />
+                <ScalarProperty Name="Modified_by" ColumnName="Modified_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="DBContext.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="sender_first_name" ColumnName="sender_first_name" />
+                <ScalarProperty Name="sender_last_name" ColumnName="sender_last_name" />
+                <ScalarProperty Name="sender_phone" ColumnName="sender_phone" />
+                <ScalarProperty Name="sender_email" ColumnName="sender_email" />
+                <ScalarProperty Name="patient_first_name" ColumnName="patient_first_name" />
+                <ScalarProperty Name="patient_last_name" ColumnName="patient_last_name" />
+                <ScalarProperty Name="patient_phn_num" ColumnName="patient_phn_num" />
+                <ScalarProperty Name="gift_id" ColumnName="gift_id" />
+                <ScalarProperty Name="message" ColumnName="message" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="DBContext.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rolename" ColumnName="rolename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff1">
+            <EntityTypeMapping TypeName="DBContext.Staff1">
+              <MappingFragment StoreEntitySet="Staff1">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="DBContext.Task">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Regularity" ColumnName="Regularity" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Contact_person" ColumnName="Contact_person" />
+                <ScalarProperty Name="Contact_phone" ColumnName="Contact_phone" />
+                <ScalarProperty Name="Created_date" ColumnName="Created_date" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Modified_date" ColumnName="Modified_date" />
+                <ScalarProperty Name="Modified_by" ColumnName="Modified_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Volunteers">
+            <EntityTypeMapping TypeName="DBContext.Volunteer">
+              <MappingFragment StoreEntitySet="Volunteers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Task_id" ColumnName="Task_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Pref_time" ColumnName="Pref_time" />
+                <ScalarProperty Name="Pref_work" ColumnName="Pref_work" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Agreement" ColumnName="Agreement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contactInfoes">
+            <EntityTypeMapping TypeName="DBContext.contactInfo">
+              <MappingFragment StoreEntitySet="contactInfo">
+                <ScalarProperty Name="address_two" ColumnName="address_two" />
+                <ScalarProperty Name="address_one" ColumnName="address_one" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

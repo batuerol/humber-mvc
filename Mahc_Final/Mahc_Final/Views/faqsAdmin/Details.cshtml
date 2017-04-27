@@ -1,0 +1,36 @@
+﻿@model Mahc_Final.DBContext.faq
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+<h2>FAQ</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <h4>Details to Q&A Id: @Html.DisplayFor(model => model.Id)</h4>
+        <dt>
+            @Html.DisplayNameFor(model => model.Question)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

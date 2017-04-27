@@ -1,0 +1,71 @@
+@model IEnumerable<Mahc_Final.DBContext.Gift>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@if (TempData["payingstatus"] != null)
+{
+    <h1>@TempData["payingstatus"]</h1>
+}
+
+
+
+
+
+
+
+
+<div class="box-body row widget">
+
+
+    <div class="container">
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+
+
+
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+
+                    <div class="widget-content">
+
+                        @if (item.image != null)
+                        {
+                            <img src="~/gifts/@Html.DisplayFor(modelItem => item.image)" width="200" class="img-rounded" />
+                        }
+                        else
+                        {
+                            <img src="~/gifts/unavailable.png" width="400" class="img-rounded" />
+                        }
+                        <br />
+                        @Html.DisplayFor(modelItem => item.name)<br />
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    </div>
+
+                </div>
+                @*@if (i % 3 == 1)
+                    {
+                    </div><div class="box-body row widget">
+                    }*@
+
+
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
