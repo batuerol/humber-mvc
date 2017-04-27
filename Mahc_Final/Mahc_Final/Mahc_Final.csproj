@@ -770,11 +770,6 @@
     <Content Include="Views\RolesAdmin\Details.cshtml" />
     <Content Include="Views\RolesAdmin\Edit.cshtml" />
     <Content Include="Views\RolesAdmin\Index.cshtml" />
-    <Content Include="Views\HosMembersAdmin\Create.cshtml" />
-    <Content Include="Views\HosMembersAdmin\Delete.cshtml" />
-    <Content Include="Views\HosMembersAdmin\Details.cshtml" />
-    <Content Include="Views\HosMembersAdmin\Edit.cshtml" />
-    <Content Include="Views\HosMembersAdmin\Index.cshtml" />
     <Content Include="Views\Members\Create.cshtml" />
     <Content Include="Views\Members\Delete.cshtml" />
     <Content Include="Views\Members\Details.cshtml" />
