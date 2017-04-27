@@ -98,11 +98,11 @@ namespace Mahc_Final.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
-            var tasks = db.Tasks.Select(c => new {
+            /*var tasks = db.Tasks.Select(c => new {
                 TaskId= c.Id,
                 TaskTitle= c.Title
             }).ToList();
-            ViewBag.Volunteers = new MultiSelectList(tasks, "TaskId", "TaskTitle");
+            ViewBag.Volunteers = new MultiSelectList(tasks, "TaskId", "TaskTitle");*/
             ViewBag.Title = "Event create";
             return View("Admin/Create");
         }
