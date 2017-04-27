@@ -3,14 +3,14 @@
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Events";
     Layout = "~/Views/Shared/_AdminPanel.cshtml";
 }
 
 @section leftnav {
     @Html.Partial("~/Views/Calendar/Admin/_Navigation.cshtml")
 }
-<h2>Index</h2>
+<h2>Events</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -29,12 +29,6 @@
             @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Location)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.First().Time_start)
         </th>
         <th>
@@ -48,24 +42,12 @@
             @Html.DisplayNameFor(model => model.First().Featured)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().Volunteers)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Desc)
-        </th>
-        <th>
             @*@Html.DisplayNameFor(model => model.Date_created)*@
             @Html.ActionLink("Created", "Index", new { sortOrder = ViewBag.CreatedSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().Created_by)
-        </th>
-        <th>
             @*@Html.DisplayNameFor(model => model.Date_last_modified)*@
             @Html.ActionLink("Last modified", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Modified_by)
         </th>
         <th></th>
     </tr>
@@ -75,12 +57,6 @@
         <td>
             @*@Html.DisplayFor(modelItem => item.Title)*@
             @Html.ActionLink(item.Title, "Details", new { id = item.Id }, null)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Time_start)
@@ -95,26 +71,14 @@
             @Html.DisplayFor(modelItem => item.Featured)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Volunteers)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Desc)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Date_created)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HosMember.username)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date_last_modified)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HosMember1.username)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id })
+            @Html.ActionLink("Details", "Details", new { id=item.Id })
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

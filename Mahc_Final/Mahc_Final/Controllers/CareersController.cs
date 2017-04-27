@@ -16,6 +16,7 @@ namespace Mahc_Final.Controllers
         static HttpClient client = new HttpClient();
         private HospitalContext db = new HospitalContext();
 
+
         // GET: Careers
         public async Task<ActionResult> Index()
         {

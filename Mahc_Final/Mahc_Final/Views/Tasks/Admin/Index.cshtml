@@ -46,24 +46,12 @@
             @*@Html.DisplayNameFor(model => model.First().Status)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().Contact_person)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Contact_phone)
-        </th>
-        <th>
             @Html.ActionLink("Created", "Index", new { sortOrder = ViewBag.CreatedSortParm, currentFilter = ViewBag.CurrentFilter })
             @*@Html.DisplayNameFor(model => model.First().Created_date)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().Created_by)
-        </th>
-        <th>
             @Html.ActionLink("Last modified", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
             @*@Html.DisplayNameFor(model => model.First().Modified_date)*@
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Modified_by)
         </th>
         <th></th>
     </tr>
@@ -74,9 +62,6 @@
             <td>
                 @*@Html.DisplayFor(modelItem => item.Title)*@
                 @Html.ActionLink(item.Title, "Details", new { id = item.Id }, null)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Time)
@@ -91,26 +76,14 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Contact_person)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contact_phone)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Created_date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HosMember.username)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Modified_date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HosMember1.username)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
