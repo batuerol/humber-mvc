@@ -807,6 +807,8 @@
     <Content Include="Views\book_an_appointment\FindDoctorDetails.cshtml" />
     <Content Include="Views\Shared\_UpcomingEvents.cshtml" />
     <Content Include="Views\Shared\_BecomeVolunteer.cshtml" />
+    <Content Include="Views\Calendar\Admin\Index.cshtml" />
+    <Content Include="Views\Calendar\Public\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

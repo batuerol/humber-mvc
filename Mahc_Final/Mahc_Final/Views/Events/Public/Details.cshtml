@@ -11,7 +11,7 @@
     <h2>@Html.DisplayFor(model => model.Title)</h2>
     <p>Posted @Html.DisplayFor(model => model.Date_last_modified)</p>
     <p>by @Html.DisplayFor(model => model.HosMember.first_name) @Html.DisplayFor(model => model.HosMember.last_name)</p>
-
+    <hr />
 
     <dl class="dl-horizontal">
         <dt>
@@ -46,6 +46,7 @@
             @Html.DisplayFor(model => model.Time_end)
         </dd>
     </dl>
+    <hr />
     <p>
         @*@Html.DisplayFor(model => model.Desc)*@
         @Html.Raw(Model.Desc)

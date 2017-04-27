@@ -3,14 +3,14 @@
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "News";
     Layout = "~/Views/Shared/_AdminPanel.cshtml";
 }
 
 @section leftnav {
     @Html.Partial("~/Views/Calendar/Admin/_Navigation.cshtml")
 }
-<h2>Index</h2>
+<h2>News</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -83,8 +83,8 @@
             @Html.DisplayFor(modelItem => item.HosMember1.username)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id })
+            @Html.ActionLink("Details", "Details", new { id=item.Id })  
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

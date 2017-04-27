@@ -19,6 +19,7 @@ namespace Mahc_Final.Controllers
             var responseString = await client.GetStringAsync("http://mmgnr1keg7.execute-api.us-east-1.amazonaws.com/prod/api/feature/careers");
             dynamic developer = JObject.Parse(responseString);
             ViewBag.Developer = (string)developer["name"];
+            RedirectToAction("Index", "Admin");
             return View("Admin/Index");
         }
 
