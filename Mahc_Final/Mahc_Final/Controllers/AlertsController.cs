@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Mahc_Final.DBContext;
 using PagedList;
+using Mahc_Final.Helpers;
 
 namespace Mahc_Final.Controllers
 {
@@ -74,6 +75,10 @@ namespace Mahc_Final.Controllers
             {
                 alert.Desc = alert.Desc.Substring(0, 100) + "...";
             }*/
+            foreach (Alert a in alerts)
+            {
+                a.Desc = Helpers.HtmlDescriptionHelper.GetShortDescFromHtml(a.Desc);
+            }
             int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View("Admin/Index", alerts.ToPagedList(pageNumber, pageSize));

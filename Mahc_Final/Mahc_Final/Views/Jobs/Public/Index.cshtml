@@ -8,14 +8,21 @@
 @Html.Partial("~/Views/Careers/Public/_Navigation.cshtml")
 }
 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-    <h2>Job opportunities</h2>
+    <h2>Latest job postings</h2>
 
+    @using (Html.BeginForm("PublicIndex", "Jobs", FormMethod.Get))
+    {
+        <p>
+            Find by job type: @Html.DropDownList("Job_Type", null, htmlAttributes: new { @class = "form-control" })
+            <input type="submit" value="Search" />
+        </p>
+    }
     <section>
 
         @foreach (var item in Model)
         {
             <article>
-                <h3>
+                <h3 style="text-align:center;">
                     @Html.ActionLink(item.Title, "PublicDetails", new { id = item.Id })
                 </h3>
                 <p>

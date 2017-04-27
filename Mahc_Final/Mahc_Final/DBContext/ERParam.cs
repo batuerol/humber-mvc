@@ -14,7 +14,6 @@ namespace Mahc_Final.DBContext
 {
     using System;
     using System.Collections.Generic;
-    
     [MetadataType(typeof(ERParamMetadata))]
     public partial class ERParam
     {

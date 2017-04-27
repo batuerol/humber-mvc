@@ -31,7 +31,20 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-centered col-xs-8 ">
                                         <div class="col-centered">
-                                            <button type="button" class="btn btn-default btn-block navbar-btn">Sign in / Register</button>
+                                           @* <button type="button" class="btn btn-default btn-block navbar-btn">Sign in / Register</button>*@
+                                            @{
+                                                HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                                                if (authCookie == null)
+                                                {
+                                                    @Html.ActionLink("Login", "Login", "Members", null, htmlAttributes: new { @class = "btn btn-default btn-block navbar-btn" })
+                                                }
+                                                else
+                                                {
+                                                    FormsAuthenticationTicket usrTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                                                    @Html.ActionLink("Logout", "Logout", "Members", null, htmlAttributes: new { @class = "btn btn-default btn-block navbar-btn" })
+                                                    <p>Welcome back <strong>@usrTicket.Name</strong></p>
+                                                }
+                                            }     
                                             <button type="button" class="btn btn-default btn-block navbar-btn">Donate</button>
                                         </div>
                                         <div class="input-group">
@@ -59,6 +72,9 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>@Html.ActionLink("Patient Services", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Find a Doctor", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Make an Appointment", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Make a Payment", "Index", "ViewGifts")</li>
                                     <li>@Html.ActionLink("Find a Doctor", "Index", "book_an_appointment/FindDoctorDetails")</li>
                                     <li>@Html.ActionLink("Make an Appointment", "Index", "book_an_appointment/Create")</li>
                                     <li>@Html.ActionLink("Make a Payment", "Index", "Home")</li>
@@ -91,7 +107,7 @@
                                     Staff <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Staff Portal", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Staff Portal", "ListDepart", "Visitor")</li>
                                     <li>@Html.ActionLink("Physicians", "Index", "Home")</li>
                                     <li>@Html.ActionLink("Research Programs", "Index", "Home")</li>
                                     <li>@Html.ActionLink("Student Resources", "Index", "Home")</li>

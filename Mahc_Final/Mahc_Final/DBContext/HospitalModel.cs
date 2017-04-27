@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Mahc_Final.DBContext;
 
-namespace MAhc_Final.Models
+namespace Mahc_Final.DBContext
 {
     public class HospitalStaffM
     {
