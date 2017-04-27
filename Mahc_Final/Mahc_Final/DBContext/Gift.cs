@@ -12,7 +12,6 @@ namespace Mahc_Final.DBContext
     using System;
     using System.Collections.Generic;
     
-    
     public partial class Gift
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +19,7 @@ namespace Mahc_Final.DBContext
         {
             this.Orders = new HashSet<Order>();
         }
-        
+    
         public int Id { get; set; }
         public int cat_id { get; set; }
         public string name { get; set; }

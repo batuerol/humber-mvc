@@ -7,11 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using Mahc_Final.Metadata;
+
 namespace Mahc_Final.DBContext
 {
     using System;
     using System.Collections.Generic;
     
+    [MetadataType(typeof(BlogPostMetadata))]
     public partial class BlogPost
     {
         public int Id { get; set; }

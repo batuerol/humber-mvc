@@ -13,7 +13,6 @@ namespace Mahc_Final.Controllers
 {
     public class CareersController : Controller
     {
-
         static HttpClient client = new HttpClient();
         private HospitalContext db = new HospitalContext();
 
@@ -21,7 +20,6 @@ namespace Mahc_Final.Controllers
         public async Task<ActionResult> Index()
         {
             Careers OppApp = new Careers() ;
-
             OppApp.opportunities = (from o in db.Jobs
                                     orderby o.Date_last_modified descending
                                     select o).Take(5).ToList();
@@ -31,6 +29,9 @@ namespace Mahc_Final.Controllers
             dynamic developer = JObject.Parse(responseString);
             ViewBag.Developer=(string)developer["name"] ;
 
+
+
+            ViewBag.Title = "Careers";
             return View("Admin/Index",OppApp);
         }
     }
