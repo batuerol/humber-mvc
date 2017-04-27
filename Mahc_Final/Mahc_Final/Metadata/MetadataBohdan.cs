@@ -67,6 +67,10 @@ namespace Mahc_Final.Models
         [DataType(DataType.MultilineText)]
         [Display(Name = "Additional information")]
         public string Text;
+        [Required(ErrorMessage = "You shoould agree with privacy policy in order to process your application")]
+        [Range(typeof(bool), "true", "true", ErrorMessage = "You shoould agree with privacy policy in order to process your application")]
+        [Display(Name = "Agree with privacy policy")]
+        public bool Agreement_;
         [DataType(DataType.DateTime)]
         public Nullable<System.DateTime> Date;
     }

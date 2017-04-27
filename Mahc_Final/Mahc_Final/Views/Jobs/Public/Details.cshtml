@@ -1,6 +1,6 @@
 ﻿@model Mahc_Final.ViewModels.JobApply
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Details of "+ Model.job.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section leftnav {
@@ -96,6 +96,13 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                @Html.LabelFor(model => model.application.Agreement_, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.application.Agreement_)
+                    @Html.ValidationMessageFor(model => model.application.Agreement_, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

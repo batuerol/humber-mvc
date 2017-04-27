@@ -142,7 +142,10 @@ namespace Mahc_Final.Controllers
                 blogPost.UpdatedAt = DateTime.Now;
                 // NOTE(batuhan): Retarded EF
                 blogPost.PostDate = blogPost.PostDate;
-                blogPost.Excerpt = ProcessContent(blogPost.Content);
+                if (blogPost.Excerpt != _dbEntities.BlogPosts.Single(b => b.Id == blogPost.Id).Excerpt)
+                    blogPost.Excerpt = ProcessContent(blogPost.Content);
+                    
+
                 if (file != null)
                     imageUploadHandler(file, blogPost);
 

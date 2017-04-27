@@ -59,7 +59,10 @@ namespace Mahc_Final.Controllers
             //var job_application = db.Job_applications.Include(j => j.Job);
             foreach (Job_applications a in job_applications)
             {
+                if(a.Text!=null)
+                { 
                 a.Text = Helpers.HtmlDescriptionHelper.GetShortDescFromHtml(a.Text);
+                }
             }
             int pageSize = 5;
             int pageNumber = (page ?? 1);
@@ -128,7 +131,7 @@ namespace Mahc_Final.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Job_id,Name,Email,Phone,CV,Text,Date")] Job_applications job_application)
+        public ActionResult Edit([Bind(Include = "Id,Job_id,Name,Email,Phone,CV,Text,Date,Agreement_")] Job_applications job_application)
         {
             if (ModelState.IsValid)
             {
