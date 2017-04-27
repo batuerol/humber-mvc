@@ -11,38 +11,18 @@ namespace Mahc_Final.DBContext
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Staff1
     {
         public int Id { get; set; }
-        [Display(Name = "Department Name")]
-        [Required]
         public int dept_id { get; set; }
-
-        [Display(Name = "First Name")]
-        [Required]
         public string fname { get; set; }
-        [Display(Name = "Last Name")]
-        [Required]
         public string lname { get; set; }
-        [Display(Name = "Image")]
-       
         public string image { get; set; }
-        [Display(Name = "Description")]
-        [Required]
         public string description { get; set; }
-        [Display(Name = "Phone Number")]
-        [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"^([0-9]{3})([0-9]{3})([0-9]{4})$", ErrorMessage = "Please enter a valid Phone Number.")]
-
-        [Required]
         public Nullable<decimal> phone { get; set; }
-        [Display(Name = "Email Id")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "Please enter a Valid email Address")]
-
         public string email { get; set; }
-
+    
         public virtual Department Department { get; set; }
     }
 }

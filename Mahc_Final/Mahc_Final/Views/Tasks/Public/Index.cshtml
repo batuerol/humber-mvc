@@ -9,8 +9,11 @@
     @Html.Partial("~/Views/Volunteer/Public/_Navigation.cshtml")
 }
 
+
 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+
     <h2>Available tasks</h2>
+    @Html.Partial("~/Views/Shared/_BecomeVolunteer.cshtml")
     <section>
 
         @foreach (var item in Model)

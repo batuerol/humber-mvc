@@ -38,6 +38,9 @@ namespace Mahc_Final.Controllers
             }
             return View(gift);
         }
+       
+
+        /*
         public ActionResult Proceed(int? id)
         {
             if (id == null)
@@ -55,9 +58,9 @@ namespace Mahc_Final.Controllers
 
 
 
-        }
+        }*/
 
-        private static async Task<string> GetTokenId(UserInfo ui)
+        /*private static async Task<string> GetTokenId(UserInfo ui)
         {
             return await System.Threading.Tasks.Task.Run(() =>
             {
@@ -96,12 +99,12 @@ namespace Mahc_Final.Controllers
                 return stripeCharge.Id;
             });
         }
+        */
 
 
-
-        public ActionResult Pay()
+        public ActionResult Pay(string price)
         {
-            TempData.Keep();
+            //TempData.Keep();
 
             return View();
         }
@@ -109,28 +112,6 @@ namespace Mahc_Final.Controllers
 
 
 
-        [HttpPost]
-        public async Task<ActionResult> Pay(string price, UserInfo ui)
-        {
-            var errorMessage = String.Empty;
-            var chargeId = String.Empty;
-            //Gift gft = new Gift();
-
-
-
-            try
-            {
-                var tokenId = await GetTokenId(ui);
-                chargeId = await ChargeCustomer(tokenId, float.Parse(price));
-            }
-            catch (Exception e)
-            {
-                TempData["msg"] = "Make sure you have entered correct information about your card!";
-                return RedirectToAction("Pay");
-            }
-            TempData["payingstatus"] = "Successfull payment";
-            return RedirectToAction("Index");
-        }
 
         public ActionResult Create()
         {

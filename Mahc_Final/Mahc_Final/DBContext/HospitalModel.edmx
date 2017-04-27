@@ -254,7 +254,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="sender_first_name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="sender_last_name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="sender_phone" Type="nchar" MaxLength="10" />

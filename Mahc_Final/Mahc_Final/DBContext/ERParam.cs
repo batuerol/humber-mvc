@@ -7,11 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using Mahc_Final.Metadata;
+
 namespace Mahc_Final.DBContext
 {
     using System;
     using System.Collections.Generic;
-    
+    [MetadataType(typeof(ERParamMetadata))]
     public partial class ERParam
     {
         public int Id { get; set; }
