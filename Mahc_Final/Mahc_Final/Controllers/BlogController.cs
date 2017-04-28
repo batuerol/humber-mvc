@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Data.SqlTypes;
 using System.Globalization;
 using System.IO;
@@ -10,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using Mahc_Final.DBContext;
+using Mahc_Final.Helpers;
 using Mahc_Final.ViewModels;
 
 namespace Mahc_Final.Controllers
@@ -19,8 +21,7 @@ namespace Mahc_Final.Controllers
         private readonly HospitalContext _dbEntities = new HospitalContext();
 
         // GET: BlogPosts        
-        //[Authorize(Roles = "Admin, Superuser")]
-        //[Authorize]
+        //[Authorize(Roles = "Admin, Superuser")]        
         [Route("Admin/Posts")]
         public ActionResult Index()
         {
@@ -29,6 +30,7 @@ namespace Mahc_Final.Controllers
         }
 
         // GET: BlogPosts/Details/5
+        //[Authorize(Roles = "Admin, Superuser")]        
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -45,17 +47,17 @@ namespace Mahc_Final.Controllers
         }
 
         // GET: BlogPosts/Create
+        //[Authorize(Roles = "Admin, Superuser")]        
         [Route("Admin/NewPost")]
         public ActionResult Create()
         {
             ViewBag.AuthorId = new SelectList(_dbEntities.HosMembers, "Id", "Username");
-            ViewBag.PostStatus = new SelectList(new List<string> { "Publish", "Draft", "Revision" }, "Publish");
+            ViewBag.PostStatus = new SelectList(new List<string> { "Publish", "Draft" }, "Publish");
             return View("Admin/Create");
         }
 
         // POST: BlogPosts/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[Authorize(Roles = "Admin, Superuser")]        
         [HttpPost]
         [Route("Admin/NewPost")]
         [ValidateAntiForgeryToken]
@@ -64,13 +66,14 @@ namespace Mahc_Final.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.PostStatus = new SelectList(new List<string> { "Publish", "Draft", "Revision" }, "Publish");
+                ViewBag.PostStatus = new SelectList(new List<string> { "Publish", "Draft" }, "Publish");
                 ViewBag.AuthorId = new SelectList(_dbEntities.HosMembers, "Id", "username", blogPost.AuthorId);
                 return View("Admin/Create", blogPost);
             }
 
-            //blogPost.Excerpt = blogPost.Content.Length > 50 ? blogPost.Content.Substring(0, 50) : blogPost.Content;
-            blogPost.Excerpt = ProcessContent(blogPost.Content);
+            //blogPost.Excerpt = HtmlDescriptionHelper.GetShortDescFromHtml(blogPost.Content);
+            var temp = HtmlDescriptionHelper.StripHTML(blogPost.Content);
+            blogPost.Excerpt = temp.Length > 50 ? temp.Substring(0, 50) : temp;
             blogPost.UpdatedAt = DateTime.Now;
             blogPost.PostDate = DateTime.Now;
 
@@ -89,27 +92,8 @@ namespace Mahc_Final.Controllers
             return RedirectToAction("Index");
         }
 
-        /**
-         * Takes content, escapes html and shortens it to max 50 characters.         
-         **/
-        private static string ProcessContent(string content)
-        {
-            if (string.IsNullOrEmpty(content))
-            {
-                return string.Empty;
-            }
-
-            string escaped = StripHTML(content);
-            string excerpt = escaped.Length > 50 ? escaped.Substring(0, 50) : escaped;
-            return excerpt;
-        }
-
-        private static string StripHTML(string input)
-        {
-            return Regex.Replace(input, "<.*?>", String.Empty);
-        }
-
         // GET: BlogPosts/Edit/5
+        //[Authorize(Roles = "Admin, Superuser")]        
         [Route("Admin/Edit/{id}")]
         public ActionResult Edit(int? id)
         {
@@ -124,41 +108,69 @@ namespace Mahc_Final.Controllers
                 return HttpNotFound();
             }
             ViewBag.AuthorId = new SelectList(_dbEntities.HosMembers, "Id", "Username", blogPost.AuthorId);
-            ViewBag.PostStatus = new SelectList(new List<string> { "Publish", "Draft", "Revision" }, "Publish");
+            ViewBag.PostStatus = new SelectList(new List<string> { "Publish", "Draft" }, "Publish");
             return View("Admin/Edit", blogPost);
         }
 
         // POST: BlogPosts/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[Authorize(Roles = "Admin, Superuser")]        
         [HttpPost]
         [Route("Admin/Edit/{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(HttpPostedFileBase file,
-            [Bind(Include = "Id,Title,Content,Slug,PostDate,UpdatedAt,PostStatus,AuthorId")] BlogPost blogPost)
+            [Bind(Include = "Id,Title,Content,Slug,Excerpt,PostDate,UpdatedAt,PostStatus,AuthorId")] BlogPost blogPost)
         {
             if (ModelState.IsValid)
             {
-                blogPost.UpdatedAt = DateTime.Now;
-                // NOTE(batuhan): Retarded EF
-                blogPost.PostDate = blogPost.PostDate;
-                if (blogPost.Excerpt != _dbEntities.BlogPosts.Single(b => b.Id == blogPost.Id).Excerpt)
-                    blogPost.Excerpt = ProcessContent(blogPost.Content);
-                    
-
                 if (file != null)
+                {
                     imageUploadHandler(file, blogPost);
+                }
 
+                if (blogPost.PostStatus == "Publish")
+                {
+                    BlogPost oldValues = _dbEntities.BlogPosts.AsNoTracking().Single(b => b.Id == blogPost.Id);
+
+                    // Nothing has changed.
+                    if (oldValues.Equals(blogPost))
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+                    BlogPost revisionPost = new BlogPost
+                    {
+                        Title = oldValues.Title,
+                        Content = oldValues.Content,
+                        Slug = oldValues.Slug,
+                        HosMember = oldValues.HosMember,
+                        PostDate = oldValues.PostDate,
+                        Excerpt = oldValues.Excerpt,
+                        ParentPostId = oldValues.Id,
+                        UpdatedAt = oldValues.UpdatedAt,
+                        PostStatus = "Revision",
+                    };
+                    // WHAT THE FUCK??
+                    var user = new HosMember { Id = oldValues.AuthorId };
+                    _dbEntities.HosMembers.Attach(user);
+                    revisionPost.HosMember = user;
+
+                    _dbEntities.BlogPosts.Add(revisionPost);
+                }
+
+                blogPost.PostDate = blogPost.PostDate;
+                blogPost.UpdatedAt = DateTime.Now;
                 _dbEntities.Entry(blogPost).State = EntityState.Modified;
                 _dbEntities.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             ViewBag.AuthorId = new SelectList(_dbEntities.HosMembers, "Id", "username", blogPost.AuthorId);
-            ViewBag.PostStatus = new SelectList(new List<string> { "Publish", "Draft", "Revision" }, "Publish");
+            ViewBag.PostStatus = new SelectList(new List<string> { "Publish", "Draft" }, "Publish");
             return View("Admin/Edit", blogPost);
         }
 
         // GET: BlogPosts/Delete/5
+        //[Authorize(Roles = "Admin, Superuser")]        
         [Route("Admin/DeletePost/{id}")]
         public ActionResult Delete(int? id)
         {
@@ -175,6 +187,7 @@ namespace Mahc_Final.Controllers
         }
 
         // POST: BlogPosts/Delete/5
+        //[Authorize(Roles = "Admin, Superuser")]        
         [HttpPost, ActionName("Delete")]
         [Route("Admin/DeletePost/{id}")]
         [ValidateAntiForgeryToken]
@@ -224,35 +237,13 @@ namespace Mahc_Final.Controllers
                 .OrderByDescending(b => b.UpdatedAt).Include(b => b.HosMember)
                 .Take(count);
 
-            List<BlogPostViewModel> result = new List<BlogPostViewModel>();
-            foreach (var item in posts)
-            {
-                result.Add(new BlogPostViewModel
-                {
-                    Id = item.Id,
-                    Title = item.Title,
-                    Content = item.Content,
-                    Image = item.Slug,
-                    Preview = item.Excerpt,
-                    UpdatedAt = item.UpdatedAt,
-                    Username = item.HosMember.username
-                });
-            }
-
-            return PartialView("Partials/_BlogPosts", result);
+            return PartialView("Partials/_BlogPosts", posts);
         }
 
         public PartialViewResult GetPost(int id)
         {
             BlogPost post = _dbEntities.BlogPosts.Single(p => p.Id == id);
-            BlogPostViewModel model = new BlogPostViewModel
-            {
-                Id = post.Id,
-                Title = post.Title,
-                Preview = post.Content.Length > 50 ? post.Content.Substring(0, 50) : post.Content,
-                Image = post.Slug
-            };
-            return PartialView("Partials/_BlogPost", model);
+            return PartialView("Partials/_BlogPost", post);
         }
 
         protected override void Dispose(bool disposing)
@@ -267,7 +258,7 @@ namespace Mahc_Final.Controllers
         //A\\ 
         /*
          *  Placeholder.png renamed to {postdate}_placeholder.png
-         *  
+         *  Slug is used Image path for historical reasons.
          */
         private void imageUploadHandler(HttpPostedFileBase file, BlogPost blogPost)
         {

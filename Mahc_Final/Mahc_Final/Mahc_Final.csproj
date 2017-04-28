@@ -173,6 +173,7 @@
     <Compile Include="Controllers\book_an_appointmentController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CareersController.cs" />
+    <Compile Include="Controllers\CarouselController.cs" />
     <Compile Include="Controllers\contactFormController.cs" />
     <Compile Include="Controllers\contactUsVisitorController.cs" />
     <Compile Include="Controllers\DoctorAvailabilitiesController.cs" />
@@ -209,6 +210,9 @@
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\book_an_appointment.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\CarouselImage.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\contactInfo.cs">
@@ -298,9 +302,10 @@
     <Compile Include="DBContext\Volunteer.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Views\Shared\Global.asax.cs">
+    <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\HtmlDescriptionHelper.cs" />
     <Compile Include="Metadata\MetadataBohdan.cs" />
     <Compile Include="Metadata\MetadataM.cs" />
@@ -316,6 +321,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BlogImages\dlZMezy.jpg" />
+    <Content Include="CarouselImages\Placeholder.png" />
     <Content Include="Content\AdminPanel.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -344,7 +350,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="gifts\ mnsdb.jpg" />
     <Content Include="gifts\Dreamland Bedside Bouquet.jpg" />
-    <Content Include="Views\Shared\Global.asax" />
+    <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\fbk.png" />
     <Content Include="Images\google.png" />
@@ -825,6 +831,12 @@
     <Content Include="Views\HosMembersAdmin\Details.cshtml" />
     <Content Include="Views\HosMembersAdmin\Edit.cshtml" />
     <Content Include="Views\HosMembersAdmin\Index.cshtml" />
+    <Content Include="Views\Carousel\Admin\Create.cshtml" />
+    <Content Include="Views\Carousel\Admin\Delete.cshtml" />
+    <Content Include="Views\Carousel\Admin\Details.cshtml" />
+    <Content Include="Views\Carousel\Admin\Edit.cshtml" />
+    <Content Include="Views\Carousel\Admin\Index.cshtml" />
+    <Content Include="Views\Carousel\Partials\_Carousel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

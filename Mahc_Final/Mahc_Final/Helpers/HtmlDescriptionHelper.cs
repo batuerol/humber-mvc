@@ -30,7 +30,7 @@ namespace Mahc_Final.Helpers
             return text;
         }
 
-        public static string GetShortDescFromHtml(string html, int count=20)
+        public static string GetShortDescFromHtml(string html, int count = 20)
         {
             var result = "";
             string plainText = HtmlToPlainText(html);
@@ -39,6 +39,11 @@ namespace Mahc_Final.Helpers
             result = string.Join(" ", words.Take(count));
             result += "...";
             return result;
+        }
+
+        public static string StripHTML(string input)
+        {
+            return Regex.Replace(input, "<.*?>", String.Empty);
         }
     }
 }

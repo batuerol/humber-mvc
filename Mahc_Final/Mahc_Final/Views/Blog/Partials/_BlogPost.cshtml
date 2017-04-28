@@ -1,11 +1,11 @@
-﻿@model Mahc_Final.ViewModels.BlogPostViewModel
+﻿@model Mahc_Final.DBContext.BlogPost
 
 <link rel="stylesheet" href="@Url.Content("~/Content/Blog.css")" />
 
 <article class="col-md-6 col-sm-12 col-centered">
     <div>
-        <img src="@Url.Content("~/BlogImages/" + Model.Image)" alt="@Model.Image" />
+        <img src="@Url.Content("~/BlogImages/" + Model.Slug)" alt="@Model.Slug" />
         <h3>@Html.ActionLink(Model.Title, "PublicPost", "Blog", new { id = Model.Id.ToString() }, null)</h3>        
-        <p>@Model.Preview</p>
+        <p>@Model.Excerpt</p>
     </div>
 </article>

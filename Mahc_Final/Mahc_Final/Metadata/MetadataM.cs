@@ -26,7 +26,7 @@ namespace Mahc_Final.Metadata
         [Display(Name = "Excerpt")]
         public string Excerpt { get; set; }
 
-        [Display(Name = "Preview Image")]
+        [Display(Name = "Image")]
         [DataType(DataType.Upload)]
         public string Slug { get; set; }
 
@@ -46,5 +46,14 @@ namespace Mahc_Final.Metadata
         [DataType(DataType.DateTime)]
         [Display(Name = "Treatment Time")]
         public System.DateTime TreatmentTime { get; set; }
+    }
+
+    public class CarouselMetadata
+    {        
+        [DataType(DataType.Upload)]
+        public string Image { get; set; }
+
+        [Required]        
+        public bool Show { get; set; }
     }
 }

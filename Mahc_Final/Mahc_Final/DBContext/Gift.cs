@@ -11,8 +11,6 @@ namespace Mahc_Final.DBContext
 {
     using System;
     using System.Collections.Generic;
-     using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
     
     public partial class Gift
     {
@@ -22,28 +20,11 @@ namespace Mahc_Final.DBContext
             this.Orders = new HashSet<Order>();
         }
     
-       public int Id { get; set; }
-        [Required]
-
-        [Display(Name = "Gift Category")]
+        public int Id { get; set; }
         public int cat_id { get; set; }
-        [Required]
-        [StringLength(255, ErrorMessage = "Name must be at least 2 characters", MinimumLength = 2)]
-        [Display(Name = "Gift Title")]
         public string name { get; set; }
-        [Required(ErrorMessage = "Please, provide the description for Gift!")]
-        [DataType(DataType.MultilineText)]
-        [UIHint("tinymce_jquery_full"), AllowHtml]//For editor template
-        [Display(Name = "Description")]
         public string desc { get; set; }
-
-
-        [Display(Name = "Image")]
-
         public string image { get; set; }
-        [Required]
-
-        [Display(Name = "Price in CAD")]
         public Nullable<decimal> price { get; set; }
     
         public virtual GiftCat GiftCat { get; set; }

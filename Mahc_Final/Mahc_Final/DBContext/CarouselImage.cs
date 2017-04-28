@@ -7,15 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using Mahc_Final.Metadata;
+
 namespace Mahc_Final.DBContext
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class ERParam
+
+    [MetadataType(typeof(CarouselMetadata))]
+    public partial class CarouselImage
     {
         public int Id { get; set; }
-        public System.DateTime ArrivalTime { get; set; }
-        public System.DateTime TreatmentTime { get; set; }
+        public string Image { get; set; }
+        public bool Show { get; set; }
     }
 }

@@ -1,0 +1,6 @@
+﻿@model IEnumerable<Mahc_Final.DBContext.CarouselImage>
+
+@foreach (var item in Model)
+{
+    <div><img src="@Url.Content("~/CarouselImages/" + item.Image)" alt="item.Image" /></div>
+}

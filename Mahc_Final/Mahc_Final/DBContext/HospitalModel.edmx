@@ -32,6 +32,7 @@
           <Property Name="PostDate" Type="datetime" Nullable="false" />
           <Property Name="UpdatedAt" Type="datetime" Nullable="false" />
           <Property Name="PostStatus" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ParentPostId" Type="int" />
           <Property Name="AuthorId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="book_an_appointment">
@@ -46,6 +47,14 @@
           <Property Name="contact_no" Type="numeric" Precision="10" Scale="0" />
           <Property Name="avail_id" Type="int" />
           <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="CarouselImages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="varchar(max)" Nullable="false" />
+          <Property Name="Show" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="contactInfo">
           <Key>
@@ -473,6 +482,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BlogPosts_Posts_ParentPostId">
+          <End Role="BlogPosts" Type="Self.BlogPosts" Multiplicity="0..1" />
+          <End Role="BlogPosts1" Type="Self.BlogPosts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogPosts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BlogPosts1">
+              <PropertyRef Name="ParentPostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BlogPosts_Users_AuthorId">
           <End Role="HosMembers" Type="Self.HosMembers" Multiplicity="1" />
           <End Role="BlogPosts" Type="Self.BlogPosts" Multiplicity="*" />
@@ -585,6 +606,7 @@
           <EntitySet Name="Alerts" EntityType="Self.Alerts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BlogPosts" EntityType="Self.BlogPosts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="book_an_appointment" EntityType="Self.book_an_appointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarouselImages" EntityType="Self.CarouselImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="contactInfo" EntityType="Self.contactInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="contactus" EntityType="Self.contactus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
@@ -661,6 +683,10 @@
             <End Role="Tasks" EntitySet="Tasks" />
             <End Role="Volunteers" EntitySet="Volunteers" />
           </AssociationSet>
+          <AssociationSet Name="FK_BlogPosts_Posts_ParentPostId" Association="Self.FK_BlogPosts_Posts_ParentPostId">
+            <End Role="BlogPosts" EntitySet="BlogPosts" />
+            <End Role="BlogPosts1" EntitySet="BlogPosts" />
+          </AssociationSet>
           <AssociationSet Name="FK_BlogPosts_Users_AuthorId" Association="Self.FK_BlogPosts_Users_AuthorId">
             <End Role="HosMembers" EntitySet="HosMembers" />
             <End Role="BlogPosts" EntitySet="BlogPosts" />
@@ -726,13 +752,16 @@
           <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Excerpt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Slug" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PreviewImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PostStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AuthorId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="HosMember" Relationship="Self.FK_BlogPosts_Users_AuthorId" FromRole="BlogPosts" ToRole="HosMembers" />
+          <Property Name="ParentPostId" Type="Int32" />
+          <NavigationProperty Name="ParentPosts" Relationship="DBContext.FK_BlogPosts_Posts_ParentPostId" FromRole="BlogPost" ToRole="BlogPost1" />
+          <NavigationProperty Name="ParentPost" Relationship="DBContext.FK_BlogPosts_Posts_ParentPostId" FromRole="BlogPost1" ToRole="BlogPost" />
+          <Property Name="Slug" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="book_an_appointment">
           <Key>
@@ -1429,6 +1458,11 @@
             <End Role="Volunteers" EntitySet="Volunteers" />
           </AssociationSet>
           <EntitySet Name="contactInfoes" EntityType="DBContext.contactInfo" />
+          <EntitySet Name="CarouselImages" EntityType="DBContext.CarouselImage" />
+          <AssociationSet Name="FK_BlogPosts_Posts_ParentPostId" Association="DBContext.FK_BlogPosts_Posts_ParentPostId">
+            <End Role="BlogPost" EntitySet="BlogPosts" />
+            <End Role="BlogPost1" EntitySet="BlogPosts" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="contactInfo">
           <Key>
@@ -1439,6 +1473,26 @@
           <Property Name="address_one" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="address_two" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="CarouselImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BlogPosts_Posts_ParentPostId">
+          <End Type="DBContext.BlogPost" Role="BlogPost" Multiplicity="0..1" />
+          <End Type="DBContext.BlogPost" Role="BlogPost1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogPost">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BlogPost1">
+              <PropertyRef Name="ParentPostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1463,11 +1517,12 @@
           <EntitySetMapping Name="BlogPosts">
             <EntityTypeMapping TypeName="DBContext.BlogPost">
               <MappingFragment StoreEntitySet="BlogPosts">
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
+                <ScalarProperty Name="ParentPostId" ColumnName="ParentPostId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="Excerpt" ColumnName="Excerpt" />
-                <ScalarProperty Name="Slug" ColumnName="Slug" />
                 <ScalarProperty Name="PreviewImage" ColumnName="PreviewImage" />
                 <ScalarProperty Name="PostDate" ColumnName="PostDate" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
@@ -1780,6 +1835,15 @@
                 <ScalarProperty Name="address_two" ColumnName="address_two" />
                 <ScalarProperty Name="address_one" ColumnName="address_one" />
                 <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarouselImages">
+            <EntityTypeMapping TypeName="DBContext.CarouselImage">
+              <MappingFragment StoreEntitySet="CarouselImages">
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

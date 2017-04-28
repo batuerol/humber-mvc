@@ -66,14 +66,15 @@ namespace Mahc_Final.Controllers
 
 
 
-            List<Staff1> stf = db.Staff1.Where(d => d.dept_id == id).ToList();
+            //List<Staff1> stf = db.Staff1.Where(d => d.dept_id == id).ToList();
 
-            Mahc_Final.DBContext.HospitalStaffM staffm = new Mahc_Final.DBContext.HospitalStaffM();
-            staffm.staff = stf;
+            //Mahc_Final.DBContext.HosMember staffm = new Mahc_Final.DBContext.HospitalStaffM();
+            //staffm.staff = stf;
 
 
-            return PartialView("_display1", staffm);
+            //return PartialView("_display1", staffm);
 
+            return null;
 
         }
         public ActionResult Details(int? id)

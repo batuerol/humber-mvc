@@ -13,7 +13,8 @@
 <img src="@Url.Content("~/BlogImages/" + Model.Slug)" alt="@Model.Slug" />
 <div>
     <p>
-        @Model.Content
+        //@Model.Content
+        @Html.Raw(Model.Content);
     </p>
 </div>
 
