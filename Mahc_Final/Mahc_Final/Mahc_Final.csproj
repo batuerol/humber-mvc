@@ -295,6 +295,7 @@
     <Compile Include="DBContext\Task.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBContext\UserInfo.cs" />
     <Compile Include="DBContext\Volunteer.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
@@ -343,7 +344,16 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="gifts\ mnsdb.jpg" />
+    <Content Include="gifts\Chocolaty Gift.jpg" />
     <Content Include="gifts\Dreamland Bedside Bouquet.jpg" />
+    <Content Include="gifts\Dreamland Pink.jpg" />
+    <Content Include="gifts\Healthy.jpg" />
+    <Content Include="gifts\Honeybee Basket.jpg" />
+    <Content Include="gifts\mnsdb.jpg" />
+    <Content Include="gifts\Mommy%27s Getup.jpg" />
+    <Content Include="gifts\Tasty Healthy .jpg" />
+    <Content Include="gifts\Teddy.jpg" />
+    <Content Include="gifts\Yummy Chcolates.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\fbk.png" />
@@ -825,6 +835,7 @@
     <Content Include="Views\HosMembersAdmin\Details.cshtml" />
     <Content Include="Views\HosMembersAdmin\Edit.cshtml" />
     <Content Include="Views\HosMembersAdmin\Index.cshtml" />
+    <Content Include="Views\Visitor\_display1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -881,5 +892,5 @@
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
-  </Target> -->
+  </Target>-->
 </Project>

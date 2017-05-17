@@ -19,22 +19,27 @@
         </dd>
 
         <dt>
+            <br />
             @Html.DisplayNameFor(model => model.desc)
         </dt>
 
         <dd>
+            <br />
             @Html.DisplayFor(model => model.desc)
         </dd>
 
         <dt>
+            <br /><br /><br /><br /><br />
+
             @Html.DisplayNameFor(model => model.image)
         </dt>
 
         <dd>
+            <br /><br /><br />
             <div class="">
                 @if (Model.image != null)
                 {
-                    <img src="~/gifts/@Html.DisplayFor(model => model.image)" width="200" class="img-rounded" />
+                    <img src="~/gifts/@Html.DisplayFor(model => model.image)" width="400" height="400" class="img-rounded" />
                 }
                 else
                 {
@@ -42,6 +47,7 @@
                 }
 
             </div>
+            <br /><br /><br />
         </dd>
 
         <dt>
@@ -63,7 +69,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Continue","CreateOrder","AdminOrders", new { id = Model.Id },null)|
-   
+    @Html.ActionLink("Continue", "CreateOrder", "AdminOrders", new { id = Model.Id }, null)|
+
     @Html.ActionLink("Back to List", "Index")
 </p>
