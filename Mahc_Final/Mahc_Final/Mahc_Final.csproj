@@ -306,7 +306,6 @@
     <Compile Include="Metadata\MetadataBohdan.cs" />
     <Compile Include="Metadata\MetadataM.cs" />
     <Compile Include="Models\Some.cs" />
-    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BlogPostsViewModel.cs" />
     <Compile Include="ViewModels\Careers.cs" />
