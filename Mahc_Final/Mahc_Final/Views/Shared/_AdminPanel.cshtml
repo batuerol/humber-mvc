@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Admin Panel | Muskoka Hospital</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("head", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <link href="~/Content/AdminPanel.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="~/Content/jquery-ui-timepicker-addon.css">
+    
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div style="float:right;" class="navbar-header">
+                <div class="row">
+                    <div class="navbar">
+                        <ul class="nav nav-pills">
+                            <li>@Html.ActionLink("Website", "Index", "Home")</li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    Account <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("My account", "Index", "Admin")</li>
+                                    <li>@Html.ActionLink("Logout", "Index", "Admin")</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <h1>Admin panel</h1>
+            <div style="float:left;" class="navbar-header">
+                <div class="row">
+                    <div class="navbar">
+                        <ul class="nav nav-pills">
+                            <li>@Html.ActionLink("Posts", "Index", "Blog")</li>
+                            <li>@Html.ActionLink("Menus", "Index", "Admin")</li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    Management <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("ER wait time", "Create", "ERWaitTimes")</li>
+                                    <li>@Html.ActionLink("Careers", "Index", "Careers")</li>
+                                    <li>@Html.ActionLink("Volunteers", "Index", "Volunteer")</li>
+                                    <li>@Html.ActionLink("Donations", "Index", "Admin")</li>
+                                    <li>@Html.ActionLink("Manage Users", "Index", "Members")</li>
+                                     <li>@Html.ActionLink("Manage Roles", "Index", "RolesAdmin")</li>
+                                    <li>@Html.ActionLink("Manage Staff", "Index", "Staff1")</li>
+                                    <li>@Html.ActionLink("Gift Categories", "Index", "GiftCats")</li>
+                                    <li>@Html.ActionLink("Gifts", "Index", "AdminGifts")</li>
+                                    <li>@Html.ActionLink("Feedback", "Index", "feedbacksAdmin")</li>
+                                    <li>@Html.ActionLink("FAQ", "Index", "faqsAdmin")</li>
+                                    <li>@Html.ActionLink("Contact us", "Index", "contactUsAdmin")</li>
+                                    <li>@Html.ActionLink("Contact Submissions", "Index", "contactFormAdmin")</li>
+                                </ul>
+                            </li>
+                            <li>@Html.ActionLink("Users", "Index", "Admin")</li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    Doctors <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Add a doctor", "Index", "doctors/Create")</li>
+                                    <li>@Html.ActionLink("Appointments", "Index", "book_an_appointment")</li>
+                                    <li>@Html.ActionLink("Staff directory", "Index", "Home")</li>
+                                </ul>
+                            </li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    Inform <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Events", "Index", "Events")</li>
+                                    <li>@Html.ActionLink("News", "Index", "News")</li>
+                                    <li>@Html.ActionLink("Alerts", "Index", "Alerts")</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <style>
+        .row {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+            .row > [class*='col-'] {
+                display: flex;
+                flex-direction: column;
+            }
+    </style>
+    <div class="row">
+        <nav class="col-lg-1 col-md-1 col-sm-1 col-xs-1 navbar-left" style="padding-left: 75px;padding-top:50px; border-bottom:none; height:100%;">
+            @RenderSection("leftnav", required: false)
+        </nav>
+        <div class="container body-content col-lg-11 col-md-11 col-sm-11 col-xs-11">
+            @RenderBody()
+        </div>
+    </div>
+    <hr />
+    <footer>
+        <div class="container">
+            <div class="row">
+                <p>&copy; @DateTime.Now.Year - Muskoka Hospital</p>
+            </div>
+        </div>
+
+    </footer>
+    @RenderSection("scripts", required: false)
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery-ui-timepicker-addon.js"></script>
+</body>
+</html>

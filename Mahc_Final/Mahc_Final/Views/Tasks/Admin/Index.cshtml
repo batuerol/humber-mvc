@@ -1,0 +1,98 @@
+﻿@*@model IEnumerable<Mahc_Final.DBContext.Task>*@
+@model PagedList.IPagedList<Mahc_Final.DBContext.Task>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Tasks";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+@section leftnav {
+    @Html.Partial("~/Views/Volunteer/Admin/_Navigation.cshtml")
+}
+<h2>Volunteer tasks</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Tasks", FormMethod.Get))
+{
+    <p>
+        Find: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.First().Title)*@
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Regularity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Desc)
+        </th>
+        <th>
+            @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusSortParm, currentFilter = ViewBag.CurrentFilter })
+            @*@Html.DisplayNameFor(model => model.First().Status)*@
+        </th>
+        <th>
+            @Html.ActionLink("Created", "Index", new { sortOrder = ViewBag.CreatedSortParm, currentFilter = ViewBag.CurrentFilter })
+            @*@Html.DisplayNameFor(model => model.First().Created_date)*@
+        </th>
+        <th>
+            @Html.ActionLink("Last modified", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            @*@Html.DisplayNameFor(model => model.First().Modified_date)*@
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Title)*@
+                @Html.ActionLink(item.Title, "Details", new { id = item.Id }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Regularity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Desc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modified_date)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+@Html.ActionLink("Back", "Index", "Volunteer")

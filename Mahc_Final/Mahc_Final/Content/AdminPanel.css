@@ -1,0 +1,48 @@
+﻿body {
+    padding-top: 0;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+h3 {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+    list-style: none;
+}
+
+.header-bar {
+    float: right;
+    background-color: gainsboro;
+}
+
+header {
+    background-color: gainsboro;
+}
+
+footer {
+    background-color: gainsboro;
+    color: black;
+}
+
+.short-text {
+    display: block;
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
