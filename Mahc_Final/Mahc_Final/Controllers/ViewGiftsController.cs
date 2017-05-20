@@ -124,7 +124,7 @@ namespace Mahc_Final.Controllers
             try
             {
                 var tokenId = await GetTokenId(ui);
-                chargeId = await ChargeCustomer(tokenId, (float.Parse(price)+((float.Parse(price)*13)/100)));
+                chargeId = await ChargeCustomer(tokenId, (float.Parse(price) + ((float.Parse(price) * 13) / 100)));
             }
             catch (Exception e)
             {
